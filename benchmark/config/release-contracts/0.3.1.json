@@ -1,0 +1,32 @@
+{
+  "version": "0.3.1",
+  "source": "Frozen src/core/renderer.ts, src/engines/cloud.ts, src/engines/local/index.ts, src/output/writer.ts and docs/formats.md; draft release semantics, not rendering truth",
+  "singleFileTargets": [
+    "pdf",
+    "video"
+  ],
+  "passthroughReportedPages": 1,
+  "plannedCode": "not_implemented",
+  "unsupportedCode": "unsupported_format",
+  "retention": {
+    "supported": false,
+    "evidenceFiles": [
+      "package/dist/index.d.ts",
+      "source/src/cli/commands/render.ts",
+      "source/src/core/validation.ts"
+    ],
+    "reason": "Frozen public RenderOptions, CLI options and input normalization do not expose a retention setting; explicit 1/99 hour configuration is unavailable"
+  },
+  "cloudSingleFileReportedPages": 1,
+  "optionContract": {
+    "invalidPagesCode": "usage_error",
+    "unsupportedOptionCode": "unsupported_option",
+    "evidenceFiles": [
+      "source/docs/formats.md",
+      "source/src/types.ts",
+      "source/src/core/pages.ts",
+      "source/src/core/plan.ts"
+    ],
+    "webpTask": "image.convertWebp"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "render-release-contract",
+  "version": "4",
+  "profile": "render",
+  "type": "command",
+  "command": [
+    "python3",
+    "{evaluator_dir}/evaluate.py",
+    "{context}"
+  ]
+}

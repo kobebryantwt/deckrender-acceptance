@@ -1,0 +1,210 @@
+name: DeckRender release acceptance
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published GitHub tag (empty means latest formal release)
+        type: string
+      force:
+        description: Re-run an unchanged release
+        type: boolean
+        default: false
+  schedule:
+    - cron: '43 6 * * 2' # 每周二北京时间 14:43 (UTC 06:43)
+permissions:
+  contents: read
+concurrency:
+  group: deckrender-release-acceptance
+  cancel-in-progress: false
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    outputs:
+      changed: ${{ steps.change.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r benchmark/acceptance/requirements.txt
+      - name: Require reviewed public snapshot
+        run: python benchmark/scripts/release_acceptance.py snapshot validate --snapshot ci-input/current
+      - name: Restore processed fingerprint
+        run: |
+          mkdir -p benchmark/artifacts/acceptance
+          git fetch origin acceptance-results || true
+          git show origin/acceptance-results:state.json > benchmark/artifacts/acceptance/last-attempted.json || rm -f benchmark/artifacts/acceptance/last-attempted.json
+      - name: Include new audit evidence in change detection
+        run: |
+          git fetch origin acceptance-cloud || true
+          if git show-ref --verify --quiet refs/remotes/origin/acceptance-cloud; then
+            git archive origin/acceptance-cloud cloud | tar -x -C benchmark/artifacts/acceptance
+          fi
+      - id: change
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          FORCE_RUN: ${{ inputs.force }}
+          REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
+          REN_AUDIT_COMMAND: ${{ vars.REN_AUDIT_COMMAND }}
+          REN_LIFECYCLE_COMMAND: ${{ vars.REN_LIFECYCLE_COMMAND }}
+          DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python benchmark/scripts/ci_driver.py check --snapshot ci-input/current
+      - if: steps.change.outputs.changed == 'true'
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+        run: python benchmark/scripts/ci_driver.py freeze
+      - if: steps.change.outputs.changed == 'true'
+        run: tar -czf frozen.tgz benchmark/artifacts/acceptance/releases benchmark/artifacts/acceptance/active-release.json benchmark/artifacts/acceptance/last-check.json
+      - if: steps.change.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: frozen-release
+          path: frozen.tgz
+          retention-days: 14
+  verify:
+    needs: freeze
+    if: needs.freeze.outputs.changed == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [release, local, privacy, cloud, quality]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          pip install -r benchmark/acceptance/requirements.txt
+          sudo apt-get update
+          sudo apt-get install -y strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
+      - uses: actions/download-artifact@v4
+        with:
+          name: frozen-release
+      - run: |
+          tar -xzf frozen.tgz
+          python benchmark/scripts/release_acceptance.py restore-runtime
+      - name: Restore cloud audit ledger
+        if: matrix.group == 'cloud'
+        run: |
+          git fetch origin acceptance-cloud || true
+          if git show-ref --verify --quiet refs/remotes/origin/acceptance-cloud; then
+            git archive origin/acceptance-cloud cloud | tar -x -C benchmark/artifacts/acceptance
+          fi
+      - name: Execute reviewed group
+        env:
+          REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
+          DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
+        run: python benchmark/scripts/release_acceptance.py run --snapshot ci-input/current --group '${{ matrix.group }}' --run-id '${{ github.run_id }}-${{ matrix.group }}'
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ matrix.group }}
+          path: benchmark/artifacts/acceptance/runs/
+          if-no-files-found: error
+          retention-days: 30
+  aggregate:
+    needs: [freeze, verify]
+    if: always() && needs.freeze.outputs.changed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: result-*
+          path: incoming
+      - run: pip install -r benchmark/acceptance/requirements.txt
+      - run: python benchmark/scripts/release_acceptance.py aggregate --snapshot ci-input/current --inputs incoming --run-id '${{ github.run_id }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aggregate-report
+          path: benchmark/artifacts/acceptance/runs/
+  persist-and-pages:
+    needs: aggregate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: aggregate-report
+          path: benchmark/artifacts/acceptance/runs
+      - uses: actions/download-artifact@v4
+        with:
+          name: frozen-release
+      - run: tar -xzf frozen.tgz
+      - name: Prepare history branch
+        run: |
+          git fetch origin acceptance-results || true
+          if git show-ref --verify --quiet refs/remotes/origin/acceptance-results; then
+            git worktree add history origin/acceptance-results
+          else
+            mkdir history
+            git -C history init -b acceptance-results
+          fi
+          python benchmark/scripts/release_acceptance.py publish --output history/site
+          python benchmark/scripts/ci_driver.py record
+          cp benchmark/artifacts/acceptance/last-attempted.json history/state.json
+      - name: Persist immutable reports and processed fingerprint
+        run: |
+          git -C history config user.name github-actions
+          git -C history config user.email github-actions@users.noreply.github.com
+          git -C history add site state.json
+          git -C history diff --cached --quiet || git -C history commit -m 'Archive DeckRender acceptance evidence'
+          git -C history push "$GITHUB_WORKSPACE/.git" HEAD:refs/heads/acceptance-results
+          git push origin acceptance-results
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: history/site
+      - uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Write published report links
+        if: steps.deployment.outcome == 'success'
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import os
+          from urllib.parse import quote
+          run_id = quote("${{ github.run_id }}", safe='')
+          base = os.environ.get('PAGES_URL', '').rstrip('/') + '/'
+          print('## 📊 验收报告已发布到 GitHub Pages')
+          print(f'\n- 🌐 [验收历史总览首页]({base})')
+          print(f'- 📄 [本轮完整验收报告]({base}{run_id}/report.html)')
+          print(f'- 🖼️ [本轮视觉图像对照工作台]({base}{run_id}/visual.html)')
+          print(f'- 🤖 [本轮 Agent 机器分析报告]({base}{run_id}/agent-report.json)')
+          PY
+  verdict:
+    needs: [aggregate, persist-and-pages]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: aggregate-report
+          path: benchmark/artifacts/acceptance/runs
+      - run: python benchmark/scripts/release_acceptance.py verdict --run 'benchmark/artifacts/acceptance/runs/${{ github.run_id }}'

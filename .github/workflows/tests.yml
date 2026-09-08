@@ -1,0 +1,16 @@
+name: Acceptance framework tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r benchmark/acceptance/requirements.txt
+      - run: python benchmark/scripts/deck_benchmark.py core-check
+      - run: python -m unittest discover -s benchmark/acceptance/tests -v
+      - run: python -m unittest discover -s casework/tests -v

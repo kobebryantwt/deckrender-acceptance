@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+benchmark/artifacts/
+benchmark/cache/
+*.egg-info/
+.DS_Store
+.playwright-cli/
+output/playwright/
+
+# 敏感凭据与本地环境（严禁上传）
+.env
+.env.*
+*.pem
+*.id_rsa
+*.id_ed25519
+private/
+*.log
+
+# 编辑器与系统临时文件
+.idea/
+.vscode/
+*.swp
+*.swo

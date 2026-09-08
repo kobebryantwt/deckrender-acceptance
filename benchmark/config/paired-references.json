@@ -1,0 +1,9 @@
+{
+  "pptx_paired_collaboration": {
+    "path": "benchmark/references/paired-collaboration.pdf",
+    "sha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+    "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+    "provenance": "benchmark/references/paired-collaboration.json",
+    "provenanceSha256": "add4d6b0a733b6cae1a302f15fbe0e6ed234d1c90a3751cc79dcebe18658320d"
+  }
+}

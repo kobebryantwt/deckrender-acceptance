@@ -1,0 +1,169 @@
+{
+  "scope": "Human review priority only; source files, full page evidence and formal GT requirements remain available",
+  "sources": {
+    "docx_business_report": {
+      "pages": {
+        "2": {
+          "expected": "核对 4 列表格、单元格换行、表头和段落；字体清晰且不越出单元格",
+          "imageSha256": "7b800ea14750c476a0c4c003dc5d437862250c9924b9a7b7a38ec00c6bce824b",
+          "note": "LibreOffice 候选；页面中的产品能力描述是样本内容，不是验收契约依据。",
+          "priority": true,
+          "purpose": "表格边框、换行与标题层级",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        }
+      },
+      "reason": "专项候选：仅优先审核下面指定的页面",
+      "sourceSha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6"
+    },
+    "docx_planning_report": {
+      "pages": {},
+      "reason": "保留长文档压力价值，暂缓视觉基准：86 页候选审核成本高，第 2 页几乎空白；需独立确认分页。",
+      "sourceSha256": "baa21791da557def206a3fa9b5eb05ecbeba364b911cdadbe82b668712d4f049"
+    },
+    "html_embedded_sample": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "c97a3dd5de2f42255d8d36e156060c732941bb0aa36b7cff2dd3ac2a5492c703"
+    },
+    "keynote_modern_iwa": {
+      "pages": {},
+      "reason": "保留格式/页面身份控制样本；不作为复杂设计基准。",
+      "sourceSha256": "8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db"
+    },
+    "keynote_tables_images": {
+      "pages": {},
+      "reason": "保留 Keynote 格式覆盖；抽查页为大字课件，原生图表价值尚未证实。",
+      "sourceSha256": "ea1e65eec57d5bfaa3aa4f42fcde26d7a38d60bea39756d135d59ba3fbe44f6b"
+    },
+    "markers-pdf": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    "markers-pptx": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+    },
+    "numbers_planned_workbook": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf"
+    },
+    "pages_planned_document": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "f3af645b49ebddceccb27ff13561caf7bdb1c0ca895b46b463113c94f273b9cb"
+    },
+    "pdf_academic_paper": {
+      "pages": {
+        "2": {
+          "expected": "两幅曲线图、RF/Fe3O4 下标、轴刻度、图例、正文和图注完整；本地/云端输出为图片",
+          "imageSha256": "241fdc7e68623077396dd4b27d8080e47bbefd8582edb193a62955d70e197fcc",
+          "note": "直接由源 PDF 栅格化；不验证科学论述或期刊真实性。原图分辨率限定了细节上限。",
+          "priority": true,
+          "purpose": "图注、小字、下标与多条曲线",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        }
+      },
+      "reason": "专项候选：仅优先审核下面指定的页面",
+      "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+    },
+    "pdf_omnidoc_complex": {
+      "pages": {},
+      "reason": "保留低清图像输入边界；页面本身模糊，不能作为高保真图文基准。",
+      "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155"
+    },
+    "ppt_legacy_elements": {
+      "pages": {},
+      "reason": "格式/边界控制或范围参考；暂未选入视觉精品候选",
+      "sourceSha256": "54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687"
+    },
+    "pptx_charts_bangweulu": {
+      "pages": {},
+      "reason": "暂缓优先审核：抽查第 5 页图表标签/数据表有明显重叠；需要原生或作者配套参考区分源设计与转换失真。",
+      "sourceSha256": "0a779b321c55714c669b22eb6d95b28cfe308ecd485e75ae236a3490e9d98369"
+    },
+    "pptx_math_formulas": {
+      "pages": {
+        "15": {
+          "expected": "核对 t_hit、M1/M2、SS1/SS2；长根号覆盖对应表达式，分式线与上下标位置可辨",
+          "imageSha256": "dcae3dfa77d5e4f45e99cd157bf47cb6cf2d11ecdb822b0bbf1f33594927d073",
+          "note": "LibreOffice 候选，未与 PowerPoint 原生外观确认；左下边框接近页面边界，需重点核对。",
+          "priority": true,
+          "purpose": "分式、根号、求和与上下标",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        }
+      },
+      "reason": "专项候选：仅优先审核下面指定的页面",
+      "sourceSha256": "656bb701842b56078092840b6f20233bb474fe9142c426812c1383156f5665d8"
+    },
+    "pptx_multilingual_fonts": {
+      "pages": {
+        "1": {
+          "expected": "逐行核对源文本；无方框缺字，阿拉伯文方向和连写需核对",
+          "imageSha256": "e55a568eb5e9f41825f765e76e93c1da040c15f86467fe930bee2bf4a03ebbaa",
+          "note": "Keynote 导出候选；不凭“非空图”确认字体、RTL 或标点正确。",
+          "priority": true,
+          "purpose": "中英文、繁体、日文与阿拉伯文",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        },
+        "2": {
+          "expected": "核对 α–ω、大写希腊字母、积分、关系符号和上下标；区分普通文本公式与原生 OMML",
+          "imageSha256": "d63ce22303bc5d4abec64bf256b39105f3e3f50816b9e22098a5900a838ecaea",
+          "note": "标题目前换行；须核对是否符合源文本框。此页不代表原生公式排版能力。",
+          "priority": true,
+          "purpose": "希腊字母与数学符号",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        }
+      },
+      "reason": "专项候选：仅优先审核下面指定的页面",
+      "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080"
+    },
+    "pptx_paired_collaboration": {
+      "pages": {
+        "1": {
+          "expected": "Agenda 标题、六项列表与页脚标识完整；原稿页码为 2，派生文档页码为 1",
+          "imageSha256": "a39381a9bc6f40efa3fb4f11934d9b310ae9719b138a17b3d54e8b7e8ecdc55a",
+          "note": "作者配套 PDF；不是 DeckRender 结果。仍需确认 PPTX/PDF 外观配对。",
+          "priority": true,
+          "purpose": "清晰标题、列表和页脚",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        },
+        "2": {
+          "expected": "Github/Gitlab 双栏位置与截图比例不变；两行蓝色链接和页脚完整",
+          "imageSha256": "679589c327532e756a8012fa799c42baae306248ca8354862961513dae2ecf09",
+          "note": "截图内部小字的清晰度受原始嵌入图片限制，不要求生成更多细节；原稿第 11 页。",
+          "priority": true,
+          "purpose": "左右双栏截图与超链接",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        },
+        "3": {
+          "expected": "两张截图、右侧绿色气泡及箭头按参考层级显示；标题、链接、页脚保留",
+          "imageSha256": "8b0bd7e07e2f87625270a8ed9e42a77e58b8665c3a9d5b587ea08832b8a01a1a",
+          "note": "参考中的遮挡是源设计的一部分；不可把所有重叠都判为错误。原稿第 16 页。",
+          "priority": true,
+          "purpose": "图文叠放和气泡遮挡关系",
+          "selectionMethod": "assistant visual inspection and source evidence; not human GT approval",
+          "selectionStatus": "draft"
+        }
+      },
+      "reason": "专项候选：仅优先审核下面指定的页面",
+      "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d"
+    },
+    "pptx_video_transitions": {
+      "pages": {},
+      "reason": "保留静态序列；缺独立视频时序，不推荐作为动画保真基准。",
+      "sourceSha256": "02eab1d0343ecaafc9abbbc99d6b6b418ce70aa7e40c29c51fedfd94a115e61c"
+    }
+  },
+  "status": "draft",
+  "version": 1
+}

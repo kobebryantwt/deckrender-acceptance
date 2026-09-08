@@ -1,0 +1,184 @@
+{
+  "version": "3",
+  "matrixRepresentatives": {
+    "pptx": "markers-pptx",
+    "pdf": "markers-pdf",
+    "docx": "docx_business_report",
+    "ppt": "ppt_legacy_elements",
+    "key": "keynote_modern_iwa",
+    "pages": "pages_planned_document",
+    "numbers": "numbers_planned_workbook"
+  },
+  "profiles": {
+    "markers-pdf": {
+      "role": "matrix",
+      "summary": "三页独立标识：验证 PDF 本地/云端格式矩阵、passthrough、页数与页序，以及 JSON 中的产物映射。",
+      "focus": [
+        "page-order"
+      ]
+    },
+    "markers-pptx": {
+      "role": "matrix",
+      "summary": "三页独立标识与图表/文字/表格：验证 PPTX 全部发布组合、JSON 公共契约、本地隐私、auto 路由及删除实验。",
+      "focus": [
+        "page-order",
+        "charts",
+        "fonts",
+        "dense-page"
+      ]
+    },
+    "docx_business_report": {
+      "role": "matrix",
+      "summary": "标准未加密 Word 报告：验证 DOCX 云端 image/PDF、video 拒绝及 auto 转云；独立导出分页仅作为候选。",
+      "focus": [
+        "fonts",
+        "dense-page"
+      ]
+    },
+    "ppt_legacy_elements": {
+      "role": "matrix",
+      "summary": "旧版二进制 PPT：验证云端图片/视频、PDF planned 拒绝、auto 转云和输出 Schema。",
+      "focus": [
+        "fonts"
+      ]
+    },
+    "keynote_modern_iwa": {
+      "role": "matrix",
+      "summary": "现代 IWA Keynote：验证云端图片/PDF、video planned 拒绝、auto 转云及页面内容。",
+      "focus": [
+        "fonts"
+      ]
+    },
+    "pptx_charts_bangweulu": {
+      "role": "difficulty",
+      "summary": "原生图表、表格与密集布局：检查图表数据标注、裁切、重叠和字体在本地/云端图片中是否保留。",
+      "focus": [
+        "charts",
+        "dense-page",
+        "fonts"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "image"
+      }
+    },
+    "pptx_math_formulas": {
+      "role": "difficulty",
+      "summary": "OMML 数学公式与特殊符号：检查公式、上下标和布局在本地/云端 PDF 中是否保留。",
+      "focus": [
+        "special-elements",
+        "fonts"
+      ],
+      "routes": {
+        "local": "pdf",
+        "cloud": "pdf"
+      }
+    },
+    "pptx_multilingual_fonts": {
+      "role": "difficulty",
+      "summary": "中日韩、阿拉伯文和希腊符号：检查缺字、RTL 方向、字体替换及密集表格，分别检查本地/云端图片。",
+      "focus": [
+        "fonts",
+        "dense-page"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "image"
+      }
+    },
+    "pptx_video_transitions": {
+      "role": "difficulty",
+      "summary": "四页静态序列：本地图片核对页序，云端视频抽帧核对页面内容。当前独立扫描未检出转场、时序或媒体部件，不能作为动画保真证据。",
+      "focus": [
+        "special-elements"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "video"
+      }
+    },
+    "docx_planning_report": {
+      "role": "difficulty",
+      "summary": "长篇 Word 中的图表、表格及中文排版：审核云端 PDF 的分页、内容缺失和溢出；不把文件名页数当真值。",
+      "focus": [
+        "charts",
+        "dense-page",
+        "fonts"
+      ],
+      "routes": {
+        "cloud": "pdf"
+      }
+    },
+    "keynote_tables_images": {
+      "role": "difficulty",
+      "summary": "Keynote 表格、图像与矢量元素：审核云端图片中的层级、裁切和图文布局；清单特征需与独立证据区分。",
+      "focus": [
+        "charts",
+        "fonts"
+      ],
+      "routes": {
+        "cloud": "image"
+      }
+    },
+    "pdf_omnidoc_complex": {
+      "role": "difficulty",
+      "summary": "复杂单页演示布局：分别检查本地/云端图片的密集内容、字体与重叠。",
+      "focus": [
+        "dense-page",
+        "fonts"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "image"
+      }
+    },
+    "pdf_academic_paper": {
+      "role": "difficulty",
+      "summary": "论文图文页面：本地/云端实际栅格化检查小字、上下标、图注和曲线；不再用 PDF passthrough 代表渲染质量。",
+      "focus": [
+        "dense-page",
+        "fonts"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "image"
+      }
+    },
+    "pages_planned_document": {
+      "role": "negative",
+      "summary": "仅验证 Pages 的 planned/unsupported 声明、明确拒绝和无虚假产物；不安排成功渲染质量题。",
+      "focus": []
+    },
+    "numbers_planned_workbook": {
+      "role": "negative",
+      "summary": "仅验证 Numbers 的 planned/unsupported 声明、明确拒绝和无虚假产物；不安排成功渲染质量题。",
+      "focus": []
+    },
+    "html_embedded_sample": {
+      "role": "reference",
+      "summary": "HTML 范围说明的参考样本。R10 扫描冻结 README/docs/help/类型声明，不运行此 HTML，也不将它计入渲染执行覆盖。",
+      "focus": []
+    },
+    "pptx_paired_collaboration": {
+      "role": "difficulty",
+      "summary": "作者配套 PPTX/PDF 的三页派生样本：原页 2/11/16。核对标题层级、双栏截图和文本框遮挡；保留来源与页码映射，参考仍待人工确认。",
+      "focus": [
+        "fonts",
+        "dense-page",
+        "special-elements"
+      ],
+      "routes": {
+        "local": "image",
+        "cloud": "image"
+      }
+    }
+  },
+  "additionalQualityInterfaces": [
+    "cli"
+  ],
+  "limits": [
+    "发布矩阵代表样本保留所有支持组合的 CLI/SDK 质量题；困难样本仅按指定路线展开。",
+    "页面筛选与 PNG/JPEG/WebP 已单列参数专项草稿；更多损坏/加密输入、参数组合、全视频帧仍未覆盖。出题不代表执行或审核通过。",
+    "pptx_video_transitions 当前未检出转场/媒体部件，只覆盖静态页面到视频的抽帧；真实动画/音视频保真仍缺样本与检查。"
+  ]
+}

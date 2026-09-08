@@ -1,0 +1,62 @@
+name: Resume cloud deletion evidence
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        options: [collect, submit]
+        default: collect
+  schedule:
+    - cron: '20 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: deckrender-cloud-ledger
+  cancel-in-progress: false
+jobs:
+  resume:
+    if: vars.REN_ALLOW_CLOUD == '1'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore durable ledger
+        run: |
+          git fetch origin acceptance-cloud || true
+          if git show-ref --verify --quiet refs/remotes/origin/acceptance-cloud; then
+            git worktree add ledger origin/acceptance-cloud
+          else
+            mkdir ledger
+            git -C ledger init -b acceptance-cloud
+          fi
+          mkdir -p benchmark/artifacts/acceptance/cloud
+          if test -d ledger/cloud; then cp -R ledger/cloud/. benchmark/artifacts/acceptance/cloud/; fi
+      - uses: actions/setup-node@v4
+        if: inputs.action == 'submit'
+        with:
+          node-version: '22'
+      - name: Freeze submission target
+        if: inputs.action == 'submit'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python benchmark/scripts/ci_driver.py freeze
+      - name: Submit or collect
+        env:
+          REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
+          REN_LIFECYCLE_COMMAND: ${{ vars.REN_LIFECYCLE_COMMAND }}
+          REN_AUDIT_COMMAND: ${{ vars.REN_AUDIT_COMMAND }}
+          DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
+          RETENTION_ACTION: ${{ inputs.action || 'collect' }}
+        run: python benchmark/scripts/ci_driver.py retention
+      - if: always()
+        name: Persist before ending runner
+        run: |
+          cp -R benchmark/artifacts/acceptance/cloud ledger/
+          git -C ledger config user.name github-actions
+          git -C ledger config user.email github-actions@users.noreply.github.com
+          git -C ledger add cloud
+          git -C ledger diff --cached --quiet || git -C ledger commit -m 'Update retention evidence ledger'
+          git -C ledger push "$GITHUB_WORKSPACE/.git" HEAD:refs/heads/acceptance-cloud
+          git push origin acceptance-cloud

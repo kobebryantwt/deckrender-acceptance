@@ -1,0 +1,24 @@
+{
+  "cases": "cases.jsonl",
+  "displayName": "DeckRender 发布验收",
+  "evaluator": {
+    "id": "render-release-contract",
+    "version": "4"
+  },
+  "features": "features.json",
+  "id": "deckrender-release",
+  "profile": "render",
+  "qualityPolicy": {
+    "scoring": {
+      "aggregation": "macro_feature",
+      "passThreshold": null,
+      "reviewThreshold": null,
+      "scale": 100
+    },
+    "version": "1"
+  },
+  "questions": "questions.jsonl",
+  "reviewStatus": "approved",
+  "selectionPolicy": "benchmark/config/case-selection.json",
+  "version": "5"
+}

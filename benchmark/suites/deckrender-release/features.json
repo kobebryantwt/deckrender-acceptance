@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "id": "REN-R01",
+      "name": "可追溯 MIT release"
+    },
+    {
+      "id": "REN-R02",
+      "name": "本地 PPTX/PDF"
+    },
+    {
+      "id": "REN-R03",
+      "name": "严格 local 边界"
+    },
+    {
+      "id": "REN-R04",
+      "name": "云端格式矩阵"
+    },
+    {
+      "id": "REN-R05",
+      "name": "Pages/Numbers 规划状态"
+    },
+    {
+      "id": "REN-R06",
+      "name": "auto 可审计"
+    },
+    {
+      "id": "REN-R07",
+      "name": "结构化结果契约"
+    },
+    {
+      "id": "REN-R08",
+      "name": "云端删除"
+    },
+    {
+      "id": "REN-R10",
+      "name": "弃用范围"
+    },
+    {
+      "id": "REN-R11",
+      "name": "支持与商业边界"
+    }
+  ]
+}

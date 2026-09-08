@@ -1,0 +1,11 @@
+{
+  "id": "render-quality",
+  "version": "3",
+  "profile": "render",
+  "type": "command",
+  "command": [
+    "python3",
+    "{evaluator_dir}/evaluate.py",
+    "{context}"
+  ]
+}

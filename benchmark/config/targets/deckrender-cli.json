@@ -1,0 +1,23 @@
+{
+  "id": "deckrender-cli",
+  "displayName": "Frozen DeckRender cli",
+  "profile": "render",
+  "adapter": {
+    "type": "command",
+    "command": [
+      "python3",
+      "{repo}/benchmark/adapters/target.py",
+      "--input",
+      "{input}",
+      "--output",
+      "{output_dir}",
+      "--case",
+      "{case_id}",
+      "--interface",
+      "cli"
+    ],
+    "result": {
+      "type": "stdout_json"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "deckrender",
+  "displayName": "Frozen DeckRender release acceptance (CLI + SDK)",
+  "profile": "render",
+  "adapter": {
+    "type": "command",
+    "command": [
+      "python3",
+      "{repo}/benchmark/scripts/release_acceptance.py",
+      "run"
+    ],
+    "result": {
+      "type": "stdout_json"
+    }
+  },
+  "orchestratedBy": "release_acceptance.py; Core run_suite dispatches this target"
+}

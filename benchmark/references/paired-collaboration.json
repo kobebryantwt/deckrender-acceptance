@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "sourceId": "pptx_paired_collaboration",
+  "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+  "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+  "originalPages": [
+    2,
+    11,
+    16
+  ],
+  "originalSlideCount": 86,
+  "originals": [
+    {
+      "filename": "collab_git_v4.pptx",
+      "sha256": "dff59cb7c3a2587f7af52772be60ed2ff614415e15e2030aa7674cd9b636e316",
+      "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pptx/content"
+    },
+    {
+      "filename": "collab_git_v4.pdf",
+      "sha256": "2d2a32bb0fada080f726c3f32f8ec842e26a5c74c6098dfba33b9f5ceab4ebc4",
+      "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pdf/content"
+    }
+  ],
+  "recordUrl": "https://zenodo.org/records/14623257",
+  "recordSha256": "2e911ba06cdc0391a0e3c904d02a6e35042ee8e97dd77b52a51a8c8f092150bf",
+  "title": "Collaborative Working and Version Control with git[hub]",
+  "creators": [
+    {
+      "name": "Haase, Robert",
+      "affiliation": "ScaDS.AI",
+      "orcid": "0000-0001-5949-2327"
+    }
+  ],
+  "license": "CC-BY-4.0",
+  "derivation": "presentation.xml slide list restricted to original pages 2,11,16; all other ZIP entries preserved byte-for-byte. PDF selects same original pages. Not redrawn; not DeckRender output.",
+  "pairing": "Same publication and total page count; selected page headings match source XML. Human visual pairing review remains required.",
+  "reviewStatus": "draft"
+}

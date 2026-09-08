@@ -1,0 +1,16 @@
+filename	format	license	origin	difficulty_axes	description
+pptx_charts_bangweulu.pptx	pptx	CC-BY-4.0	HuggingFace Zenodo10K (0255424aed4183a74da5a55d7f76ee61)	charts,dense-page,fonts	8 slides, 6 native charts, 2 tables, multi-font CJK & English
+pptx_math_formulas.pptx	pptx	CC-BY-4.0	HuggingFace Zenodo10K (e4530cd2718cf9b7658d586ba4629918)	special-elements,fonts	16 slides, 64 OMML math equations, 24 transitions
+pptx_multilingual_fonts.pptx	pptx	CC0-1.0	DeckRender Acceptance Synthetic Generator	fonts,dense-page	3 slides, CJK (SC/TC), Japanese, Arabic RTL, Math & Greek glyphs, dense metrics table
+pptx_video_transitions.pptx	pptx	CC0-1.0	DeckRender Acceptance Synthetic Generator	special-elements	4 slides, 16:9 widescreen chapters with transition timings for video pipeline
+ppt_legacy_elements.ppt	ppt	Apache-2.0	Apache Tika test documents (testPPT_various.ppt)	fonts	PowerPoint 97-2003 binary format with shapes, text and layout
+docx_business_report.docx	docx	CC0-1.0	DeckRender Acceptance Synthetic Generator	fonts,dense-page	3 pages, unencrypted standard Word report with headings, grid table and bullet hierarchy
+docx_planning_report.docx	docx	Apache-2.0	HuggingFace OmegaUse OfficeVal (officeval_018)	charts,dense-page,fonts	55 pages, 26 tables, 24 figures, 18 chart parts, CJK fonts
+keynote_modern_iwa.key	key	Apache-2.0	Apache Tika test documents (testKeynote2013.key)	fonts	Modern Apple Keynote IWA bundle with master layouts and shapes
+keynote_tables_images.key	key	CC-BY-4.0	Zenodo Open Presentations (v13.1)	charts,fonts	16:9 Keynote presentation with tables, vector drawings and imagery
+pdf_omnidoc_complex.pdf	pdf	Apache-2.0	OmniDocBench complex presentation layout	dense-page,fonts	Complex single-page presentation layout rasterized from presentation slide
+pdf_academic_paper.pdf	pdf	CC-BY-4.0	HuggingFace OmegaUse OfficeVal (officeval_008)	dense-page,fonts	15 pages academic paper with 72 annotations, multi-column layout and mathematical typography
+pages_planned_document.pages	pages	Apache-2.0	Cupertino files collection (threatconnect-v11.1)	dense-page	Apple Pages document for R05 planned/unsupported negative verification
+numbers_planned_workbook.numbers	numbers	Apache-2.0	Cupertino files collection (demo06-formulas)	dense-page	Apple Numbers workbook for R05 planned/unsupported negative verification
+html_embedded_sample.html	html	Apache-2.0	Apache Tika test documents (testHTML_embedded_img.html)	fonts	HTML page with inline image for R10 deprecation/scope verification
+pptx_paired_collaboration.pptx	pptx	CC-BY-4.0	Robert Haase; https://zenodo.org/records/14623257; derived pages 2,11,16	fonts,dense-page,special-elements	Three selected slides; unchanged slide content; author-supplied PDF paired by original page. See benchmark/references/paired-collaboration.json
