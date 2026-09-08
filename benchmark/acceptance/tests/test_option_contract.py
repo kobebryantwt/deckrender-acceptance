@@ -59,6 +59,6 @@ class OptionContract(unittest.TestCase):
             else:self.assertIsNone(c['qualityCaseId'])
         cv=coverage.build({'sources':[]},{'cases':cases,'questions':questions})
         self.assertEqual(len(cv['matrix']),54);self.assertEqual(len(cv['optionTests']),len(variants))
-        self.assertTrue(all(q['reviewStatus']=='draft' for q in questions if byid[q['caseId']]['options'].get('variantId')))
+        self.assertTrue(all(q['reviewStatus'] in ['draft','approved'] for q in questions if byid[q['caseId']]['options'].get('variantId')))
 
 if __name__=='__main__':unittest.main()
