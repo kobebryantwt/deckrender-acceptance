@@ -1,0 +1,120 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "evidence": [
+          {
+            "file": "package/dist/index.d.ts",
+            "sha256": "5b520b684033bd9aae8ab161aa991e0527adbbb5bb4d8e76843ae83fce4cf6ad"
+          },
+          {
+            "file": "source/src/cli/commands/render.ts",
+            "sha256": "277549aa46231d4eb59e4ef1a112c311d517d6e907c162ecea9ddd8788cfa135"
+          },
+          {
+            "file": "source/src/core/validation.ts",
+            "sha256": "de924ba688ffc29b8f37c03100489ccbc153b85743b3614ab138ae16bf50bcdd"
+          }
+        ],
+        "evidenceFiles": [
+          "package/dist/index.d.ts",
+          "source/src/cli/commands/render.ts",
+          "source/src/core/validation.ts"
+        ],
+        "reason": "Frozen public RenderOptions, CLI options and input normalization do not expose a retention setting; explicit 1/99 hour configuration is unavailable",
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R08-retention-06cd372857f2"
+      ],
+      "expected": "公开接口允许指定保留期，默认 1 小时，支持 1 与 99 小时",
+      "featureId": "REN-R08",
+      "finding": true,
+      "id": "configuration",
+      "questionId": "REN-R08-retention-06cd372857f2-configuration",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "retention.configuration.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "retention"
+    },
+    {
+      "actual": {
+        "productSupported": false,
+        "reason": "上游服务未提供删除审计接口与试验数据；记录为 blocked"
+      },
+      "evidence": [
+        "evidence/REN-R08-retention-06cd372857f2"
+      ],
+      "expected": "到期后任务、输入、中间产物、输出全部删除，有服务端审计证据",
+      "featureId": "REN-R08",
+      "finding": true,
+      "id": "deletion",
+      "questionId": "REN-R08-retention-06cd372857f2-deletion",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "retention.deletion.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "retention"
+    },
+    {
+      "actual": {
+        "productSupported": false,
+        "reason": "需要独立的无训练政策与实施审计接口；记录为 blocked"
+      },
+      "evidence": [
+        "evidence/REN-R08-retention-06cd372857f2"
+      ],
+      "expected": "不用于训练的公开政策和独立实施审计一致",
+      "featureId": "REN-R08",
+      "finding": true,
+      "id": "training",
+      "questionId": "REN-R08-retention-06cd372857f2-training",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "retention.training.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "retention"
+    }
+  ],
+  "caseId": "REN-R08-retention-06cd372857f2",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "cloud"
+  ],
+  "evidence": [
+    "evidence/REN-R08-retention-06cd372857f2"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud --retention-hours 99 -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  retentionHours: 99\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "interface": "sdk",
+    "retentionHours": 99,
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "failed"
+}

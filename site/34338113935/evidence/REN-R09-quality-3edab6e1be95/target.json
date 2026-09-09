@@ -1,0 +1,141 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456.pdf",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 4631,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95",
+  "exitCode": 0,
+  "payload": {
+    "caveat": "Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.",
+    "durationMs": 4429,
+    "engine": "local",
+    "format": "image",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456.pdf",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 540685,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/001.png",
+        "height": 1921,
+        "page": 1,
+        "width": 1358
+      },
+      {
+        "bytes": 397234,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/002.png",
+        "height": 1921,
+        "page": 2,
+        "width": 1358
+      },
+      {
+        "bytes": 727688,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/003.png",
+        "height": 1921,
+        "page": 3,
+        "width": 1358
+      },
+      {
+        "bytes": 272979,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/004.png",
+        "height": 1921,
+        "page": 4,
+        "width": 1358
+      },
+      {
+        "bytes": 288546,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/005.png",
+        "height": 1921,
+        "page": 5,
+        "width": 1358
+      },
+      {
+        "bytes": 222221,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/006.png",
+        "height": 1921,
+        "page": 6,
+        "width": 1358
+      },
+      {
+        "bytes": 180576,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/007.png",
+        "height": 1921,
+        "page": 7,
+        "width": 1358
+      },
+      {
+        "bytes": 260249,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/008.png",
+        "height": 1921,
+        "page": 8,
+        "width": 1358
+      },
+      {
+        "bytes": 294796,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/009.png",
+        "height": 1921,
+        "page": 9,
+        "width": 1358
+      },
+      {
+        "bytes": 388004,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/010.png",
+        "height": 1921,
+        "page": 10,
+        "width": 1358
+      },
+      {
+        "bytes": 519501,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/011.png",
+        "height": 1921,
+        "page": 11,
+        "width": 1358
+      },
+      {
+        "bytes": 338079,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/012.png",
+        "height": 1921,
+        "page": 12,
+        "width": 1358
+      },
+      {
+        "bytes": 363331,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/013.png",
+        "height": 1921,
+        "page": 13,
+        "width": 1358
+      },
+      {
+        "bytes": 477649,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/014.png",
+        "height": 1921,
+        "page": 14,
+        "width": 1358
+      },
+      {
+        "bytes": 98361,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/015.png",
+        "height": 1921,
+        "page": 15,
+        "width": 1358
+      }
+    ],
+    "pages": 15,
+    "route": [
+      "local.pdfjs"
+    ]
+  },
+  "stderr": "{\"warning\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"}\n",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456.pdf\",\n  \"format\": \"image\",\n  \"engine\": \"local\",\n  \"route\": [\n    \"local.pdfjs\"\n  ],\n  \"pages\": 15,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/001.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 540685\n    },\n    {\n      \"page\": 2,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/002.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 397234\n    },\n    {\n      \"page\": 3,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/003.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 727688\n    },\n    {\n      \"page\": 4,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/004.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 272979\n    },\n    {\n      \"page\": 5,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/005.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 288546\n    },\n    {\n      \"page\": 6,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/006.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 222221\n    },\n    {\n      \"page\": 7,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/007.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 180576\n    },\n    {\n      \"page\": 8,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/008.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 260249\n    },\n    {\n      \"page\": 9,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/009.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 294796\n    },\n    {\n      \"page\": 10,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/010.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 388004\n    },\n    {\n      \"page\": 11,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/011.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 519501\n    },\n    {\n      \"page\": 12,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/012.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 338079\n    },\n    {\n      \"page\": 13,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/013.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 363331\n    },\n    {\n      \"page\": 14,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/014.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 477649\n    },\n    {\n      \"page\": 15,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts/015.png\",\n      \"width\": 1358,\n      \"height\": 1921,\n      \"bytes\": 98361\n    }\n  ],\n  \"durationMs\": 4429,\n  \"caveat\": \"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"\n}\n"
+}

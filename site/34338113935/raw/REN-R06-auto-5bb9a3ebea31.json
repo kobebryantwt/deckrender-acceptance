@@ -1,0 +1,157 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "actual": {
+          "caveat": "Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.",
+          "durationMs": 8064,
+          "engine": "local",
+          "format": "image",
+          "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+          "ok": true,
+          "outputs": [
+            {
+              "bytes": 14763,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-local/evidence/REN-R06-auto-5bb9a3ebea31/artifacts/001.png",
+              "height": 1080,
+              "page": 1,
+              "width": 1920
+            },
+            {
+              "bytes": 42263,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-local/evidence/REN-R06-auto-5bb9a3ebea31/artifacts/002.png",
+              "height": 1080,
+              "page": 2,
+              "width": 1920
+            },
+            {
+              "bytes": 88927,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-local/evidence/REN-R06-auto-5bb9a3ebea31/artifacts/003.png",
+              "height": 1080,
+              "page": 3,
+              "width": 1920
+            }
+          ],
+          "pages": 3,
+          "route": [
+            "local.office2html",
+            "local.capture"
+          ]
+        },
+        "expectedEngine": "local"
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-5bb9a3ebea31"
+      ],
+      "expected": "有本地候选时选择本地；无本地路线才选云端",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "selection",
+      "questionId": "REN-R06-auto-5bb9a3ebea31-selection",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.selection.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "cloudWarningRequired": false
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-5bb9a3ebea31"
+      ],
+      "expected": "首次上传前产生云端警告",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "warning",
+      "questionId": "REN-R06-auto-5bb9a3ebea31-warning",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.warning.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "uploaded": null
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-5bb9a3ebea31"
+      ],
+      "expected": "结果提供实际上传状态",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "upload",
+      "questionId": "REN-R06-auto-5bb9a3ebea31-upload",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.upload.v3",
+      "severity": "major",
+      "status": "failed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-5bb9a3ebea31"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R06-auto-5bb9a3ebea31-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "auto"
+    }
+  ],
+  "caseId": "REN-R06-auto-5bb9a3ebea31",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "auto",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34338113935-local/evidence/REN-R06-auto-5bb9a3ebea31/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "evidence": [
+    "evidence/REN-R06-auto-5bb9a3ebea31"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine auto --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'auto',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "auto",
+    "interface": "cli",
+    "sourceFormat": "pptx",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "failed"
+}

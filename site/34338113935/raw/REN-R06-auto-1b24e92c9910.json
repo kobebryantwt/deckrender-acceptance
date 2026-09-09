@@ -1,0 +1,103 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R06-auto-1b24e92c9910"
+      ],
+      "expected": "有本地候选时选择本地；无本地路线才选云端",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "selection",
+      "questionId": "REN-R06-auto-1b24e92c9910-selection",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.selection.v3",
+      "severity": "major",
+      "status": "blocked",
+      "type": "auto"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R06-auto-1b24e92c9910"
+      ],
+      "expected": "首次上传前产生云端警告",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "warning",
+      "questionId": "REN-R06-auto-1b24e92c9910-warning",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.warning.v3",
+      "severity": "major",
+      "status": "blocked",
+      "type": "auto"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R06-auto-1b24e92c9910"
+      ],
+      "expected": "结果提供实际上传状态",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "upload",
+      "questionId": "REN-R06-auto-1b24e92c9910-upload",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.upload.v3",
+      "severity": "major",
+      "status": "blocked",
+      "type": "auto"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R06-auto-1b24e92c9910"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R06-auto-1b24e92c9910-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "auto"
+    }
+  ],
+  "caseId": "REN-R06-auto-1b24e92c9910",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R06-auto-1b24e92c9910"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"docx_business_report.docx\" --engine auto --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'docx_business_report.docx',\n  engine: 'auto',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "docx",
+  "inputSha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+  "options": {
+    "engine": "auto",
+    "interface": "cli",
+    "sourceFormat": "docx",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6.docx"
+  },
+  "status": "blocked"
+}
