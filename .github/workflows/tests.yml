@@ -10,6 +10,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'benchmark/acceptance/requirements.txt'
       - run: pip install -r benchmark/acceptance/requirements.txt
       - run: python benchmark/scripts/deck_benchmark.py core-check
       - run: python -m unittest discover -s benchmark/acceptance/tests -v
