@@ -10,32 +10,10 @@ def write_report(folder,envelope,questions):
     atomic(folder/'run.json',envelope);atomic(folder/'questions.json',questions)
     for r in envelope['results']:atomic(folder/'raw'/f'{r["caseId"]}.json',r)
     core.build_reports(envelope,folder,questions)
-    page=(folder/'report.html').read_text()
-    labels=sorted({r['caseId'][:7] for r in envelope['results'] if re.match(r'REN-R\d\d',r['caseId'])})
-    nav='<nav style="display:flex;gap:12px;flex-wrap:wrap">'+''.join(f'<a href="#{label}">{label}</a>' for label in labels)+'</nav>'
-    page=page.replace('<h2>逐案例：标准答案与实际结果</h2>',nav+'<h2>逐案例：标准答案与实际结果</h2>')
-    for i in range(1,12):
-        label=f'REN-R{i:02d}'
-        page=page.replace('<b>'+label, f'<b id="{label}">'+label,1)
-    for r in envelope['results']:
-        snip=r.get('executionSnippet')
-        if not snip:continue
-        cli=html.escape(snip.get('cli',''))
-        sdk=html.escape(snip.get('sdk',''))
-        code_block=(f'<div style="background:#0f172a;color:#f8fafc;padding:10px 14px;border-radius:6px;margin:10px 0;font-size:12px;border:1px solid #334155">'
-                    f'<div style="color:#94a3b8;font-size:11px;font-weight:600;margin-bottom:4px">待测系统完整 CLI 命令：</div>'
-                    f'<code style="color:#38bdf8;font-family:ui-monospace,monospace;white-space:pre-wrap;word-break:break-all">{cli}</code>'
-                    f'<details style="margin-top:6px;color:#94a3b8"><summary>展开等价 Node SDK 调用代码</summary><pre style="margin:4px 0 0;color:#a5b4fc;font-family:ui-monospace,monospace;font-size:11px">{sdk}</pre></details>'
-                    f'</div>')
-        safe_raw_id=r['caseId'].replace(':','-')
-        anchor=f'<a href="raw/{safe_raw_id}.json">查看原始运行证据</a></p>'
-        if anchor in page:page=page.replace(anchor,anchor+code_block,1)
-    evidence_links=[]
-    for artifact in sorted((folder/'evidence').rglob('*')):
-        if artifact.is_file() and artifact.suffix in {'.png','.jpg','.json','.txt','.trace','.jsonl'}:
-            rel=str(artifact.relative_to(folder));evidence_links.append('<li><a href="'+html.escape(rel,quote=True)+'">'+html.escape(rel)+'</a></li>')
-    page=page.replace('</main>', '<h2>证据文件索引</h2><ul>'+''.join(evidence_links)+'</ul></main>')
-    page=page.replace('</main>', '<p>视觉观察项不代表人工批准；缺少证据不能推定成功。原始敏感日志仅保存在本机受限目录，报告提供脱敏证据。</p></main>')
+    atomic(folder/'core-report.html',(folder/'report.html').read_text(encoding='utf-8'))
+    from . import report_view
+    presentation_page=report_view.render(folder,envelope,questions)
+    atomic(folder/'report.html',presentation_page)
     from .workbench import write
     items=[]
     for result in envelope['results']:
@@ -56,9 +34,7 @@ def write_report(folder,envelope,questions):
                       'options':options,'pageSelection':options.get('pages'),'format':visual.get('sourceFormat'),'synthetic':envelope.get('target',{}).get('id')=='fake',
                       'provenance':{'actualEngine':visual.get('actualEngine'),'actualRoute':visual.get('actualRoute')}})
     write(folder/'visual.html',items,envelope.get('suite',{}).get('displayName','DeckRender')+' · 结果图像对照',run_sha=sha(folder/'run.json'))
-    page=page.replace('</main>','<p><a href="visual.html">打开逐页图像对照与人工审核工作台</a></p></main>')
-    page=page.replace('<main>','<main><p><a href="visual.html">进入图像对照工作台：独立参考 / 实际结果 / 逐页审核</a></p>',1)
-    atomic(folder/'report.html',page);seal(folder)
+    seal(folder)
 
 def rebuild(folder, output):
     verify(folder);output=Path(output)
