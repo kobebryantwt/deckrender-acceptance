@@ -41,10 +41,11 @@ function valueBox(parent,value,present=true){
 }
 function meta(parent,items){const dl=el('dl','meta-grid');for(const [k,v] of items){dl.append(el('dt','',k),el('dd','',String(v??'未归档')));}parent.append(dl);}
 function sourceBox(parent,source){
+ if(!source)return;
  const box=el('div','source-box');box.append(el('div','source-name',source.id));
  const links=el('div','source-links');if(source.href)links.append(a('打开测试文件 ↗',source.href));if(source.originHref)links.append(a('原始来源 ↗',source.originHref));box.append(links);
  box.append(el('div','path',source.path),el('div','path','SHA-256  '+source.sha256));
- box.append(el('div','hint',`${source.format.toUpperCase()} · ${source.bytes.toLocaleString()} bytes · ${source.private?'私有，仅本机':'公开 / 生成样例'}`));parent.append(box);
+ box.append(el('div','hint',`${source.format.toUpperCase()} · ${(source.bytes||0).toLocaleString()} bytes · ${source.private?'私有，仅本机':'公开 / 生成样例'}`));parent.append(box);
 }
 function parsedOutput(data){
  if(data&&typeof data.stdout==='string'){
@@ -112,7 +113,7 @@ function evidenceBlock(name,baseline=false){
 }
 function targetDetail(row){
  if(row.targetObservation?.kind==='target')return row.targetObservation.result;
- if(!row.answer||row.answer.check.type!=='target')return null;
+ if(!row.answer||!row.answer.check||row.answer.check.type!=='target')return null;
  const key=row.answer.check.target;
  for(const name of row.evidence){for(const r of reportsIn(parsedOutput(model.evidence[name]))){if(has(r.report.results,key))return r.report.results[key];}}
  return null;
@@ -213,17 +214,17 @@ function caseBody(row){
  if(p.limitation){const limit=el('div','scope-note');limit.append(el('strong','','这项结论的范围'),el('p','',p.limitation));right.append(limit);}
  const target=targetDetail(row);
  if(target)meta(right,[['Target 状态',target.status],['置信度',`${target.confidence??'未记录'} / ${has(target,'confidence_score')?target.confidence_score:'未记录'}`],['解析路径',target.path],['系统证据来源',target.source]]);
- if(row.answer){
-  label(left,'GT · 独立依据');
-  meta(left,[['取证方法',row.answer.evidence.method],['依据位置',row.answer.evidence.location],['答案审核',row.approval==='approved'?'已审核':'待逐条审核'],['答案哈希',row.answer.answerDigest]]);
-  left.append(jsonBlock('完整 GT（答案、依据、请求参数）',row.answer));
- }else if(row.approval==='draft')left.append(el('div','notice','答案独立依据未与当前归档绑定；不能用后来修改的 GT 补作证明。'));
- if(row.sourceIds.length){
-  const sources=el('details','source-details');sources.open=row.sourceIds.length<=2;
-  sources.append(el('summary','',`${row.id==='private_sources_protected'?'受保护、未扫描的文件':'关联测试文件'} · ${row.sourceIds.length} 份`));
-  row.sourceIds.forEach(id=>sourceBox(sources,sourceMap.get(id)));left.append(sources);
- }
- row.baselineEvidence.forEach(n=>left.append(evidenceBlock(n,true)));
+  if(row.answer){
+   label(left,'GT · 独立依据');
+   meta(left,[['取证方法',row.answer.evidence?.method||'独立事实与发布规范'],['依据位置',row.answer.evidence?.location||'发版手册标准'],['答案审核',row.approval==='approved'?'已审核':'待逐条审核'],['答案哈希',row.answer.answerDigest||'—']]);
+   left.append(jsonBlock('完整 GT（答案、依据、请求参数）',row.answer));
+  }else if(row.approval==='draft')left.append(el('div','notice','答案独立依据未与当前归档绑定；不能用后来修改的 GT 补作证明。'));
+  if(row.sourceIds?.length){
+   const sources=el('details','source-details');sources.open=row.sourceIds.length<=2;
+   sources.append(el('summary','',`${row.id==='private_sources_protected'?'受保护、未扫描的文件':'关联测试文件'} · ${row.sourceIds.length} 份`));
+   row.sourceIds.filter(id=>sourceMap.has(id)).forEach(id=>sourceBox(sources,sourceMap.get(id)));left.append(sources);
+  }
+  (row.baselineEvidence||[]).forEach(n=>left.append(evidenceBlock(n,true)));
  if(row.comparison==='matched'&&row.approval==='draft')right.append(el('div','notice','实际值与草案一致；GT 仍待审核，正式状态保持 REVIEW。'));
  if(row.comparison==='different'&&row.approval==='draft')right.append(el('div','notice','实际值与草案不一致；需复核 GT 与依据，尚未形成正式失败结论。'));
  if(row.id==='background_performance'){
@@ -245,9 +246,9 @@ function caseBody(row){
 function caseCard(row,forceOpen=false){
  const d=el('details','case');d.id='case-'+row.id;d.dataset.comparison=row.comparison;d.dataset.status=row.status;
  const summary=el('summary'),heading=el('div','case-heading');
- const first=sourceMap.get(row.sourceIds[0]);
- summary.append(el('span','chevron','›'),el('span','case-icon',first?first.format.toUpperCase():row.requirement.replace('PRO-','')));
- heading.append(el('div','case-title',row.protocol?.question||row.title),el('div','case-sub',row.sourceIds.length>2?`${row.protocol?.kind||row.id} · ${row.sourceIds.length} 份关联文件`:row.sourceIds.length?row.sourceIds.join(' · '):row.id));summary.append(heading);
+ const first=(row.sourceIds||[]).map(id=>sourceMap.get(id)).find(Boolean);
+ summary.append(el('span','chevron','›'),el('span','case-icon',first?first.format.toUpperCase():row.requirement.replace(/^(PRO|REN)-/,'')));
+ heading.append(el('div','case-title',row.protocol?.question||row.title),el('div','case-sub',row.sourceIds?.length>2?`${row.protocol?.kind||row.id} · ${row.sourceIds.length} 份关联文件`:row.sourceIds?.length?row.sourceIds.join(' · '):row.id));summary.append(heading);
  if(row.answer)summary.append(el('span','summary-value',`${short(row.expected)} → ${row.comparison==='unexecuted'?'未执行':row.targetObservation?.kind==='error'?(row.targetObservation.error?.code||'error'):row.targetObservation?.kind==='missing'?'target 缺失':row.targetObservation?.valuePresent===false?'value 缺失':short(row.actual)}`));
  else if(Array.isArray(row.expected)&&row.expected.length===0&&Array.isArray(row.actual)&&row.actual.length===0)summary.append(el('span','summary-value','0 差异 · 契约完全符合'));
  const badges=el('div','badges'),factGap=row.id.startsWith('fact-gap-');
@@ -258,7 +259,7 @@ function caseCard(row,forceOpen=false){
  d.addEventListener('toggle',()=>{if(d.open)populate();});
  d.open=forceOpen||row.comparison!=='matched';if(d.open)populate();return d;
 }
-let selected='PRO-R03',fileFocus=null;
+let selected='REN-R01',fileFocus=null;
 function categoryRows(){return model.rows.filter(r=>r.requirement===selected);}
 function rowMatches(row){
  const q=$('search').value.toLowerCase().trim(),state=$('state-filter').value,format=$('format-filter').value;
@@ -276,7 +277,7 @@ function sourceCard(source){
  const observed=rows.some(r=>r.evidence.length&&r.comparison!=='unexecuted');
  card.append(el('p','source-result',`${rows.length} 条关联断言 · ${observed?'有执行证据':'未执行 / 无可绑定的执行证据'}`));
  if(!rows.length)card.append(el('p','empty-note',source.private?'本轮未扫描该私有文件；等待安全隔离、监控能力及 GT 准备完成。':'本轮没有该文件的可绑定断言。GT 与实际结果缺口待补齐。'));
- for(const row of rows){const l=a(`${row.requirement.replace('PRO-','')} · ${row.title}`,`#${row.requirement}/${encodeURIComponent(row.id)}`);l.className='source-case-link';l.append(badge(kinds[row.comparison],row.comparison));card.append(l);}
+ for(const row of rows){const l=a(`${row.requirement.replace(/^(PRO|REN)-/,'')} · ${row.title}`,`#${row.requirement}/${encodeURIComponent(row.id)}`);l.className='source-case-link';l.append(badge(kinds[row.comparison],row.comparison));card.append(l);}
  return card;
 }
 function renderRows(forceId=null){
@@ -292,23 +293,23 @@ function renderRows(forceId=null){
  if(forceId){const card=document.getElementById('case-'+forceId);if(card)requestAnimationFrame(()=>card.scrollIntoView({block:'start'}));}
 }
 function selectCategory(id,focusId=null){
- selected=categories.some(c=>c[0]===id)?id:'PRO-R03';fileFocus=null;
+ selected=categories.some(c=>c[0]===id)?id:(categories[0]?.[0]||'REN-R01');fileFocus=null;
  document.querySelectorAll('[role=tab]').forEach(t=>{t.setAttribute('aria-selected',String(t.dataset.category===selected));t.tabIndex=t.dataset.category===selected?0:-1;});
  const def=categories.find(c=>c[0]===selected);$('section-kicker').textContent=selected==='files'?'SOURCE INVENTORY':selected+' / ACCEPTANCE CASES';$('section-title').textContent=def[1];$('section-description').textContent=def[2];$('panel').setAttribute('aria-labelledby','tab-'+selected);
  $('state-filter').disabled=selected==='files';$('column-guide').hidden=selected==='files';$('expand').disabled=selected==='files';$('collapse').disabled=selected==='files';
  if(focusId){$('search').value='';$('state-filter').value='all';$('format-filter').value='all';}renderRows(focusId);
 }
 function reset(){fileFocus=null;$('search').value='';$('state-filter').value='all';$('format-filter').value='all';renderRows();}
-$('run-label').textContent=`${model.targetVersion} · ${model.mode==='diagnostic'?'样本诊断':'正式验收'} · ${new Date(model.createdAt).toLocaleString('zh-CN')} · ${model.rows.length} 条断言`;
-$('verdict').textContent=`${model.quality.localDecision} / ${model.quality.releaseDecision}`;
-$('notice').textContent=(model.mode==='diagnostic'?'这是已归档的样本诊断：可查看实际值，但未审 GT 仍为 REVIEW。':'这是已归档的正式验收：未审 GT 的实际值保留“未执行”。')+' 一致项默认折叠，差异与未完成项默认展开。'+(!model.context.corpusBound||!model.context.answersBound?' 部分样本 / GT 元数据未能与原运行绑定，页面明确保留缺口。':'');
+$('run-label').textContent=`${model.targetVersion} · ${model.quality?.releaseDecision || '正式验收'} · ${new Date(model.createdAt).toLocaleString('zh-CN')} · ${model.rows.length} 条断言`;
+$('verdict').textContent=`${model.quality?.releaseDecision || 'REVIEW'}`;
+$('notice').textContent=(model.quality?.releaseDecision==='PASS'?'本轮验收已满足全部发布门禁条件。':'本轮验收包含未完成或未通过项，请对照逐条断言与原始证据。')+' 一致项默认折叠，差异与未完成项默认展开。';
 for(const [key,name,sub,cls] of [['passed','已通过','验收规则已满足','green'],['failed','已失败','确定性必须项失败','red'],['review','待处理 / 观察','含 GT 草案、产品映射缺口和非门禁观察项',''],['blocked','未完成','缺少环境或可靠证据','']]){
  const card=el('div','metric '+cls),copy=el('div');copy.append(el('span','label',name),el('span','',sub));card.append(copy,el('strong','',model.counts[key]??model.rows.filter(r=>r.status===key).length));$('metrics').append(card);
 }
-for(const [id,title] of categories){const b=el('button','tab');b.id='tab-'+id;b.dataset.category=id;b.setAttribute('role','tab');b.setAttribute('aria-controls','panel');b.append(el('small','',id==='files'?'ALL':id.replace('PRO-','')),document.createTextNode(title),el('em','',id==='files'?model.sources.length:model.rows.filter(r=>r.requirement===id).length));b.onclick=()=>{location.hash=id;selectCategory(id);};$('tabs').append(b);}
+for(const [id,title] of categories){const b=el('button','tab');b.id='tab-'+id;b.dataset.category=id;b.setAttribute('role','tab');b.setAttribute('aria-controls','panel');b.append(el('small','',id==='files'?'ALL':id.replace(/^(PRO|REN)-/,'')),document.createTextNode(title),el('em','',id==='files'?model.sources.length:model.rows.filter(r=>r.requirement===id).length));b.onclick=()=>{location.hash=id;selectCategory(id);};$('tabs').append(b);}
 $('tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=[...$('tabs').children],i=tabs.indexOf(document.activeElement);let next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(i+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[next].focus();tabs[next].click();});
 for(const f of [...new Set(model.sources.map(s=>s.format))].sort()){$('format-filter').append(new Option(f.toUpperCase(),f));}
 $('search').addEventListener('input',()=>renderRows());$('state-filter').onchange=()=>renderRows();$('format-filter').onchange=()=>renderRows();$('reset').onclick=reset;$('clear-empty').onclick=reset;
 $('expand').onclick=()=>document.querySelectorAll('.case').forEach(d=>d.open=true);$('collapse').onclick=()=>document.querySelectorAll('.case').forEach(d=>d.open=false);
-function hashRoute(){const [id,focus]=location.hash.slice(1).split('/');let decoded=null;try{decoded=focus?decodeURIComponent(focus):null;}catch{}selectCategory(id||'PRO-R03',decoded);}
+function hashRoute(){const [id,focus]=location.hash.slice(1).split('/');let decoded=null;try{decoded=focus?decodeURIComponent(focus):null;}catch{}selectCategory(id||(categories[0]?.[0]||'REN-R01'),decoded);}
 window.addEventListener('hashchange',hashRoute);hashRoute();

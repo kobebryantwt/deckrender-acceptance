@@ -22,12 +22,15 @@ def build_model(folder, envelope, questions):
     corpus_file = home / 'corpus.json' if (home / 'corpus.json').is_file() else REPO / 'benchmark/artifacts/acceptance/corpus.json'
     sources_list = read(corpus_file, {}).get('sources', [])
     sources = {s['id']: s for s in sources_list}
+    sources_by_sha = {s['sha256']: s for s in sources_list}
     
     rows = []
     for r in envelope.get('results', []):
         cid = r['caseId']
         opts = r.get('options', {})
-        source_meta = sources.get(r.get('sourceId', ''), {})
+        source_meta = sources.get(r.get('sourceId')) or sources_by_sha.get(r.get('inputSha256'), {})
+        source_id = source_meta.get('id') or r.get('sourceId') or ''
+        source_ids = [source_id] if source_id else []
         snip = r.get('executionSnippet') or {}
         cmd = snip.get('cli') or (' '.join(r.get('command', [])) if isinstance(r.get('command'), list) else str(r.get('command', '')))
         sdk = snip.get('sdk', '')
@@ -84,8 +87,8 @@ def build_model(folder, envelope, questions):
                 'durationMs': r.get('durationMs', 0),
                 'evidence': [f'raw/{cid.replace(":", "-")}.json', *r.get('evidence', [])],
                 'protocol': protocol,
-                'answer': {'question': title, 'expected': expected, 'status': a.get('reviewStatus', 'draft')},
-                'sourceIds': [source_meta.get('id', r.get('sourceId', ''))],
+                'answer': {'question': title, 'expected': expected, 'status': a.get('reviewStatus', 'draft'), 'evidence': q.get('evidence', {'method': '独立事实与发布规范', 'location': '发版手册标准'})},
+                'sourceIds': source_ids,
                 'targetObservation': {'kind': 'target', 'result': actual} if isinstance(actual, dict) else None
             }
             rows.append(row)
