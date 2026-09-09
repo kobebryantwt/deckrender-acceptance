@@ -1,0 +1,102 @@
+{
+  "assertions": [
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R03-privacy-37f87f51dd89"
+      ],
+      "expected": "整个进程树无外部网络连接尝试",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "network",
+      "questionId": "REN-R03-privacy-37f87f51dd89-network",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.network.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R03-privacy-37f87f51dd89"
+      ],
+      "expected": "无凭据文件读取或云凭据环境变量读取",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "credentials",
+      "questionId": "REN-R03-privacy-37f87f51dd89-credentials",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.credentials.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R03-privacy-37f87f51dd89"
+      ],
+      "expected": "结果明确标记 local；不发生云端回退",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "local",
+      "questionId": "REN-R03-privacy-37f87f51dd89-local",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.local.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R03-privacy-37f87f51dd89"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R03-privacy-37f87f51dd89-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    }
+  ],
+  "caseId": "REN-R03-privacy-37f87f51dd89",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "privacy"
+  ],
+  "evidence": [
+    "evidence/REN-R03-privacy-37f87f51dd89"
+  ],
+  "executionSnippet": {
+    "cli": "unshare -Urn strace -f -e trace=network,openat deckrender \"markers.pptx\" --engine local --format pdf -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'local',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "local",
+    "interface": "cli",
+    "target": "pdf"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "blocked"
+}

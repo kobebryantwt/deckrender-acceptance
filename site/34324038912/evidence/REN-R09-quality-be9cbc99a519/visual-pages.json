@@ -1,0 +1,187 @@
+{
+  "caseId": "REN-R09-quality-be9cbc99a519",
+  "engine": "local",
+  "errors": [],
+  "expectedSupport": true,
+  "interface": "cli",
+  "pages": [
+    {
+      "actualSha256": "63c8642961943e1dc09fe4b023ef642df71b0999b489f4e12e8d117f34021719",
+      "artifactSha256": "86671ce7a2bbb9633cdad2088a1736f5c41621c2db8b4852f1c3697086b999ef",
+      "caseId": "REN-R09-quality-be9cbc99a519",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/0/0001.png",
+      "imageSha256": "63c8642961943e1dc09fe4b023ef642df71b0999b489f4e12e8d117f34021719",
+      "mapping": {
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "caveats": [
+          "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+        ],
+        "createdAt": "2026-09-08T13:21:09.950464+00:00",
+        "method": "independent source export; not DeckRender output",
+        "pages": 3,
+        "pdfSha256": "31273fdd0cc1bc587b8dd203d2fa405a770207a61896d4a9048bc53dc809a484",
+        "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080/706a0980ccea2737/process.json",
+        "renderer": {
+          "name": "Keynote",
+          "settings": {
+            "allBuildStages": false,
+            "skippedSlides": true
+          },
+          "version": "14.3"
+        },
+        "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080",
+        "status": "draft"
+      },
+      "referenceSha256": "ca8cff92044d5303f6134d6c39eb06d2a87950d9d285412a6aff3c4159e06d7c",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080"
+    },
+    {
+      "actualSha256": "52b47faa6817a2894468e8c71af8d6204c97aeefdd948093252c534dfba23587",
+      "artifactSha256": "c6a5cc282632569837bdd4c61f8a5127ddd0d67f97534a58f557a477c2dbdc36",
+      "caseId": "REN-R09-quality-be9cbc99a519",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/1/0001.png",
+      "imageSha256": "52b47faa6817a2894468e8c71af8d6204c97aeefdd948093252c534dfba23587",
+      "mapping": {
+        "sourcePage": 2
+      },
+      "outputIndex": 1,
+      "outputPage": 2,
+      "page": 2,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/reference-1-2.png",
+      "referenceProvenance": {
+        "caveats": [
+          "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+        ],
+        "createdAt": "2026-09-08T13:21:09.950464+00:00",
+        "method": "independent source export; not DeckRender output",
+        "pages": 3,
+        "pdfSha256": "31273fdd0cc1bc587b8dd203d2fa405a770207a61896d4a9048bc53dc809a484",
+        "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080/706a0980ccea2737/process.json",
+        "renderer": {
+          "name": "Keynote",
+          "settings": {
+            "allBuildStages": false,
+            "skippedSlides": true
+          },
+          "version": "14.3"
+        },
+        "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080",
+        "status": "draft"
+      },
+      "referenceSha256": "1e9f205f0e436550404152eda0cd71ba089766d4ac22df21510ff47ec9824845",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080"
+    },
+    {
+      "actualSha256": "d6fbc1fe41c295815a24b0cafc183ed4c9d85a76a383ba34b5415a2494ebf192",
+      "artifactSha256": "1cb3968c8ad30facdf6e3aa037fa53c5d32ffffed9476a23cdf2fec0e5c3b13b",
+      "caseId": "REN-R09-quality-be9cbc99a519",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/2/0001.png",
+      "imageSha256": "d6fbc1fe41c295815a24b0cafc183ed4c9d85a76a383ba34b5415a2494ebf192",
+      "mapping": {
+        "sourcePage": 3
+      },
+      "outputIndex": 2,
+      "outputPage": 3,
+      "page": 3,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34324038912-quality/evidence/REN-R09-quality-be9cbc99a519/previews/reference-2-3.png",
+      "referenceProvenance": {
+        "caveats": [
+          "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+        ],
+        "createdAt": "2026-09-08T13:21:09.950464+00:00",
+        "method": "independent source export; not DeckRender output",
+        "pages": 3,
+        "pdfSha256": "31273fdd0cc1bc587b8dd203d2fa405a770207a61896d4a9048bc53dc809a484",
+        "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080/706a0980ccea2737/process.json",
+        "renderer": {
+          "name": "Keynote",
+          "settings": {
+            "allBuildStages": false,
+            "skippedSlides": true
+          },
+          "version": "14.3"
+        },
+        "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080",
+        "status": "draft"
+      },
+      "referenceSha256": "5c2425822b3b02240c1f96b3d255c8a2354c051839b9e37e6715c031e73099d4",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080"
+    }
+  ],
+  "sourceFormat": "pptx",
+  "sourceSha256": "c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080",
+  "status": "review",
+  "target": "image"
+}
