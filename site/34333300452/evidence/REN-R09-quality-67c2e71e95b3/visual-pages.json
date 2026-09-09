@@ -1,0 +1,108 @@
+{
+  "caseId": "REN-R09-quality-67c2e71e95b3",
+  "engine": "local",
+  "errors": [],
+  "expectedSourcePages": [
+    2,
+    3
+  ],
+  "expectedSupport": true,
+  "interface": "sdk",
+  "pages": [
+    {
+      "actualSha256": "74e7ae6304251d93e20a093240965ee45929d506e5111bb8737ebc6260c80fbd",
+      "artifactSha256": "118b200b3d406f1f3581915b32c862d24c8c3182ccc1ef9515db74c47c08996a",
+      "caseId": "REN-R09-quality-67c2e71e95b3",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-67c2e71e95b3/previews/0/0001.png",
+      "imageSha256": "74e7ae6304251d93e20a093240965ee45929d506e5111bb8737ebc6260c80fbd",
+      "mapping": {
+        "expectedSourcePage": 2,
+        "reportedSourcePage": 2,
+        "sourcePage": 2
+      },
+      "outputIndex": 0,
+      "outputPage": 2,
+      "page": 2,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-67c2e71e95b3/previews/reference-0-2.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    {
+      "actualSha256": "7e45fb1aea87ae9a1d3da9f2726832ba1b1484b480873f621a9153ddd00733e3",
+      "artifactSha256": "56f2e29ad8ff14197d620fb8ca0070596f25f885dba6a3c06d572fa7b88402b4",
+      "caseId": "REN-R09-quality-67c2e71e95b3",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-67c2e71e95b3/previews/1/0001.png",
+      "imageSha256": "7e45fb1aea87ae9a1d3da9f2726832ba1b1484b480873f621a9153ddd00733e3",
+      "mapping": {
+        "expectedSourcePage": 3,
+        "reportedSourcePage": 3,
+        "sourcePage": 3
+      },
+      "outputIndex": 1,
+      "outputPage": 3,
+      "page": 3,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-67c2e71e95b3/previews/reference-1-3.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    }
+  ],
+  "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "status": "review",
+  "target": "image",
+  "variantId": "page-range",
+  "variantLabel": "页面筛选 '2-3'：源页 [2, 3]，JSON pages 仍为源总页数 3"
+}

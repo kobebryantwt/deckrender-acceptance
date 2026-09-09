@@ -1,0 +1,73 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "confidentialGuidanceMention": false,
+        "issueUrl": {
+          "url": "https://github.com/deckflow/deckrender/issues"
+        },
+        "securityDocument": true
+      },
+      "evidence": [
+        "evidence/REN-R11-support-b00f84338f8f"
+      ],
+      "expected": "Issue、安全渠道与机密样例提交指引可用",
+      "featureId": "REN-R11",
+      "finding": true,
+      "id": "channels",
+      "questionId": "REN-R11-support-b00f84338f8f-channels",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "support.channels.v3",
+      "severity": "major",
+      "status": "failed",
+      "type": "support"
+    },
+    {
+      "actual": {
+        "evidence": "published-declarations.txt",
+        "rubric": "Verify each SLA, certification, region, price and enterprise promise against independently supplied terms; keyword presence is not proof"
+      },
+      "evidence": [
+        "evidence/REN-R11-support-b00f84338f8f"
+      ],
+      "expected": "SLA、认证、地域、价格与企业条款有可核对依据",
+      "featureId": "REN-R11",
+      "finding": true,
+      "id": "promises",
+      "questionId": "REN-R11-support-b00f84338f8f-promises",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "support.promises.v3",
+      "severity": "major",
+      "status": "review",
+      "type": "support"
+    }
+  ],
+  "caseId": "REN-R11-support-b00f84338f8f",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "release"
+  ],
+  "evidence": [
+    "evidence/REN-R11-support-b00f84338f8f"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender --help && grep -rn \"HTML\" node_modules/@deckflow/deckrender/docs/",
+    "interface": "cli",
+    "sdk": "// 扫描公开导出类型与声明契约\nimport type * as Types from \"@deckflow/deckrender\";"
+  },
+  "format": "md",
+  "inputSha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+  "options": {},
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d.md"
+  },
+  "status": "failed"
+}

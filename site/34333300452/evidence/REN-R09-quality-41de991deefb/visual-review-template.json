@@ -1,0 +1,174 @@
+{
+  "actor": null,
+  "caseId": "REN-R09-quality-41de991deefb",
+  "options": {
+    "engine": "local",
+    "expectedSupport": true,
+    "interface": "cli",
+    "target": "pdf"
+  },
+  "pages": [
+    {
+      "actualSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+      "caseId": "REN-R09-quality-41de991deefb",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/0/0001.png",
+      "imageSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "mapping": {
+        "pdfPage": 1,
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.776,
+        "isUniform": false,
+        "size": [
+          1080,
+          608
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1080,
+        608
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    {
+      "actualSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+      "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+      "caseId": "REN-R09-quality-41de991deefb",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/0/0002.png",
+      "imageSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+      "mapping": {
+        "pdfPage": 2,
+        "sourcePage": 2
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 2,
+      "precheck": {
+        "aspectRatio": 1.776,
+        "isUniform": false,
+        "size": [
+          1080,
+          608
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/reference-0-2.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1080,
+        608
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    {
+      "actualSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+      "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+      "caseId": "REN-R09-quality-41de991deefb",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/0/0003.png",
+      "imageSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+      "mapping": {
+        "pdfPage": 3,
+        "sourcePage": 3
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 3,
+      "precheck": {
+        "aspectRatio": 1.776,
+        "isUniform": false,
+        "size": [
+          1080,
+          608
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-41de991deefb/previews/reference-0-3.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1080,
+        608
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    }
+  ],
+  "reviewedAt": null,
+  "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "version": 2
+}

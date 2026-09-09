@@ -1,0 +1,52 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "activeUsageEvidence": true,
+        "deprecationAndRemovalVersion": false,
+        "evidence": "published-declarations.txt",
+        "note": "Human confirmation required if declarations are ambiguous"
+      },
+      "evidence": [
+        "evidence/REN-R10-deprecated-b00f84338f8f"
+      ],
+      "expected": "HTML/URL/Markdown 不作为当前公共能力；v0.3.1 遗留能力有弃用和移除版本说明",
+      "featureId": "REN-R10",
+      "finding": true,
+      "id": "scope",
+      "questionId": "REN-R10-deprecated-b00f84338f8f-scope",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "deprecated.scope.v3",
+      "severity": "major",
+      "status": "failed",
+      "type": "deprecated"
+    }
+  ],
+  "caseId": "REN-R10-deprecated-b00f84338f8f",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "release"
+  ],
+  "evidence": [
+    "evidence/REN-R10-deprecated-b00f84338f8f"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender --help && grep -rn \"HTML\" node_modules/@deckflow/deckrender/docs/",
+    "interface": "cli",
+    "sdk": "// 扫描公开导出类型与声明契约\nimport type * as Types from \"@deckflow/deckrender\";"
+  },
+  "format": "md",
+  "inputSha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+  "options": {},
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d.md"
+  },
+  "status": "failed"
+}

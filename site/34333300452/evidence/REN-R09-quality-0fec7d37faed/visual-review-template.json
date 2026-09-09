@@ -1,0 +1,76 @@
+{
+  "actor": null,
+  "caseId": "REN-R09-quality-0fec7d37faed",
+  "options": {
+    "engine": "local",
+    "expectedSourcePages": [
+      1
+    ],
+    "expectedSupport": true,
+    "imageFormat": "jpg",
+    "interface": "cli",
+    "pages": "1",
+    "target": "image",
+    "variantId": "encoding-jpg",
+    "variantLabel": "图片编码 jpg：检查真实解码格式，仅输出源第 1 页"
+  },
+  "pages": [
+    {
+      "actualSha256": "f4027a4ae9461d5fcee918640aed06bc7a52f0e0e913c52b4e099268df19e630",
+      "artifactSha256": "d59768e1871ae169cb1c67d36f44dd36b4c821a3ea42816e7a40cb8a0589fa20",
+      "caseId": "REN-R09-quality-0fec7d37faed",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-0fec7d37faed/previews/0/0001.png",
+      "imageSha256": "f4027a4ae9461d5fcee918640aed06bc7a52f0e0e913c52b4e099268df19e630",
+      "mapping": {
+        "expectedSourcePage": 1,
+        "reportedSourcePage": 1,
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-0fec7d37faed/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    }
+  ],
+  "reviewedAt": null,
+  "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "version": 2
+}

@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-d2a684c7ed98/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 19630,
+  "exitCode": 0,
+  "stderr": "{\"warning\":\"Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.\"}\n",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\n  \"format\": \"image\",\n  \"engine\": \"local\",\n  \"route\": [\n    \"local.office2html\",\n    \"local.capture\"\n  ],\n  \"pages\": 3,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-d2a684c7ed98/artifacts/001.png\",\n      \"width\": 1920,\n      \"height\": 1080,\n      \"bytes\": 14763\n    },\n    {\n      \"page\": 2,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-d2a684c7ed98/artifacts/002.png\",\n      \"width\": 1920,\n      \"height\": 1080,\n      \"bytes\": 42263\n    },\n    {\n      \"page\": 3,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34333300452-quality/evidence/REN-R09-quality-d2a684c7ed98/artifacts/003.png\",\n      \"width\": 1920,\n      \"height\": 1080,\n      \"bytes\": 88927\n    }\n  ],\n  \"durationMs\": 19433,\n  \"caveat\": \"Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.\"\n}\n"
+}
