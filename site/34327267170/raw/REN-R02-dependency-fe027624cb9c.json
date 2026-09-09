@@ -1,0 +1,68 @@
+{
+  "assertions": [
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R02-dependency-fe027624cb9c"
+      ],
+      "expected": "缺少本地依赖时返回稳定错误及可操作的修复提示；不联网安装或回退",
+      "featureId": "REN-R02",
+      "finding": true,
+      "id": "actionable",
+      "questionId": "REN-R02-dependency-fe027624cb9c-actionable",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "dependency.actionable.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "dependency"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R02-dependency-fe027624cb9c"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R02",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R02-dependency-fe027624cb9c-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "dependency"
+    }
+  ],
+  "caseId": "REN-R02-dependency-fe027624cb9c",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R02-dependency-fe027624cb9c"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine local -o ./out --json  # 缺失本地 Chromium/office2html 环境",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\n// 缺少本地依赖时调用\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'local'\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "local",
+    "interface": "cli",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "blocked"
+}

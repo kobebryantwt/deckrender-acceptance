@@ -1,0 +1,31 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-quality/evidence/REN-R09-quality-c8aa392f506f/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-quality/evidence/REN-R09-quality-c8aa392f506f/request.json"
+  ],
+  "durationMs": 148,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-quality/evidence/REN-R09-quality-c8aa392f506f",
+  "exitCode": 0,
+  "payload": {
+    "durationMs": 6,
+    "engine": "passthrough",
+    "format": "pdf",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 2333,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-quality/evidence/REN-R09-quality-c8aa392f506f/artifacts/001.pdf",
+        "page": 1
+      }
+    ],
+    "pages": 1,
+    "route": [
+      "passthrough"
+    ]
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"at\":\"2026-09-09T08:15:08.708Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T08:15:08.710Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T08:15:08.710Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"format\":\"pdf\",\"engine\":\"passthrough\",\"route\":[\"passthrough\"],\"pages\":1,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-quality/evidence/REN-R09-quality-c8aa392f506f/artifacts/001.pdf\",\"bytes\":2333}],\"durationMs\":6}\n"
+}

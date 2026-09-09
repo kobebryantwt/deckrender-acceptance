@@ -1,0 +1,188 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "documentedRows": [
+          "| `usage_error`        | Invalid flags, missing input, conflicting flags              | 2    |"
+        ],
+        "exitCodes": [
+          2,
+          2
+        ],
+        "firstCode": "usage_error",
+        "secondCode": "usage_error"
+      },
+      "evidence": [
+        "evidence/REN-R07-schema-fe027624cb9c"
+      ],
+      "expected": "错误提供稳定 machine code，CLI 退出码与发布文档一致",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "error",
+      "questionId": "REN-R07-schema-fe027624cb9c-error",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.error.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "schema"
+    },
+    {
+      "actual": {
+        "comparison": {
+          "cliOrFirst": {
+            "caveat": "Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.",
+            "engine": "local",
+            "errorCode": null,
+            "format": "image",
+            "lifecycle": "NoneType",
+            "ok": true,
+            "outputPages": [
+              1,
+              2,
+              3
+            ],
+            "pages": 3,
+            "route": [
+              "local.office2html",
+              "local.capture"
+            ],
+            "uploaded": null
+          },
+          "sdkOrSecond": {
+            "caveat": "Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.",
+            "engine": "local",
+            "errorCode": null,
+            "format": "image",
+            "lifecycle": "NoneType",
+            "ok": true,
+            "outputPages": [
+              1,
+              2,
+              3
+            ],
+            "pages": 3,
+            "route": [
+              "local.office2html",
+              "local.capture"
+            ],
+            "uploaded": null
+          }
+        },
+        "counterpartErrorCodes": [
+          "usage_error",
+          "usage_error"
+        ],
+        "counterpartSchema": {
+          "branch": "success",
+          "errors": [
+            "Missing/invalid lifecycle"
+          ]
+        },
+        "expectedErrorCode": "usage_error"
+      },
+      "evidence": [
+        "evidence/REN-R07-schema-fe027624cb9c"
+      ],
+      "expected": "CLI 与 SDK 公共结果语义一致，忽略调用独有路径与任务身份",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "parity",
+      "questionId": "REN-R07-schema-fe027624cb9c-parity",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.parity.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "schema"
+    },
+    {
+      "actual": {
+        "documentedMissingInputCodes": [
+          "usage_error"
+        ],
+        "schema": {
+          "branch": "error",
+          "error": {
+            "code": "usage_error",
+            "message": "Input not found: /home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-local/evidence/REN-R07-schema-fe027624cb9c/invalid-1/does-not-exist.pptx"
+          },
+          "exitCode": 2
+        }
+      },
+      "evidence": [
+        "evidence/REN-R07-schema-fe027624cb9c"
+      ],
+      "expected": "不存在的输入明确失败，符合公共错误 Schema 且不产生渲染产物",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "boundary",
+      "questionId": "REN-R07-schema-fe027624cb9c-boundary",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.boundary.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "schema"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R07-schema-fe027624cb9c"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R07-schema-fe027624cb9c-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "schema"
+    }
+  ],
+  "caseId": "REN-R07-schema-fe027624cb9c",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34327267170-local/evidence/REN-R07-schema-fe027624cb9c/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "evidence": [
+    "evidence/REN-R07-schema-fe027624cb9c"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine local -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'local'\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "local",
+    "interface": "cli",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "failed"
+}
