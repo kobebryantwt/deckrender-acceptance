@@ -189,14 +189,18 @@ jobs:
           git -C history diff --cached --quiet || git -C history commit -m 'Archive DeckRender acceptance evidence'
           git -C history push "$GITHUB_WORKSPACE/.git" HEAD:refs/heads/acceptance-results
           git push origin acceptance-results
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - id: pages-config
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+      - if: steps.pages-config.outcome == 'success'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: history/site
-      - uses: actions/deploy-pages@v4
+      - if: steps.pages-config.outcome == 'success'
+        uses: actions/deploy-pages@v4
         id: deployment
       - name: Write published report links
-        if: steps.deployment.outcome == 'success'
+        if: steps.pages-config.outcome == 'success' && steps.deployment.outcome == 'success'
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
@@ -211,8 +215,20 @@ jobs:
           print(f'- 🖼️ [本轮视觉图像对照工作台]({base}{run_id}/visual.html)')
           print(f'- 🤖 [本轮 Agent 机器分析报告]({base}{run_id}/agent-report.json)')
           PY
+      - name: Report Pages Configuration Reminder
+        if: steps.pages-config.outcome != 'success'
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          print('## ⚠️ GitHub Pages 尚未在仓库设置中启用')
+          print('\n完整验收数据与静态网站已成功生成，并已归档推送至 `acceptance-results` 分支！')
+          print('\n若需在 GitHub Pages 在线直接访问报告，请在仓库设置中开启 Pages：')
+          print('1. 打开 [仓库设置 Settings -> Pages](https://github.com/kobebryantwt/deckrender-acceptance/settings/pages)')
+          print('2. 在 **Build and deployment -> Source** 下拉框中选择 **GitHub Actions**')
+          print('3. 切换完成后，后续每次自动化运行都将直接部署上线。')
+          PY
   verdict:
     needs: [aggregate, persist-and-pages]
+    if: always() && needs.aggregate.result == 'success'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
