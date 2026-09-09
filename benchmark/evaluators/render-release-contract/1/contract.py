@@ -12,7 +12,16 @@ def outcome(proc, expected=True):
         if isinstance(err,dict) and err.get('code')=='auth_error':return 'blocked',err
         if isinstance(err,dict) and re.search(r'(missing|not found|not installed|unavailable).*(chromium|playwright|office2html)|(chromium|playwright|office2html).*(missing|not found|not installed|unavailable)',str(err),re.I):return 'blocked',err
         return ('passed' if ok else 'failed'),p or proc.get('stderr')
-    # Negative expectation (planned or unsupported)
+    # Negative expectation (planned, unsupported, or quota exhausted)
+    if expected=='exhausted_quota':
+        err=p.get('error',{}) if isinstance(p,dict) else {}
+        code=err.get('code',p.get('code') if isinstance(p,dict) else None)
+        msg=str(err.get('message',''))+' '+str(err.get('hint',''))
+        has_payment='payment' in msg.lower() or '402' in msg or 'balance' in msg.lower()
+        is_auth=code=='auth_error' or 'auth' in str(code).lower()
+        no_outputs=not list(Path(proc.get('artifactsDir','/nonexistent')).glob('*'))
+        valid=not ok and proc.get('exitCode') not in [0,None] and is_auth and has_payment and no_outputs
+        return ('passed' if valid else 'failed'),{'errorCode':code,'message':err.get('message'),'hint':err.get('hint'),'hasPaymentNotice':has_payment,'noArtifacts':no_outputs}
     if ok:
         reason=f'路线在发布文档中声明为 {expected}，但实际执行成功返回 ok:true；请核查文档是否未及时同步！'
         return 'failed',{'unexpectedSuccess':True,'expectedStatus':expected,'payload':p,'reason':reason}

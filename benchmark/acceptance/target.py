@@ -22,8 +22,9 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     if not source.is_file() or sha(source)!=case['source']['sha256']:return {'blocked':'Source missing or changed'}
     if options.get('sourceFormat',case['format'])!=case['format']:return {'blocked':'No reviewed source for requested format'}
     cloud=options['engine']=='cloud' or options['engine']=='auto' and (case['format'] not in ['pptx','pdf'] or options.get('target')=='video')
+    is_exhausted=options.get('credentialVariant')=='exhausted_quota'
     if cloud and os.getenv('REN_ALLOW_CLOUD')!='1':return {'blocked':'Cloud execution disabled; configure account and explicit usage authorization'}
-    if cloud and not any(os.getenv(k) for k in CREDENTIAL_NAMES):return {'blocked':'Cloud test account not configured; guest mode is not an audit account'}
+    if cloud and not any(os.getenv(k) for k in CREDENTIAL_NAMES) and not is_exhausted:return {'blocked':'Cloud test account not configured; guest mode is not an audit account'}
     if cloud and not case.get('public',False):return {'blocked':'Source is not approved for cloud upload'}
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['TOKEN','SECRET','PASSWORD','API_KEY'])}
     # Browser profiles, caches and credential sentinels are runtime state, not public evidence.
@@ -32,8 +33,11 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     # Per-child HOME is isolated; the parent environment is never reassigned.
     env.update({'HOME':str(sandbox.resolve()),'USERPROFILE':str(sandbox.resolve()),'XDG_CONFIG_HOME':str(sandbox/'config')})
     if cloud:
-        for k in CREDENTIAL_NAMES:
-            if os.getenv(k):env[k]=os.environ[k]
+        if is_exhausted:
+            env['DECKRENDER_API_KEY']=os.getenv('DECKRENDER_EXHAUSTED_API_KEY') or 'PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC'
+        else:
+            for k in CREDENTIAL_NAMES:
+                if os.getenv(k):env[k]=os.environ[k]
     if privacy:
         health=doctor(home)
         if not health['privacyReady']:

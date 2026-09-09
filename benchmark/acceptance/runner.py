@@ -59,7 +59,11 @@ def check_case(home,case,directory,root,identity):
         result('commonSchema',*ev.common_schema(proc))
         if op=='render':
             support=case['options'].get('expectedSupport')
-            status,actual=ev.declared_outcome(proc,case.get('contract'));result('outcome',status,actual)
+            if case['options'].get('credentialVariant')=='exhausted_quota':
+                status,actual=ev.outcome(proc,'exhausted_quota')
+            else:
+                status,actual=ev.declared_outcome(proc,case.get('contract')) if case.get('contract') else ev.outcome(proc,support)
+            result('outcome',status,actual)
             if support is True and status=='passed':result('artifacts',*ev.declared_artifacts(proc,case.get('facts',{}),case.get('contract')))
             elif support is False:result('artifacts',status,actual)
             else:result('artifacts','review' if support is None else 'failed','No successful render to inspect')

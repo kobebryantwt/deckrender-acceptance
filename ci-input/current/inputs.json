@@ -74103,6 +74103,812 @@
       "sourceId": "markers-pdf"
     },
     {
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "covers": [
+        "REN-R07",
+        "REN-R11"
+      ],
+      "evaluation": {
+        "checks": [
+          {
+            "contract": {
+              "caveat": null,
+              "engine": "cloud",
+              "evidence": {
+                "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+                "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+              },
+              "format": "image",
+              "outputCount": 3,
+              "release": {
+                "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+                "tag": "v0.3.1",
+                "version": "0.3.1"
+              },
+              "reportedPages": 3,
+              "route": [
+                "convertor.ppt2image"
+              ],
+              "status": "declared",
+              "supported": true
+            },
+            "expected": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+            "featureId": "REN-R07",
+            "id": "outcome",
+            "questionId": "REN-R07-render-06ce8a0daff6-outcome",
+            "role": "gate",
+            "ruleId": "render.outcome.v3",
+            "severity": "critical",
+            "type": "render"
+          },
+          {
+            "contract": {
+              "caveat": null,
+              "engine": "cloud",
+              "evidence": {
+                "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+                "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+              },
+              "format": "image",
+              "outputCount": 3,
+              "release": {
+                "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+                "tag": "v0.3.1",
+                "version": "0.3.1"
+              },
+              "reportedPages": 3,
+              "route": [
+                "convertor.ppt2image"
+              ],
+              "status": "declared",
+              "supported": true
+            },
+            "expected": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+            "featureId": "REN-R07",
+            "id": "artifacts",
+            "questionId": "REN-R07-render-06ce8a0daff6-artifacts",
+            "role": "gate",
+            "ruleId": "render.artifacts.v3",
+            "severity": "critical",
+            "type": "render"
+          },
+          {
+            "expected": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+            "featureId": "REN-R07",
+            "id": "commonSchema",
+            "questionId": "REN-R07-render-06ce8a0daff6-commonSchema",
+            "role": "gate",
+            "ruleId": "response.commonSchema.v3",
+            "severity": "critical",
+            "type": "render"
+          }
+        ]
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "cli",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "facts": {
+        "difficultyEvidence": {
+          "evidence": [
+            {
+              "axis": "charts",
+              "location": "ppt/charts/chart1.xml"
+            },
+            {
+              "axis": "fonts",
+              "fonts": [
+                "Arial"
+              ],
+              "location": "ppt/slides/slide2.xml",
+              "nonAscii": true
+            },
+            {
+              "axis": "dense-page",
+              "candidate": false,
+              "location": "ppt/slides/slide3.xml",
+              "tables": 1,
+              "textNodes": 73
+            }
+          ],
+          "facts": {
+            "pages": 3
+          },
+          "features": [
+            "charts",
+            "dense-page",
+            "fonts"
+          ],
+          "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+          "status": "observed",
+          "visualTruth": "draft; structural facts do not prove visual fidelity"
+        },
+        "pageCountReview": {
+          "actor": "wt",
+          "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+          "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+        },
+        "pageMarkers": [
+          "REN PAGE 1",
+          "REN PAGE 2",
+          "REN PAGE 3"
+        ],
+        "pages": 3,
+        "references": {
+          "1": {
+            "path": "objects/71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.590926+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          },
+          "2": {
+            "path": "objects/fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.591360+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          },
+          "3": {
+            "path": "objects/45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.591777+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          }
+        },
+        "videoReferenceFrames": [
+          {
+            "fraction": 0.05,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 1,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.25,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 1,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.5,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 2,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.75,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 2,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.95,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 3,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          }
+        ],
+        "visualPageCount": 3
+      },
+      "format": "pptx",
+      "id": "REN-R07-render-06ce8a0daff6",
+      "operation": "render",
+      "options": {
+        "covers": [
+          "REN-R07",
+          "REN-R11"
+        ],
+        "credentialVariant": "exhausted_quota",
+        "engine": "cloud",
+        "expectedSupport": false,
+        "interface": "cli",
+        "target": "image"
+      },
+      "public": true,
+      "purpose": {
+        "checks": [
+          {
+            "answerIds": [
+              "REN-R07-render-06ce8a0daff6-outcome"
+            ],
+            "label": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+            "ruleId": "render.outcome.v3"
+          },
+          {
+            "answerIds": [
+              "REN-R07-render-06ce8a0daff6-artifacts"
+            ],
+            "label": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+            "ruleId": "render.artifacts.v3"
+          },
+          {
+            "answerIds": [
+              "REN-R07-render-06ce8a0daff6-commonSchema"
+            ],
+            "label": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+            "ruleId": "response.commonSchema.v3"
+          }
+        ],
+        "focus": [
+          "page-order",
+          "charts",
+          "fonts",
+          "dense-page"
+        ],
+        "origin": "generated:case-selection-v3",
+        "role": "matrix",
+        "summary": "格式矩阵与产物：PPTX / 云端 / 图片 / CLI。三页独立标识与图表/文字/表格：验证 PPTX 全部发布组合、JSON 公共契约、本地隐私、auto 路由及删除实验。"
+      },
+      "qualityCaseId": "REN-R09-quality-035c2a6b5708",
+      "reviewStatus": "approved",
+      "source": {
+        "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+        "type": "local",
+        "uri": "objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+      },
+      "sourceId": "markers-pptx"
+    },
+    {
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "covers": [
+        "REN-R07",
+        "REN-R11"
+      ],
+      "evaluation": {
+        "checks": [
+          {
+            "contract": {
+              "caveat": null,
+              "engine": "cloud",
+              "evidence": {
+                "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+                "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+              },
+              "format": "image",
+              "outputCount": 3,
+              "release": {
+                "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+                "tag": "v0.3.1",
+                "version": "0.3.1"
+              },
+              "reportedPages": 3,
+              "route": [
+                "convertor.ppt2image"
+              ],
+              "status": "declared",
+              "supported": true
+            },
+            "expected": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+            "featureId": "REN-R07",
+            "id": "outcome",
+            "questionId": "REN-R07-render-dadd503f97d6-outcome",
+            "role": "gate",
+            "ruleId": "render.outcome.v3",
+            "severity": "critical",
+            "type": "render"
+          },
+          {
+            "contract": {
+              "caveat": null,
+              "engine": "cloud",
+              "evidence": {
+                "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+                "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+              },
+              "format": "image",
+              "outputCount": 3,
+              "release": {
+                "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+                "tag": "v0.3.1",
+                "version": "0.3.1"
+              },
+              "reportedPages": 3,
+              "route": [
+                "convertor.ppt2image"
+              ],
+              "status": "declared",
+              "supported": true
+            },
+            "expected": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+            "featureId": "REN-R07",
+            "id": "artifacts",
+            "questionId": "REN-R07-render-dadd503f97d6-artifacts",
+            "role": "gate",
+            "ruleId": "render.artifacts.v3",
+            "severity": "critical",
+            "type": "render"
+          },
+          {
+            "expected": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+            "featureId": "REN-R07",
+            "id": "commonSchema",
+            "questionId": "REN-R07-render-dadd503f97d6-commonSchema",
+            "role": "gate",
+            "ruleId": "response.commonSchema.v3",
+            "severity": "critical",
+            "type": "render"
+          }
+        ]
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "sdk",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "facts": {
+        "difficultyEvidence": {
+          "evidence": [
+            {
+              "axis": "charts",
+              "location": "ppt/charts/chart1.xml"
+            },
+            {
+              "axis": "fonts",
+              "fonts": [
+                "Arial"
+              ],
+              "location": "ppt/slides/slide2.xml",
+              "nonAscii": true
+            },
+            {
+              "axis": "dense-page",
+              "candidate": false,
+              "location": "ppt/slides/slide3.xml",
+              "tables": 1,
+              "textNodes": 73
+            }
+          ],
+          "facts": {
+            "pages": 3
+          },
+          "features": [
+            "charts",
+            "dense-page",
+            "fonts"
+          ],
+          "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+          "status": "observed",
+          "visualTruth": "draft; structural facts do not prove visual fidelity"
+        },
+        "pageCountReview": {
+          "actor": "wt",
+          "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+          "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+        },
+        "pageMarkers": [
+          "REN PAGE 1",
+          "REN PAGE 2",
+          "REN PAGE 3"
+        ],
+        "pages": 3,
+        "references": {
+          "1": {
+            "path": "objects/71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.590926+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          },
+          "2": {
+            "path": "objects/fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.591360+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          },
+          "3": {
+            "path": "objects/45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46.png",
+            "provenance": {
+              "caveats": [
+                "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+              ],
+              "createdAt": "2026-09-08T11:08:22.584782+00:00",
+              "method": "independent source export; not DeckRender output",
+              "pages": 3,
+              "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+              "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+              "renderer": {
+                "name": "LibreOffice",
+                "settings": {
+                  "exportHiddenSlides": true,
+                  "fontConfigurationVersion": 1,
+                  "fontDirectories": [
+                    "/System/Library/Fonts",
+                    "/Library/Fonts"
+                  ],
+                  "macroSecurity": 3,
+                  "updateLinks": false
+                },
+                "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+              },
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "draft"
+            },
+            "public": true,
+            "review": {
+              "actor": "wt",
+              "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+              "importedAt": "2026-09-08T14:55:56.591777+00:00",
+              "note": "人工批量确认当前可见页，未包含隐藏页",
+              "rubric": {
+                "可读性": "符合",
+                "图表": "符合",
+                "层级": "符合",
+                "文字": "符合",
+                "裁切": "符合",
+                "重叠": "符合"
+              }
+            },
+            "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "approved"
+          }
+        },
+        "videoReferenceFrames": [
+          {
+            "fraction": 0.05,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 1,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.25,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 1,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.5,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 2,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.75,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 2,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          {
+            "fraction": 0.95,
+            "review": {
+              "actor": "wt",
+              "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+            },
+            "sourcePage": 3,
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          }
+        ],
+        "visualPageCount": 3
+      },
+      "format": "pptx",
+      "id": "REN-R07-render-dadd503f97d6",
+      "operation": "render",
+      "options": {
+        "covers": [
+          "REN-R07",
+          "REN-R11"
+        ],
+        "credentialVariant": "exhausted_quota",
+        "engine": "cloud",
+        "expectedSupport": false,
+        "interface": "sdk",
+        "target": "image"
+      },
+      "public": true,
+      "purpose": {
+        "checks": [
+          {
+            "answerIds": [
+              "REN-R07-render-dadd503f97d6-outcome"
+            ],
+            "label": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+            "ruleId": "render.outcome.v3"
+          },
+          {
+            "answerIds": [
+              "REN-R07-render-dadd503f97d6-artifacts"
+            ],
+            "label": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+            "ruleId": "render.artifacts.v3"
+          },
+          {
+            "answerIds": [
+              "REN-R07-render-dadd503f97d6-commonSchema"
+            ],
+            "label": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+            "ruleId": "response.commonSchema.v3"
+          }
+        ],
+        "focus": [
+          "page-order",
+          "charts",
+          "fonts",
+          "dense-page"
+        ],
+        "origin": "generated:case-selection-v3",
+        "role": "matrix",
+        "summary": "格式矩阵与产物：PPTX / 云端 / 图片 / SDK。三页独立标识与图表/文字/表格：验证 PPTX 全部发布组合、JSON 公共契约、本地隐私、auto 路由及删除实验。"
+      },
+      "qualityCaseId": "REN-R09-quality-4b6ac419da57",
+      "reviewStatus": "approved",
+      "source": {
+        "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+        "type": "local",
+        "uri": "objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+      },
+      "sourceId": "markers-pptx"
+    },
+    {
       "covers": [
         "REN-R08"
       ],
@@ -123566,7 +124372,7 @@
       "sourceId": "pptx_video_transitions"
     }
   ],
-  "projectRevision": 16,
+  "projectRevision": 19,
   "questions": [
     {
       "answer": "发布 tag 与 npm 包均为 MIT；许可证正文一致",
@@ -267049,6 +267855,1728 @@
         "at": "2026-09-08T15:00:31.809306+00:00",
         "digest": "52374a775dc9dcd7fbb59c98bdc4c2ebb81a2594e8dfc8c6d71ef3db8dbae1bb",
         "note": "发版验收标准答案与 JSON 契约全量核准"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "response.commonSchema.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+      "assertionIds": [
+        "outcome"
+      ],
+      "caseId": "REN-R07-render-06ce8a0daff6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "cli",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / CLI：精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额？",
+      "questionId": "REN-R07-render-06ce8a0daff6-outcome",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.791557+00:00",
+        "digest": "b0a39c873083a71b34d41c41fc8ba85f22f6787c8be66f260850ca64e5374c31",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "render.outcome.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+      "assertionIds": [
+        "artifacts"
+      ],
+      "caseId": "REN-R07-render-06ce8a0daff6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "cli",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / CLI：未在输出目录生成任何伪造或残留文件 (noArtifacts=true)？",
+      "questionId": "REN-R07-render-06ce8a0daff6-artifacts",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.794440+00:00",
+        "digest": "ff00d3e12de4e63801c140313e0a7ed29789a3809b324ee1294d81604a8580c4",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "render.artifacts.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+      "assertionIds": [
+        "commonSchema"
+      ],
+      "caseId": "REN-R07-render-06ce8a0daff6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "cli",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / CLI：符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物？",
+      "questionId": "REN-R07-render-06ce8a0daff6-commonSchema",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.794446+00:00",
+        "digest": "8c155816c58bb26a216dfd17c7fa9f3cb2c484eadab2ce76df2e58d2536be898",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "response.commonSchema.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额",
+      "assertionIds": [
+        "outcome"
+      ],
+      "caseId": "REN-R07-render-dadd503f97d6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "sdk",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / SDK：精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额？",
+      "questionId": "REN-R07-render-dadd503f97d6-outcome",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.794645+00:00",
+        "digest": "80099bc773397e13103af55303192cf7db6783d603fbd858ae95f9a900bb2e1a",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "render.outcome.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)",
+      "assertionIds": [
+        "artifacts"
+      ],
+      "caseId": "REN-R07-render-dadd503f97d6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "sdk",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / SDK：未在输出目录生成任何伪造或残留文件 (noArtifacts=true)？",
+      "questionId": "REN-R07-render-dadd503f97d6-artifacts",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.794657+00:00",
+        "digest": "6f7835d67fb2aa2907b939b3dc9fcf6d0ec1f36508a5b0fef11c28f2118a663f",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
+      },
+      "reviewStatus": "approved",
+      "ruleId": "render.artifacts.v3",
+      "uncertainty": "视觉/政策语义需人工；云审计需独立证据；未声明页数不可推断"
+    },
+    {
+      "answer": "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物",
+      "assertionIds": [
+        "commonSchema"
+      ],
+      "caseId": "REN-R07-render-dadd503f97d6",
+      "evidence": {
+        "location": "deckrender-github-release-acceptance.md#REN-R07",
+        "method": "用户验收手册与独立源事实",
+        "releaseContract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "image",
+          "outputCount": 3,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 3,
+          "route": [
+            "convertor.ppt2image"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "sourceFacts": {
+          "difficultyEvidence": {
+            "evidence": [
+              {
+                "axis": "charts",
+                "location": "ppt/charts/chart1.xml"
+              },
+              {
+                "axis": "fonts",
+                "fonts": [
+                  "Arial"
+                ],
+                "location": "ppt/slides/slide2.xml",
+                "nonAscii": true
+              },
+              {
+                "axis": "dense-page",
+                "candidate": false,
+                "location": "ppt/slides/slide3.xml",
+                "tables": 1,
+                "textNodes": 73
+              }
+            ],
+            "facts": {
+              "pages": 3
+            },
+            "features": [
+              "charts",
+              "dense-page",
+              "fonts"
+            ],
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+            "status": "observed",
+            "visualTruth": "draft; structural facts do not prove visual fidelity"
+          },
+          "pageCountReview": {
+            "actor": "wt",
+            "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+            "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+          },
+          "pageMarkers": [
+            "REN PAGE 1",
+            "REN PAGE 2",
+            "REN PAGE 3"
+          ],
+          "pages": 3,
+          "references": {
+            "1": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0001.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.590926+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "71ffe4ac010b5ddec6184a143a8eee77873bccc0ed0aa5668b7c65a628316616",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "2": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0002.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591360+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "fcff6e500e25f27a25025cb986db91484f40c22fa962b15326746159dab8a4d4",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            },
+            "3": {
+              "path": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/gt/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/source/a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb/0003.png",
+              "provenance": {
+                "caveats": [
+                  "字体替换、动画静态化和分页可能受独立导出工具影响；仍需人工确认"
+                ],
+                "createdAt": "2026-09-08T11:08:22.584782+00:00",
+                "method": "independent source export; not DeckRender output",
+                "pages": 3,
+                "pdfSha256": "a82c9dc5efebaca8838f3a1907f115e740b284d62602f943e7e330642bf92bfb",
+                "processEvidence": "/Users/tong/Project/deckrender-acceptance/benchmark/artifacts/acceptance/source-previews/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4/d3288a5aff35a944/process.json",
+                "renderer": {
+                  "name": "LibreOffice",
+                  "settings": {
+                    "exportHiddenSlides": true,
+                    "fontConfigurationVersion": 1,
+                    "fontDirectories": [
+                      "/System/Library/Fonts",
+                      "/Library/Fonts"
+                    ],
+                    "macroSecurity": 3,
+                    "updateLinks": false
+                  },
+                  "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+                },
+                "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+                "status": "draft"
+              },
+              "public": true,
+              "review": {
+                "actor": "wt",
+                "exportSha256": "de93f97a3db25a06308027ae2716b7fb2c60ae42419be5a70c5489046352310e",
+                "importedAt": "2026-09-08T14:55:56.591777+00:00",
+                "note": "人工批量确认当前可见页，未包含隐藏页",
+                "rubric": {
+                  "可读性": "符合",
+                  "图表": "符合",
+                  "层级": "符合",
+                  "文字": "符合",
+                  "裁切": "符合",
+                  "重叠": "符合"
+                }
+              },
+              "sha256": "45f1ea977f5522039a2e35a2bdd816ff219d5f750694d4a4f6538b26bc994b46",
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+              "status": "approved"
+            }
+          },
+          "videoReferenceFrames": [
+            {
+              "fraction": 0.05,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.25,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 1,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.5,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.75,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 2,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            },
+            {
+              "fraction": 0.95,
+              "review": {
+                "actor": "wt",
+                "evidence": "人工核验视频时间轴分段与幻灯片对应关系"
+              },
+              "sourcePage": 3,
+              "sourceSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4"
+            }
+          ],
+          "visualPageCount": 3
+        }
+      },
+      "executionSnippet": {
+        "cli": "DECKRENDER_API_KEY=\"PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC\" deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+        "interface": "sdk",
+        "sdk": "import { render } from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token [REDACTED]\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: [REDACTED]\n});"
+      },
+      "featureId": "REN-R07",
+      "question": "markers.pptx · PPTX / 云端 / 图片 / SDK：符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物？",
+      "questionId": "REN-R07-render-dadd503f97d6-commonSchema",
+      "review": {
+        "actor": "wt",
+        "at": "2026-09-09T10:19:50.794663+00:00",
+        "digest": "d1b1d626eda1a5c1666e983d997f5f78f14b69f8ea7b9557445a91bef23c01d5",
+        "note": "核准 Token [REDACTED] 额度耗尽用例与契约"
       },
       "reviewStatus": "approved",
       "ruleId": "response.commonSchema.v3",

@@ -86,6 +86,10 @@ def import_sources(home, source=None):
     atomic(Path(home)/'corpus.json',value);return value
 
 def describe_check(op,ch,src,opts,default_desc):
+    if opts.get('credentialVariant') == 'exhausted_quota':
+        if ch == 'outcome': return "精准拦截，JSON 返回 ok=false, exitCode!=0, error.code='auth_error' 并提示 402/Payment required 及充值余额"
+        if ch == 'artifacts': return "未在输出目录生成任何伪造或残留文件 (noArtifacts=true)"
+        if ch == 'commonSchema': return "符合标准错误 Schema：包含 code='auth_error', message, hint 及 requestId，无 outputs 产物"
     if op=='quality' and ch=='visual':
         from . import purposes
         return default_desc+'；重点：'+'、'.join(purposes.LABELS.get(f,f) for f in purposes.profile(src).get('focus',[]))
@@ -118,6 +122,9 @@ def make_execution_snippets(source, options, operation):
     elif operation == 'schema':
         cli = f'deckrender "{inp}" --engine {engine} -o ./out --json'
         sdk = f"import {{ render }} from '@deckflow/deckrender';\nconst result = await render({{\n  input: '{inp}',\n  engine: '{engine}'\n}});"
+    elif opts.get('credentialVariant') == 'exhausted_quota':
+        cli = f'DECKRENDER_API_KEY="PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC" deckrender "{inp}" --engine cloud --format image -o ./out --json'
+        sdk = f"import {{ render }} from '@deckflow/deckrender';\n// 使用积分/额度不足的测试账号 Token 调用\nconst result = await render({{\n  input: '{inp}',\n  engine: 'cloud',\n  format: 'image',\n  apiKey: 'PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC'\n}});"
     else:
         cli_parts = [f'deckrender "{inp}"', f'--engine {engine}', f'--format {target}', '-o ./out', '--json']
         if 'pages' in opts: cli_parts.append('--pages '+json.dumps(opts['pages']))
@@ -212,6 +219,9 @@ def build(home):
         source=by_id['markers-'+fmt] if fmt in ['pdf','pptx'] else selected[fmt]
         for interface in ['cli','sdk']:
             add(7,'render',source,engine=engine,target=variant.get('outputTarget','image'),interface=interface,**{k:v for k,v in variant.items() if k!='outputTarget'})
+    # REN-R07 / REN-R11: 积分/额度不足时的错误拦截与提示（使用 Token 2 验证真实云端 402/auth_error 拦截）
+    for interface in ['cli','sdk']:
+        add(7,'render',selected['pptx'],engine='cloud',target='image',interface=interface,credentialVariant='exhausted_quota',expectedSupport=False,covers=['REN-R07','REN-R11'])
     # REN-R08: Cloud retention audit
     for hours in [1,None,99]:add(8,'retention',selected['pptx'],engine='cloud',target='image',interface='sdk',retentionHours=hours)
     # REN-R09: Quality (Visual Artifacts once per route on CLI)
