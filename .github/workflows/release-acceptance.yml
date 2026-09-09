@@ -55,6 +55,7 @@ jobs:
           REN_AUDIT_COMMAND: ${{ vars.REN_AUDIT_COMMAND }}
           REN_LIFECYCLE_COMMAND: ${{ vars.REN_LIFECYCLE_COMMAND }}
           DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
+          DECKRENDER_API_KEY_2: ${{ secrets.DECKRENDER_API_KEY_2 }}
           DECKRENDER_EXHAUSTED_API_KEY: ${{ secrets.DECKRENDER_EXHAUSTED_API_KEY }}
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -132,6 +133,7 @@ jobs:
         env:
           REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
           DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
+          DECKRENDER_API_KEY_2: ${{ secrets.DECKRENDER_API_KEY_2 }}
           DECKRENDER_EXHAUSTED_API_KEY: ${{ secrets.DECKRENDER_EXHAUSTED_API_KEY }}
         run: python benchmark/scripts/release_acceptance.py run --snapshot ci-input/current --group '${{ matrix.group }}' --run-id '${{ github.run_id }}-${{ matrix.group }}'
       - name: Archive complete group evidence

@@ -34,7 +34,7 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     env.update({'HOME':str(sandbox.resolve()),'USERPROFILE':str(sandbox.resolve()),'XDG_CONFIG_HOME':str(sandbox/'config')})
     if cloud:
         if is_exhausted:
-            env['DECKRENDER_API_KEY']=os.getenv('DECKRENDER_EXHAUSTED_API_KEY') or 'PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC'
+            env['DECKRENDER_API_KEY']=os.getenv('DECKRENDER_API_KEY_2') or os.getenv('DECKRENDER_EXHAUSTED_API_KEY') or 'PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC'
         else:
             for k in CREDENTIAL_NAMES:
                 if os.getenv(k):env[k]=os.environ[k]
