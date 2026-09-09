@@ -1,0 +1,27 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-59e19eb43a57/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-59e19eb43a57/artifacts",
+    "--json",
+    "--width",
+    "1920",
+    "--pages",
+    "1",
+    "--image-format",
+    "webp"
+  ],
+  "durationMs": 1594,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-59e19eb43a57",
+  "exitCode": 3,
+  "payload": null,
+  "stderr": "{\"warning\":\"via convertor.pdf2image → image.convertWebp (2 steps)\"}\n{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"auth_error\",\n    \"message\": \"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: fd767912-3972-4fa3-aef6-7cb135a54e9b]\",\n    \"hint\": \"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\n    \"requestId\": \"fd767912-3972-4fa3-aef6-7cb135a54e9b\"\n  }\n}\n",
+  "stdout": ""
+}

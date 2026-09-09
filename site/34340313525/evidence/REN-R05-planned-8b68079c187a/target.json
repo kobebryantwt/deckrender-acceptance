@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-release/evidence/REN-R05-planned-8b68079c187a/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-release/evidence/REN-R05-planned-8b68079c187a/request.json"
+  ],
+  "durationMs": 155,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-release/evidence/REN-R05-planned-8b68079c187a",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no Pages converter yet. Track it in docs/roadmap.md.",
+      "message": "Rendering .pages to image is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/f3af645b49ebddceccb27ff13561caf7bdb1c0ca895b46b463113c94f273b9cb.pages\",\"at\":\"2026-09-09T10:56:00.821Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:56:00.822Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"not_implemented\",\"message\":\"Rendering .pages to image is coming soon — not supported yet.\",\"hint\":\"The DeckFlow cloud has no Pages converter yet. Track it in docs/roadmap.md.\"}}\n"
+}

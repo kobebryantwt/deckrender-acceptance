@@ -1,0 +1,28 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-29c33f9c1178/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-29c33f9c1178/artifacts",
+    "--json"
+  ],
+  "durationMs": 184,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-29c33f9c1178",
+  "exitCode": 2,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no ppt-to-pdf task: the legacy binary format needs normalizing to .pptx first. Track it in docs/roadmap.md.",
+      "message": "Rendering .ppt to pdf is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"not_implemented\",\n    \"message\": \"Rendering .ppt to pdf is coming soon — not supported yet.\",\n    \"hint\": \"The DeckFlow cloud has no ppt-to-pdf task: the legacy binary format needs normalizing to .pptx first. Track it in docs/roadmap.md.\"\n  }\n}\n",
+  "stdout": ""
+}

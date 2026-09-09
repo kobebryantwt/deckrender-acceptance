@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-43099611d23a/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-43099611d23a/request.json"
+  ],
+  "durationMs": 145,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-43099611d23a",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "unsupported_format",
+      "hint": "Run `deckrender formats` or see docs/formats.md for the full support matrix.",
+      "message": "Cannot render .docx to video. Supported outputs for .docx: image, pdf."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6.docx\",\"at\":\"2026-09-09T10:56:36.371Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:56:36.372Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"unsupported_format\",\"message\":\"Cannot render .docx to video. Supported outputs for .docx: image, pdf.\",\"hint\":\"Run `deckrender formats` or see docs/formats.md for the full support matrix.\"}}\n"
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-63961f75ce8b/request.json"
+  ],
+  "durationMs": 2607,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:58:41.341Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:58:41.342Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:58:41.346Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:58:41.346Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.ppt2image\",\"at\":\"2026-09-09T10:58:43.564Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"auth_error\",\"message\":\"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: a9d28e29-96f7-48c1-ac02-eda3042619ee]\",\"hint\":\"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\"requestId\":\"a9d28e29-96f7-48c1-ac02-eda3042619ee\"}}\n"
+}

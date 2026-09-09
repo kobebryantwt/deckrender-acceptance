@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/f3af645b49ebddceccb27ff13561caf7bdb1c0ca895b46b463113c94f273b9cb.pages",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-release/evidence/REN-R05-planned-b4920af33e59/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 148,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"not_implemented\",\n    \"message\": \"Rendering .pages to image is coming soon — not supported yet.\",\n    \"hint\": \"The DeckFlow cloud has no Pages converter yet. Track it in docs/roadmap.md.\"\n  }\n}\n",
+  "stdout": ""
+}

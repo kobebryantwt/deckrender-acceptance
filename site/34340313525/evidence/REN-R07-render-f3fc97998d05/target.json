@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-f3fc97998d05/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-f3fc97998d05/request.json"
+  ],
+  "durationMs": 140,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-f3fc97998d05",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "unsupported_option",
+      "hint": "Page selection applies to multi-frame image output.",
+      "message": "--pages is not supported for pdf output, which is a single file."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T11:01:54.533Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T11:01:54.534Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"unsupported_option\",\"message\":\"--pages is not supported for pdf output, which is a single file.\",\"hint\":\"Page selection applies to multi-frame image output.\"}}\n"
+}

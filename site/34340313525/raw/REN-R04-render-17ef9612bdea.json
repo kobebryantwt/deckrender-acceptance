@@ -1,0 +1,141 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "code": "auth_error",
+        "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+        "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 456a0c90-d463-416a-873a-0833578464fb]",
+        "requestId": "456a0c90-d463-416a-873a-0833578464fb"
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "pdf",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.keynote2pdf"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-17ef9612bdea"
+      ],
+      "expected": "支持的路线成功，不可用组合明确拒绝且不伪造产物",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R04-render-17ef9612bdea-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "No successful render to inspect",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "pdf",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.keynote2pdf"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-17ef9612bdea"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：未知，需独立核定；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R04-render-17ef9612bdea-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "branch": "error",
+        "error": {
+          "code": "auth_error",
+          "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+          "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 456a0c90-d463-416a-873a-0833578464fb]",
+          "requestId": "456a0c90-d463-416a-873a-0833578464fb"
+        },
+        "exitCode": 1
+      },
+      "evidence": [
+        "evidence/REN-R04-render-17ef9612bdea"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R04-render-17ef9612bdea-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R04-render-17ef9612bdea",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-17ef9612bdea/request.json"
+  ],
+  "evidence": [
+    "evidence/REN-R04-render-17ef9612bdea"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"keynote_modern_iwa.key\" --engine cloud --format pdf -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'keynote_modern_iwa.key',\n  engine: 'cloud',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "key",
+  "inputSha256": "8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": true,
+    "interface": "sdk",
+    "sourceFormat": "key",
+    "target": "pdf"
+  },
+  "qualityCaseId": "REN-R09-quality-17ef9612bdea",
+  "source": {
+    "sha256": "8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key"
+  },
+  "status": "failed"
+}

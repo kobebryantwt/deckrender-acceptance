@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-17ef9612bdea/request.json"
+  ],
+  "durationMs": 2595,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:56:24.555Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:56:24.556Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:56:24.562Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:56:24.562Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.keynote2pdf\",\"at\":\"2026-09-09T10:56:26.735Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"auth_error\",\"message\":\"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 456a0c90-d463-416a-873a-0833578464fb]\",\"hint\":\"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\"requestId\":\"456a0c90-d463-416a-873a-0833578464fb\"}}\n"
+}

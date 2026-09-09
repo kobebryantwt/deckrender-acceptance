@@ -1,0 +1,22 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-8ebda4ca0c60/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-8ebda4ca0c60/request.json"
+  ],
+  "durationMs": 2194,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-8ebda4ca0c60",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "auth_error",
+      "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+      "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: cf9040fb-8102-488e-ba08-e69ae53139f4]",
+      "requestId": "cf9040fb-8102-488e-ba08-e69ae53139f4"
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T11:00:26.514Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T11:00:26.516Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T11:00:26.521Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T11:00:26.521Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.ppt2image\",\"at\":\"2026-09-09T11:00:28.328Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"auth_error\",\"message\":\"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: cf9040fb-8102-488e-ba08-e69ae53139f4]\",\"hint\":\"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\"requestId\":\"cf9040fb-8102-488e-ba08-e69ae53139f4\"}}\n"
+}

@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/c4a9792d892489b1926baec392c5ea1ee2f25f4d38c2d561858f3f4ac052f080.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-bc2a45686e02/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 2047,
+  "exitCode": 3,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"auth_error\",\n    \"message\": \"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 4899bdd9-4c03-4461-9f4f-c74b2396e587]\",\n    \"hint\": \"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\n    \"requestId\": \"4899bdd9-4c03-4461-9f4f-c74b2396e587\"\n  }\n}\n",
+  "stdout": ""
+}

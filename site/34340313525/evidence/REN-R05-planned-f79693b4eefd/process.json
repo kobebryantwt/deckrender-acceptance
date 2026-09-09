@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-release/evidence/REN-R05-planned-f79693b4eefd/request.json"
+  ],
+  "durationMs": 110,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf.numbers\",\"at\":\"2026-09-09T10:56:01.557Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:56:01.558Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"not_implemented\",\"message\":\"Rendering .numbers to image is coming soon — not supported yet.\",\"hint\":\"The DeckFlow cloud has no Numbers converter yet. Track it in docs/roadmap.md.\"}}\n"
+}

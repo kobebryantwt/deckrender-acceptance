@@ -1,0 +1,157 @@
+{
+  "assertions": [
+    {
+      "actual": "No usable render; no visual verdict",
+      "evidence": [
+        "evidence/REN-R09-quality-8a2f0d8382df"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：页数与页序、图表、字体与多语言、密集布局",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-8a2f0d8382df-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "review",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "code": "auth_error",
+        "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+        "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 219090be-51fb-4266-b91d-1ec3ed7c1298]",
+        "requestId": "219090be-51fb-4266-b91d-1ec3ed7c1298"
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "selectedSourcePages": [
+          1
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-8a2f0d8382df"
+      ],
+      "expected": "单页筛选：仅输出源第 1 页；记录有效图像、页序、字体、环境、分辨率与独立参考；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-8a2f0d8382df-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "blocked",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "branch": "error",
+        "error": {
+          "code": "auth_error",
+          "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+          "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 219090be-51fb-4266-b91d-1ec3ed7c1298]",
+          "requestId": "219090be-51fb-4266-b91d-1ec3ed7c1298"
+        },
+        "exitCode": 3
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-8a2f0d8382df"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-8a2f0d8382df-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-8a2f0d8382df",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-8a2f0d8382df/artifacts",
+    "--json",
+    "--width",
+    "1920",
+    "--pages",
+    "1"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-8a2f0d8382df"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json --pages \"1\"",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n  pages: \"1\",\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "expectedSourcePages": [
+      1
+    ],
+    "expectedSupport": true,
+    "interface": "cli",
+    "pages": "1",
+    "target": "image",
+    "variantId": "page-single",
+    "variantLabel": "单页筛选：仅输出源第 1 页"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "review"
+}

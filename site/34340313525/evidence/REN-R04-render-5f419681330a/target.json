@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-5f419681330a/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-5f419681330a/request.json"
+  ],
+  "durationMs": 143,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-5f419681330a",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no ppt-to-pdf task: the legacy binary format needs normalizing to .pptx first. Track it in docs/roadmap.md.",
+      "message": "Rendering .ppt to pdf is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:56:04.861Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:56:04.862Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"not_implemented\",\"message\":\"Rendering .ppt to pdf is coming soon — not supported yet.\",\"hint\":\"The DeckFlow cloud has no ppt-to-pdf task: the legacy binary format needs normalizing to .pptx first. Track it in docs/roadmap.md.\"}}\n"
+}

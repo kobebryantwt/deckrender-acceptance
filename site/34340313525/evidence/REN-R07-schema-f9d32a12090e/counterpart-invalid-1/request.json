@@ -1,0 +1,10 @@
+{
+  "module": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/index.js",
+  "options": {
+    "engine": "cloud",
+    "format": "image",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-schema-f9d32a12090e/counterpart-invalid-1/does-not-exist.pptx",
+    "out": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-schema-f9d32a12090e/counterpart-invalid-1/artifacts",
+    "width": 1920
+  }
+}

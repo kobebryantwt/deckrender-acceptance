@@ -1,0 +1,22 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R06-auto-cd47590ae7ab/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R06-auto-cd47590ae7ab/request.json"
+  ],
+  "durationMs": 2818,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R06-auto-cd47590ae7ab",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "auth_error",
+      "hint": "Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.",
+      "message": "Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 80f87d6b-de23-4f83-9543-b0f61d75721e]",
+      "requestId": "80f87d6b-de23-4f83-9543-b0f61d75721e"
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:58:35.898Z\"}\n{\"kind\":\"warning\",\"message\":\"falling back to cloud for .key → image\",\"at\":\"2026-09-09T10:58:35.900Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:58:35.900Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:58:35.904Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:58:35.904Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.keynote2image\",\"at\":\"2026-09-09T10:58:38.262Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"auth_error\",\"message\":\"Payment required: API Error (402): Payment is required. Please complete checkout and try again. [X-RequestId: 80f87d6b-de23-4f83-9543-b0f61d75721e]\",\"hint\":\"Your workspace is out of balance. Complete checkout at https://app.deckflow.com and retry.\",\"requestId\":\"80f87d6b-de23-4f83-9543-b0f61d75721e\"}}\n"
+}

@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-056e5913c141/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-056e5913c141/request.json"
+  ],
+  "durationMs": 140,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-local/evidence/REN-R07-render-056e5913c141",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "unsupported_option",
+      "hint": "Rendering .key always produces PNG. Use png or webp.",
+      "message": "--image-format jpg is not supported for .key input."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T11:01:12.525Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T11:01:12.527Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"unsupported_option\",\"message\":\"--image-format jpg is not supported for .key input.\",\"hint\":\"Rendering .key always produces PNG. Use png or webp.\"}}\n"
+}

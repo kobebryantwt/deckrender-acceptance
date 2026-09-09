@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-06999fa2d67f/request.json"
+  ],
+  "durationMs": 1462,
+  "exitCode": 0,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"at\":\"2026-09-09T10:59:39.283Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:59:39.285Z\"}\n{\"kind\":\"warning\",\"message\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\",\"at\":\"2026-09-09T10:59:39.285Z\"}\n{\"kind\":\"task\",\"message\":\"Rasterizing PDF page 1 of 3\",\"at\":\"2026-09-09T10:59:40.280Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T10:59:40.591Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"format\":\"image\",\"engine\":\"local\",\"route\":[\"local.pdfjs\"],\"pages\":3,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-06999fa2d67f/artifacts/001.png\",\"width\":1920,\"height\":1080,\"bytes\":26500}],\"durationMs\":1309,\"caveat\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"}\n"
+}

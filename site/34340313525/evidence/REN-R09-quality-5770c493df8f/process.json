@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-quality/evidence/REN-R09-quality-5770c493df8f/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 18425,
+  "exitCode": 1,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"render_error\",\n    \"message\": \"API Error (500): ppt 文件格式不正确，ppt/presentation.xml 文件格式不正确 [X-RequestId: 110f2480-43f1-4598-848a-25eac948314d]\",\n    \"requestId\": \"110f2480-43f1-4598-848a-25eac948314d\"\n  }\n}\n",
+  "stdout": ""
+}

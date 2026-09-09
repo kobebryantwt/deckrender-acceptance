@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-63d546e688db/artifacts",
+    "--json"
+  ],
+  "durationMs": 195,
+  "exitCode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\n  \"format\": \"pdf\",\n  \"engine\": \"passthrough\",\n  \"route\": [\n    \"passthrough\"\n  ],\n  \"pages\": 1,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34340313525-cloud/evidence/REN-R04-render-63d546e688db/artifacts/001.pdf\",\n      \"bytes\": 2333\n    }\n  ],\n  \"durationMs\": 5\n}\n"
+}
