@@ -1,0 +1,9 @@
+{
+  "module": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/index.js",
+  "options": {
+    "engine": "cloud",
+    "format": "pdf",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/f3af645b49ebddceccb27ff13561caf7bdb1c0ca895b46b463113c94f273b9cb.pages",
+    "out": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-release/evidence/REN-R05-planned-97e914e43707/artifacts"
+  }
+}

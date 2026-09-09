@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/counterpart-invalid-2/request.json"
+  ],
+  "durationMs": 114,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/counterpart-invalid-2/does-not-exist.pptx\",\"at\":\"2026-09-09T10:35:13.278Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"usage_error\",\"message\":\"Input not found: /home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/counterpart-invalid-2/does-not-exist.pptx\"}}\n"
+}

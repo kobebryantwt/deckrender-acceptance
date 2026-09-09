@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-47f60dd49407/request.json"
+  ],
+  "durationMs": 2570,
+  "exitCode": 0,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:30:13.987Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:30:13.988Z\"}\n{\"kind\":\"warning\",\"message\":\"Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.\",\"at\":\"2026-09-09T10:30:13.989Z\"}\n{\"kind\":\"task\",\"message\":\"Converting a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx locally (first run may take about 40s)\",\"at\":\"2026-09-09T10:30:13.991Z\"}\n{\"kind\":\"task\",\"message\":\"Capturing page 1 of 3\",\"at\":\"2026-09-09T10:30:16.260Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T10:30:16.449Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"format\":\"image\",\"engine\":\"local\",\"route\":[\"local.office2html\",\"local.capture\"],\"pages\":3,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-47f60dd49407/artifacts/001.jpg\",\"width\":1920,\"height\":1080,\"bytes\":20905}],\"durationMs\":2462,\"caveat\":\"Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.\"}\n"
+}

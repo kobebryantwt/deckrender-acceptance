@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "video",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-f11927359c9c/artifacts",
+    "--json"
+  ],
+  "durationMs": 10792,
+  "exitCode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\n  \"format\": \"video\",\n  \"engine\": \"cloud\",\n  \"route\": [\n    \"convertor.ppt2video\"\n  ],\n  \"pages\": 1,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-f11927359c9c/artifacts/001.mp4\",\n      \"bytes\": 398950\n    }\n  ],\n  \"durationMs\": 10598\n}\n"
+}

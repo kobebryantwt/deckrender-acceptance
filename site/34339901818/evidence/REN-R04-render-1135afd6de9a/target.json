@@ -1,0 +1,50 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 4977,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a",
+  "exitCode": 0,
+  "payload": {
+    "durationMs": 4782,
+    "engine": "cloud",
+    "format": "image",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 51157,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/001.png",
+        "page": 1
+      },
+      {
+        "bytes": 52023,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/002.png",
+        "page": 2
+      },
+      {
+        "bytes": 52422,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/003.png",
+        "page": 3
+      }
+    ],
+    "pages": 3,
+    "route": [
+      "convertor.pdf2image"
+    ]
+  },
+  "stderr": "",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\n  \"format\": \"image\",\n  \"engine\": \"cloud\",\n  \"route\": [\n    \"convertor.pdf2image\"\n  ],\n  \"pages\": 3,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/001.png\",\n      \"bytes\": 51157\n    },\n    {\n      \"page\": 2,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/002.png\",\n      \"bytes\": 52023\n    },\n    {\n      \"page\": 3,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-1135afd6de9a/artifacts/003.png\",\n      \"bytes\": 52422\n    }\n  ],\n  \"durationMs\": 4782\n}\n"
+}

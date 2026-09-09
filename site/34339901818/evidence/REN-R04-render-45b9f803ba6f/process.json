@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key",
+    "--engine",
+    "cloud",
+    "--format",
+    "video",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-45b9f803ba6f/artifacts",
+    "--json"
+  ],
+  "durationMs": 194,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"not_implemented\",\n    \"message\": \"Rendering .key to video is coming soon — not supported yet.\",\n    \"hint\": \"The DeckFlow cloud has no keynote-to-video task yet. Track it in docs/roadmap.md.\"\n  }\n}\n",
+  "stdout": ""
+}

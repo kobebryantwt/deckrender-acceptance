@@ -1,0 +1,30 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-5770c493df8f/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-5770c493df8f/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 15446,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-5770c493df8f",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "render_error",
+      "message": "API Error (500): ppt 文件格式不正确，ppt/presentation.xml 文件格式不正确 [X-RequestId: 98a38ae8-59e0-43e1-a82c-79a64c621e0b]",
+      "requestId": "98a38ae8-59e0-43e1-a82c-79a64c621e0b"
+    },
+    "ok": false
+  },
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"render_error\",\n    \"message\": \"API Error (500): ppt 文件格式不正确，ppt/presentation.xml 文件格式不正确 [X-RequestId: 98a38ae8-59e0-43e1-a82c-79a64c621e0b]\",\n    \"requestId\": \"98a38ae8-59e0-43e1-a82c-79a64c621e0b\"\n  }\n}\n",
+  "stdout": ""
+}

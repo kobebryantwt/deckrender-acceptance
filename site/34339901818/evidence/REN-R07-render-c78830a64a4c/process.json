@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-c78830a64a4c/request.json"
+  ],
+  "durationMs": 112,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"at\":\"2026-09-09T10:37:15.253Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"usage_error\",\"message\":\"Invalid page number in \\\"0\\\". Expected an integer from 1 to 100000.\"}}\n"
+}

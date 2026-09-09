@@ -1,0 +1,33 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-16fdf56f3ad6/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-16fdf56f3ad6/request.json"
+  ],
+  "durationMs": 4716,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-16fdf56f3ad6",
+  "exitCode": 0,
+  "payload": {
+    "durationMs": 4571,
+    "engine": "cloud",
+    "format": "pdf",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 53678,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-16fdf56f3ad6/artifacts/001.pdf",
+        "height": 5143500,
+        "page": 1,
+        "width": 9144000
+      }
+    ],
+    "pages": 1,
+    "route": [
+      "convertor.ppt2pdf"
+    ]
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:40.923Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:26:40.924Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:40.930Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:40.930Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.ppt2pdf\",\"at\":\"2026-09-09T10:26:42.233Z\"}\n{\"kind\":\"wait\",\"message\":\"Running convertor.ppt2pdf\",\"at\":\"2026-09-09T10:26:42.660Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T10:26:44.590Z\"}\n{\"kind\":\"download\",\"message\":\"Downloading page 1\",\"at\":\"2026-09-09T10:26:44.591Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"format\":\"pdf\",\"engine\":\"cloud\",\"route\":[\"convertor.ppt2pdf\"],\"pages\":1,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-16fdf56f3ad6/artifacts/001.pdf\",\"width\":9144000,\"height\":5143500,\"bytes\":53678}],\"durationMs\":4571}\n"
+}

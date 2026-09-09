@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-7fd62151b00f/artifacts",
+    "--json",
+    "--width",
+    "1920",
+    "--pages",
+    "abc"
+  ],
+  "durationMs": 144,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"usage_error\",\n    \"message\": \"Invalid page selection: abc.\",\n    \"hint\": \"Use a page number (3), a range (1-5), or a list (1,3,5-7).\"\n  }\n}\n",
+  "stdout": ""
+}

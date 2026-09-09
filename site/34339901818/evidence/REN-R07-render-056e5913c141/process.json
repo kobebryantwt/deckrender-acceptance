@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-056e5913c141/request.json"
+  ],
+  "durationMs": 111,
+  "exitCode": 1,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:36:19.749Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:36:19.750Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"unsupported_option\",\"message\":\"--image-format jpg is not supported for .key input.\",\"hint\":\"Rendering .key always produces PNG. Use png or webp.\"}}\n"
+}

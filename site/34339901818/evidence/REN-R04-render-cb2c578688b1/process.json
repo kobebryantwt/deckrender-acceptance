@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-cb2c578688b1/request.json"
+  ],
+  "durationMs": 5217,
+  "exitCode": 0,
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:27:28.450Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:27:28.451Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:27:28.457Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading 54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"at\":\"2026-09-09T10:27:28.457Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.ppt2video\",\"at\":\"2026-09-09T10:27:30.060Z\"}\n{\"kind\":\"wait\",\"message\":\"Running convertor.ppt2video\",\"at\":\"2026-09-09T10:27:30.321Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T10:27:32.435Z\"}\n{\"kind\":\"download\",\"message\":\"Downloading page 1\",\"at\":\"2026-09-09T10:27:32.436Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt\",\"format\":\"video\",\"engine\":\"cloud\",\"route\":[\"convertor.ppt2video\"],\"pages\":1,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-cb2c578688b1/artifacts/001.mp4\",\"bytes\":132088}],\"durationMs\":5069}\n"
+}

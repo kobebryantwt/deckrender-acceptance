@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/invalid-1/does-not-exist.pptx",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/invalid-1/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 139,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"usage_error\",\n    \"message\": \"Input not found: /home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-schema-fe027624cb9c/invalid-1/does-not-exist.pptx\"\n  }\n}\n",
+  "stdout": ""
+}

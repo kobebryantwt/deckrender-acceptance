@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-d6db8235d96a/artifacts",
+    "--json",
+    "--width",
+    "1920",
+    "--pages",
+    "0"
+  ],
+  "durationMs": 168,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"usage_error\",\n    \"message\": \"Invalid page number in \\\"0\\\". Expected an integer from 1 to 100000.\"\n  }\n}\n",
+  "stdout": ""
+}

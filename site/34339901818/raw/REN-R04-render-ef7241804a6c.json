@@ -1,0 +1,197 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "contract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "pdf",
+          "outputCount": 1,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 1,
+          "route": [
+            "convertor.ppt2pdf"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "errors": [],
+        "response": {
+          "durationMs": 5317,
+          "engine": "cloud",
+          "format": "pdf",
+          "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+          "ok": true,
+          "outputs": [
+            {
+              "bytes": 53678,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts/001.pdf",
+              "height": 5143500,
+              "page": 1,
+              "width": 9144000
+            }
+          ],
+          "pages": 1,
+          "route": [
+            "convertor.ppt2pdf"
+          ]
+        }
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "pdf",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.ppt2pdf"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-ef7241804a6c"
+      ],
+      "expected": "支持的路线成功，不可用组合明确拒绝且不伪造产物",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R04-render-ef7241804a6c-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "decodedPages": 3,
+        "errors": [],
+        "markerEvidence": [
+          "REN PAGE 1\n0\n1\n2\n3\n4\nA\nB\nC\nvalues\n",
+          "REN PAGE 2\nFont coverage: Arial / Symbol\nSpecial: α β ± ≤ ≥\n中文字体替代检查\n",
+          "REN PAGE 3\n1:1\n1:2\n1:3\n1:4\n1:5\n1:6\n2:1\n2:2\n2:3\n2:4\n2:5\n2:6\n3:1\n3:2\n3:3\n3:4\n3:5\n3:6\n4:1\n4:2\n4:3\n4:4\n4:5\n4:6\n5:1\n5:2\n5:3\n5:4\n5:5\n5:6\n6:1\n6:2\n6:3\n6:4\n6:5\n6:6\n7:1\n7:2\n7:3\n7:4\n7:5\n7:6\n8:1\n8:2\n8:3\n8:4\n8:5\n8:6\n9:1\n9:2\n9:3\n9:4\n9:5\n9:6\n10:1\n10:2\n10:3\n10:4\n10:5\n10:6\n11:1\n11:2\n11:3\n11:4\n11:5\n11:6\n"
+        ],
+        "markerUncertain": false,
+        "oracleGaps": [],
+        "pageCountOracle": 3,
+        "pageOrder": [
+          1
+        ]
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "pdf",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.ppt2pdf"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-ef7241804a6c"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：3；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R04-render-ef7241804a6c-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle",
+          "Missing caveat (explicit null allowed for no known caveat)"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R04-render-ef7241804a6c"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R04-render-ef7241804a6c-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R04-render-ef7241804a6c",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts",
+    "--json"
+  ],
+  "evidence": [
+    "evidence/REN-R04-render-ef7241804a6c"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud --format pdf -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": true,
+    "interface": "cli",
+    "sourceFormat": "pptx",
+    "target": "pdf"
+  },
+  "qualityCaseId": "REN-R09-quality-ef7241804a6c",
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "failed"
+}

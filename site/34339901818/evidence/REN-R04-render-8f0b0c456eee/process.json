@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6.docx",
+    "--engine",
+    "cloud",
+    "--format",
+    "video",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-8f0b0c456eee/artifacts",
+    "--json"
+  ],
+  "durationMs": 198,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"unsupported_format\",\n    \"message\": \"Cannot render .docx to video. Supported outputs for .docx: image, pdf.\",\n    \"hint\": \"Run `deckrender formats` or see docs/formats.md for the full support matrix.\"\n  }\n}\n",
+  "stdout": ""
+}

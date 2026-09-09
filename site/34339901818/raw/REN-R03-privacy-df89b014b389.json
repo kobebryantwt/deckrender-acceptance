@@ -1,0 +1,174 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "diagnostics": {
+          "namespaceProbe": {
+            "command": [
+              "unshare",
+              "-Urn",
+              "true"
+            ],
+            "durationMs": 2,
+            "exitCode": 1,
+            "stderr": "unshare: write failed /proc/self/uid_map: Operation not permitted\n",
+            "stdout": ""
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "strace": "/usr/bin/strace",
+          "unshare": "/usr/bin/unshare"
+        },
+        "reason": "Independent Linux namespace/strace monitor unavailable"
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "整个进程树无外部网络连接尝试",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "network",
+      "questionId": "REN-R03-privacy-df89b014b389-network",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.network.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "diagnostics": {
+          "namespaceProbe": {
+            "command": [
+              "unshare",
+              "-Urn",
+              "true"
+            ],
+            "durationMs": 2,
+            "exitCode": 1,
+            "stderr": "unshare: write failed /proc/self/uid_map: Operation not permitted\n",
+            "stdout": ""
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "strace": "/usr/bin/strace",
+          "unshare": "/usr/bin/unshare"
+        },
+        "reason": "Independent Linux namespace/strace monitor unavailable"
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "无凭据文件读取或云凭据环境变量读取",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "credentials",
+      "questionId": "REN-R03-privacy-df89b014b389-credentials",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.credentials.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "diagnostics": {
+          "namespaceProbe": {
+            "command": [
+              "unshare",
+              "-Urn",
+              "true"
+            ],
+            "durationMs": 2,
+            "exitCode": 1,
+            "stderr": "unshare: write failed /proc/self/uid_map: Operation not permitted\n",
+            "stdout": ""
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "strace": "/usr/bin/strace",
+          "unshare": "/usr/bin/unshare"
+        },
+        "reason": "Independent Linux namespace/strace monitor unavailable"
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "结果明确标记 local；不发生云端回退",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "local",
+      "questionId": "REN-R03-privacy-df89b014b389-local",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.local.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "diagnostics": {
+          "namespaceProbe": {
+            "command": [
+              "unshare",
+              "-Urn",
+              "true"
+            ],
+            "durationMs": 2,
+            "exitCode": 1,
+            "stderr": "unshare: write failed /proc/self/uid_map: Operation not permitted\n",
+            "stdout": ""
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "strace": "/usr/bin/strace",
+          "unshare": "/usr/bin/unshare"
+        },
+        "reason": "Independent Linux namespace/strace monitor unavailable"
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R03-privacy-df89b014b389-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "privacy"
+    }
+  ],
+  "caseId": "REN-R03-privacy-df89b014b389",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "privacy"
+  ],
+  "evidence": [
+    "evidence/REN-R03-privacy-df89b014b389"
+  ],
+  "executionSnippet": {
+    "cli": "unshare -Urn strace -f -e trace=network,openat deckrender \"markers.pdf\" --engine local --format pdf -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pdf',\n  engine: 'local',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "options": {
+    "engine": "local",
+    "interface": "sdk",
+    "target": "pdf"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf"
+  },
+  "status": "blocked"
+}

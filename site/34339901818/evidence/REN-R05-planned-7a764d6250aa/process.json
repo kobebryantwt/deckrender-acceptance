@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf.numbers",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-release/evidence/REN-R05-planned-7a764d6250aa/artifacts",
+    "--json"
+  ],
+  "durationMs": 112,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"not_implemented\",\n    \"message\": \"Rendering .numbers to pdf is coming soon — not supported yet.\",\n    \"hint\": \"The DeckFlow cloud has no Numbers converter yet. Track it in docs/roadmap.md.\"\n  }\n}\n",
+  "stdout": ""
+}

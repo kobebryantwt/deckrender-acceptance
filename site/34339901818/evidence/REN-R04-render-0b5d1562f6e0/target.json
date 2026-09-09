@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-0b5d1562f6e0/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-0b5d1562f6e0/request.json"
+  ],
+  "durationMs": 152,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-0b5d1562f6e0",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no keynote-to-video task yet. Track it in docs/roadmap.md.",
+      "message": "Rendering .key to video is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key\",\"at\":\"2026-09-09T10:27:51.067Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:27:51.069Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"not_implemented\",\"message\":\"Rendering .key to video is coming soon — not supported yet.\",\"hint\":\"The DeckFlow cloud has no keynote-to-video task yet. Track it in docs/roadmap.md.\"}}\n"
+}

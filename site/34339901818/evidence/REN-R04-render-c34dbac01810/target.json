@@ -1,0 +1,21 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-c34dbac01810/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-c34dbac01810/request.json"
+  ],
+  "durationMs": 152,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-c34dbac01810",
+  "exitCode": 1,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no pdf-to-video task yet. Track it in docs/roadmap.md.",
+      "message": "Rendering .pdf to video is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"at\":\"2026-09-09T10:27:41.116Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:27:41.117Z\"}\n",
+  "stdout": "{\"ok\":false,\"error\":{\"code\":\"not_implemented\",\"message\":\"Rendering .pdf to video is coming soon — not supported yet.\",\"hint\":\"The DeckFlow cloud has no pdf-to-video task yet. Track it in docs/roadmap.md.\"}}\n"
+}

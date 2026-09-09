@@ -1,0 +1,181 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "contract": {
+          "caveat": null,
+          "engine": "cloud",
+          "evidence": {
+            "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+            "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+          },
+          "format": "video",
+          "outputCount": 1,
+          "release": {
+            "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+            "tag": "v0.3.1",
+            "version": "0.3.1"
+          },
+          "reportedPages": 1,
+          "route": [
+            "convertor.ppt2video"
+          ],
+          "status": "declared",
+          "supported": true
+        },
+        "errors": [],
+        "response": {
+          "durationMs": 8093,
+          "engine": "cloud",
+          "format": "video",
+          "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt",
+          "ok": true,
+          "outputs": [
+            {
+              "bytes": 132088,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-78c84c953c91/artifacts/001.mp4",
+              "page": 1
+            }
+          ],
+          "pages": 1,
+          "route": [
+            "convertor.ppt2video"
+          ]
+        }
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "video",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.ppt2video"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-78c84c953c91"
+      ],
+      "expected": "支持的路线成功，不可用组合明确拒绝且不伪造产物",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R04-render-78c84c953c91-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "render"
+    },
+    {
+      "actual": "ffprobe unavailable",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "video",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.ppt2video"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R04-render-78c84c953c91"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：未知，需独立核定；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R04-render-78c84c953c91-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle",
+          "Missing caveat (explicit null allowed for no known caveat)"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R04-render-78c84c953c91"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R04-render-78c84c953c91-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R04-render-78c84c953c91",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt",
+    "--engine",
+    "cloud",
+    "--format",
+    "video",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-78c84c953c91/artifacts",
+    "--json"
+  ],
+  "evidence": [
+    "evidence/REN-R04-render-78c84c953c91"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"ppt_legacy_elements.ppt\" --engine cloud --format video -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'ppt_legacy_elements.ppt',\n  engine: 'cloud',\n  format: 'video',\n  out: './out',\n});"
+  },
+  "format": "ppt",
+  "inputSha256": "54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": true,
+    "interface": "cli",
+    "sourceFormat": "ppt",
+    "target": "video"
+  },
+  "qualityCaseId": "REN-R09-quality-78c84c953c91",
+  "source": {
+    "sha256": "54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt"
+  },
+  "status": "failed"
+}

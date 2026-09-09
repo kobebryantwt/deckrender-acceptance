@@ -1,0 +1,40 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts",
+    "--json"
+  ],
+  "durationMs": 5511,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c",
+  "exitCode": 0,
+  "payload": {
+    "durationMs": 5317,
+    "engine": "cloud",
+    "format": "pdf",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 53678,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts/001.pdf",
+        "height": 5143500,
+        "page": 1,
+        "width": 9144000
+      }
+    ],
+    "pages": 1,
+    "route": [
+      "convertor.ppt2pdf"
+    ]
+  },
+  "stderr": "",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\n  \"format\": \"pdf\",\n  \"engine\": \"cloud\",\n  \"route\": [\n    \"convertor.ppt2pdf\"\n  ],\n  \"pages\": 1,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-ef7241804a6c/artifacts/001.pdf\",\n      \"width\": 9144000,\n      \"height\": 5143500,\n      \"bytes\": 53678\n    }\n  ],\n  \"durationMs\": 5317\n}\n"
+}

@@ -1,0 +1,210 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "errorCode": "usage_error",
+        "noArtifacts": true,
+        "payload": {
+          "error": {
+            "code": "usage_error",
+            "message": "Invalid page number in \"0\". Expected an integer from 1 to 100000."
+          },
+          "ok": false
+        }
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "errorCodes": [
+          "usage_error"
+        ],
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R07-render-71dd6ce55c5b"
+      ],
+      "expected": "非法页面筛选 '0'：usage_error 且无产物；支持的路线成功，不可用组合明确拒绝且不伪造产物；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R07-render-71dd6ce55c5b-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "errorCode": "usage_error",
+        "noArtifacts": true,
+        "payload": {
+          "error": {
+            "code": "usage_error",
+            "message": "Invalid page number in \"0\". Expected an integer from 1 to 100000."
+          },
+          "ok": false
+        }
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "errorCodes": [
+          "usage_error"
+        ],
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R07-render-71dd6ce55c5b"
+      ],
+      "expected": "非法页面筛选 '0'：usage_error 且无产物；产物可解码；页序、数量与独立答案一致；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R07-render-71dd6ce55c5b-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "render"
+    },
+    {
+      "actual": {
+        "branch": "error",
+        "error": {
+          "code": "usage_error",
+          "message": "Invalid page number in \"0\". Expected an integer from 1 to 100000."
+        },
+        "exitCode": 2
+      },
+      "evidence": [
+        "evidence/REN-R07-render-71dd6ce55c5b"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R07-render-71dd6ce55c5b-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R07-render-71dd6ce55c5b",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-71dd6ce55c5b/artifacts",
+    "--json",
+    "--width",
+    "1920",
+    "--pages",
+    "0"
+  ],
+  "evidence": [
+    "evidence/REN-R07-render-71dd6ce55c5b"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json --pages \"0\"",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n  pages: \"0\",\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "expectedOptionError": "invalidPagesCode",
+    "expectedSupport": false,
+    "interface": "cli",
+    "pages": "0",
+    "target": "image",
+    "variantId": "page-zero",
+    "variantLabel": "非法页面筛选 '0'：usage_error 且无产物"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "failed"
+}

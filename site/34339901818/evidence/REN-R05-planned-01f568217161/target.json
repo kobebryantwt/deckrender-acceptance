@@ -1,0 +1,28 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-release/evidence/REN-R05-planned-01f568217161/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/f3af645b49ebddceccb27ff13561caf7bdb1c0ca895b46b463113c94f273b9cb.pages",
+    "--engine",
+    "cloud",
+    "--format",
+    "pdf",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-release/evidence/REN-R05-planned-01f568217161/artifacts",
+    "--json"
+  ],
+  "durationMs": 111,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-release/evidence/REN-R05-planned-01f568217161",
+  "exitCode": 2,
+  "payload": {
+    "error": {
+      "code": "not_implemented",
+      "hint": "The DeckFlow cloud has no Pages converter yet. Track it in docs/roadmap.md.",
+      "message": "Rendering .pages to pdf is coming soon — not supported yet."
+    },
+    "ok": false
+  },
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"not_implemented\",\n    \"message\": \"Rendering .pages to pdf is coming soon — not supported yet.\",\n    \"hint\": \"The DeckFlow cloud has no Pages converter yet. Track it in docs/roadmap.md.\"\n  }\n}\n",
+  "stdout": ""
+}

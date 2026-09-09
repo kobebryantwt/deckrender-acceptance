@@ -1,9 +1,9 @@
 {
   "changed": true,
   "decision": "FAIL",
-  "fingerprint": "32186be6fcd0a497e4d16721e989b79400b334e2f4fa246fd22e81141ff10464",
+  "fingerprint": "09c82883f09369982596ca8c29311fea1efe9e8a6dfec97cb4955e7636f99734",
   "previousDecision": "FAIL",
-  "recordedAt": "2026-09-09T10:24:01.250528+00:00",
+  "recordedAt": "2026-09-09T10:53:30.545652+00:00",
   "release": {
     "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
     "notes": "DeckRender now depends only on @deckflow/office2html@0.2.1 for PPTX conversion. Platform selection and native runtime layout are delegated to that package through its public getBinaryPath API. Release checks now verify the wrapper contract and native/cloud-only npm and pnpm installs.",
@@ -12,6 +12,6 @@
     "repository": "deckflow/deckrender",
     "tag": "v0.3.1"
   },
-  "runId": "34338113935",
+  "runId": "34339901818",
   "status": "CHANGE"
 }

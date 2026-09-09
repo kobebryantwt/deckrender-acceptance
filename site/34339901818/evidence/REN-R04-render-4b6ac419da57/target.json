@@ -1,0 +1,41 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/request.json"
+  ],
+  "durationMs": 6960,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57",
+  "exitCode": 0,
+  "payload": {
+    "durationMs": 6814,
+    "engine": "cloud",
+    "format": "image",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 12131,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/001.png",
+        "page": 1
+      },
+      {
+        "bytes": 15262,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/002.png",
+        "page": 2
+      },
+      {
+        "bytes": 212711,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/003.png",
+        "page": 3
+      }
+    ],
+    "pages": 3,
+    "route": [
+      "convertor.ppt2image"
+    ]
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:28.313Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-09T10:26:28.314Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:28.319Z\"}\n{\"kind\":\"upload\",\"message\":\"Uploading a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-09T10:26:28.320Z\"}\n{\"kind\":\"task\",\"message\":\"Creating convertor.ppt2image\",\"at\":\"2026-09-09T10:26:30.496Z\"}\n{\"kind\":\"wait\",\"message\":\"Running convertor.ppt2image\",\"at\":\"2026-09-09T10:26:30.845Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-09T10:26:33.673Z\"}\n{\"kind\":\"download\",\"message\":\"Downloading page 1\",\"at\":\"2026-09-09T10:26:33.673Z\"}\n{\"kind\":\"download\",\"message\":\"Downloading page 2\",\"at\":\"2026-09-09T10:26:34.290Z\"}\n{\"kind\":\"download\",\"message\":\"Downloading page 3\",\"at\":\"2026-09-09T10:26:34.479Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"format\":\"image\",\"engine\":\"cloud\",\"route\":[\"convertor.ppt2image\"],\"pages\":3,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/001.png\",\"bytes\":12131},{\"page\":2,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/002.png\",\"bytes\":15262},{\"page\":3,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-cloud/evidence/REN-R04-render-4b6ac419da57/artifacts/003.png\",\"bytes\":212711}],\"durationMs\":6814}\n"
+}

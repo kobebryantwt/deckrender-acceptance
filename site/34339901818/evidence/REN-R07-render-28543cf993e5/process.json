@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/8da93f6b566bc9eb22f4791bbfd5f2179162f39bf80968187b164c33d31824db.key",
+    "--engine",
+    "cloud",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-local/evidence/REN-R07-render-28543cf993e5/artifacts",
+    "--json",
+    "--pages",
+    "1",
+    "--image-format",
+    "jpg"
+  ],
+  "durationMs": 145,
+  "exitCode": 2,
+  "stderr": "{\n  \"ok\": false,\n  \"error\": {\n    \"code\": \"unsupported_option\",\n    \"message\": \"--image-format jpg is not supported for .key input.\",\n    \"hint\": \"Rendering .key always produces PNG. Use png or webp.\"\n  }\n}\n",
+  "stdout": ""
+}

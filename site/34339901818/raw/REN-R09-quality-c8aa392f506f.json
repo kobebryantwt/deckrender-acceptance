@@ -1,0 +1,304 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "actualEngine": "passthrough",
+        "actualRoute": [
+          "passthrough"
+        ],
+        "environment": {
+          "fonts": {
+            "command": [
+              "fc-list",
+              ":",
+              "family"
+            ],
+            "durationMs": 5,
+            "exitCode": 0,
+            "stderr": "",
+            "stdout": "Lato,Lato Heavy\nLato\nDejaVu Math TeX Gyre\nLato,Lato Black\nDejaVu Sans Mono\nNoto Serif CJK JP\nNoto Serif CJK KR\nNoto Serif CJK HK\nNoto Serif CJK SC\nNoto Serif CJK TC\nNoto Sans Mono CJK SC\nNoto Sans Mono CJK TC\nNoto Sans Mono CJK JP\nNoto Sans Mono CJK HK\nNoto Sans Mono CJK KR\nLato,Lato Medium\nDejaVu Sans,DejaVu Sans Light\nDejaVu Sans\nDejaVu Serif,DejaVu Serif Condensed\nDejaVu Sans,DejaVu Sans Condensed\nLato,Lato Light\nLiberation Mono\nLato,Lato Thin\nLiberation Serif\nLato,Lato Semibold\nNoto Sans CJK HK\nNoto Sans CJK KR\nNoto Sans CJK JP\nLiberation Sans\nNoto Sans CJK SC\nNoto Sans CJK TC\nNoto Color Emoji\nLato,Lato Hairline\nDejaVu Serif\n"
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "rasterizer": "PyMuPDF / Pillow / ffmpeg"
+        },
+        "errors": [],
+        "gtReadiness": {
+          "errors": [],
+          "ready": true,
+          "sourcePages": 3
+        },
+        "metrics": [
+          {
+            "actualSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+            "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+            "caseId": "REN-R09-quality-c8aa392f506f",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/0/0001.png",
+            "imageSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+            "mapping": {
+              "pdfPage": 1,
+              "sourcePage": 1
+            },
+            "outputIndex": 0,
+            "outputPage": 1,
+            "page": 1,
+            "precheck": {
+              "aspectRatio": 1.776,
+              "isUniform": false,
+              "size": [
+                1080,
+                608
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/reference-0-1.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+            },
+            "referenceSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+            "referenceStatus": "approved",
+            "size": [
+              1080,
+              608
+            ],
+            "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+          },
+          {
+            "actualSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+            "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+            "caseId": "REN-R09-quality-c8aa392f506f",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/0/0002.png",
+            "imageSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+            "mapping": {
+              "pdfPage": 2,
+              "sourcePage": 2
+            },
+            "outputIndex": 0,
+            "outputPage": 1,
+            "page": 2,
+            "precheck": {
+              "aspectRatio": 1.776,
+              "isUniform": false,
+              "size": [
+                1080,
+                608
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/reference-0-2.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+            },
+            "referenceSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+            "referenceStatus": "approved",
+            "size": [
+              1080,
+              608
+            ],
+            "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+          },
+          {
+            "actualSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+            "artifactSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+            "caseId": "REN-R09-quality-c8aa392f506f",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/0/0003.png",
+            "imageSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+            "mapping": {
+              "pdfPage": 3,
+              "sourcePage": 3
+            },
+            "outputIndex": 0,
+            "outputPage": 1,
+            "page": 3,
+            "precheck": {
+              "aspectRatio": 1.776,
+              "isUniform": false,
+              "size": [
+                1080,
+                608
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/previews/reference-0-3.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+            },
+            "referenceSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+            "referenceStatus": "approved",
+            "size": [
+              1080,
+              608
+            ],
+            "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+          }
+        ],
+        "note": "All PDF pages; five temporal video samples, not all frames; no pixel release threshold; optional independent GT remains subject to human review",
+        "options": {
+          "engine": "local",
+          "expectedSupport": true,
+          "interface": "sdk",
+          "target": "pdf"
+        },
+        "reviewTemplate": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/visual-review-template.json",
+        "rubric": [
+          "text",
+          "clipping",
+          "overlap",
+          "charts",
+          "hierarchy",
+          "legibility"
+        ],
+        "sourceFormat": "pdf",
+        "status": "review"
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-c8aa392f506f"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：页数与页序",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-c8aa392f506f-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "review",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "decodedPages": 3,
+        "errors": [],
+        "markerEvidence": [
+          "REN PAGE 1\nIndependent source design / Helvetica\n",
+          "REN PAGE 2\nIndependent source design / Helvetica\n",
+          "REN PAGE 3\nIndependent source design / Helvetica\n"
+        ],
+        "markerUncertain": false,
+        "oracleGaps": [],
+        "pageCountOracle": 3,
+        "pageOrder": [
+          1
+        ]
+      },
+      "contract": {
+        "caveat": null,
+        "engine": "passthrough",
+        "evidence": {
+          "formatsSha256": "5af289c24b37939deb909a015315638de77063172e946c2bed9a132f3961d157",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "pdf",
+        "handbookDifference": "发布声明为 passthrough；附件 local 标记要求由 R03 单独判定，不修改原始响应",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "passthrough"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-c8aa392f506f"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：3；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-c8aa392f506f-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "passed",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle",
+          "Missing caveat (explicit null allowed for no known caveat)"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-c8aa392f506f"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-c8aa392f506f-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-c8aa392f506f",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34339901818-quality/evidence/REN-R09-quality-c8aa392f506f/request.json"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-c8aa392f506f"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pdf\" --engine local --format pdf -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pdf',\n  engine: 'local',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "options": {
+    "engine": "local",
+    "expectedSupport": true,
+    "interface": "sdk",
+    "target": "pdf"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf"
+  },
+  "status": "failed"
+}
