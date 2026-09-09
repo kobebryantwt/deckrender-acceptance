@@ -1,0 +1,171 @@
+{
+  "actor": null,
+  "caseId": "REN-R09-quality-13ff06cec3de",
+  "options": {
+    "engine": "local",
+    "expectedSupport": true,
+    "interface": "sdk",
+    "target": "image"
+  },
+  "pages": [
+    {
+      "actualSha256": "60ffab44986b75c2a52c6835f08c585fc30852820810d4b98f2e172692588662",
+      "artifactSha256": "f993cf710bee2ffe0e962f66a8a864d1c332cf8fe73fc525e1e2781bdeb95eed",
+      "caseId": "REN-R09-quality-13ff06cec3de",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/0/0001.png",
+      "imageSha256": "60ffab44986b75c2a52c6835f08c585fc30852820810d4b98f2e172692588662",
+      "mapping": {
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    {
+      "actualSha256": "74e7ae6304251d93e20a093240965ee45929d506e5111bb8737ebc6260c80fbd",
+      "artifactSha256": "118b200b3d406f1f3581915b32c862d24c8c3182ccc1ef9515db74c47c08996a",
+      "caseId": "REN-R09-quality-13ff06cec3de",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/1/0001.png",
+      "imageSha256": "74e7ae6304251d93e20a093240965ee45929d506e5111bb8737ebc6260c80fbd",
+      "mapping": {
+        "sourcePage": 2
+      },
+      "outputIndex": 1,
+      "outputPage": 2,
+      "page": 2,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/reference-1-2.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "d98294af04ba01ad75dfac652143f5adc835b8808117f03e61c68824d719a3e1",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    },
+    {
+      "actualSha256": "7e45fb1aea87ae9a1d3da9f2726832ba1b1484b480873f621a9153ddd00733e3",
+      "artifactSha256": "56f2e29ad8ff14197d620fb8ca0070596f25f885dba6a3c06d572fa7b88402b4",
+      "caseId": "REN-R09-quality-13ff06cec3de",
+      "conclusion": null,
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/2/0001.png",
+      "imageSha256": "7e45fb1aea87ae9a1d3da9f2726832ba1b1484b480873f621a9153ddd00733e3",
+      "mapping": {
+        "sourcePage": 3
+      },
+      "outputIndex": 2,
+      "outputPage": 3,
+      "page": 3,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-13ff06cec3de/previews/reference-2-3.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "42026abc874c6524c3c7f1451cebc26888035ffd60ca417fd2474ebf29921f0c",
+      "referenceStatus": "approved",
+      "rubric": {
+        "charts": null,
+        "clipping": null,
+        "hierarchy": null,
+        "legibility": null,
+        "overlap": null,
+        "text": null
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    }
+  ],
+  "reviewedAt": null,
+  "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "version": 2
+}

@@ -1,0 +1,108 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R09-quality-4b6ac419da57"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：页数与页序、图表、字体与多语言、密集布局",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-4b6ac419da57-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "blocked",
+      "type": "quality"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-4b6ac419da57"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：3；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-4b6ac419da57-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "blocked",
+      "type": "quality"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R09-quality-4b6ac419da57"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-4b6ac419da57-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-4b6ac419da57",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "quality"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-4b6ac419da57"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud --format image -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": true,
+    "interface": "sdk",
+    "sourceFormat": "pptx",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "blocked"
+}

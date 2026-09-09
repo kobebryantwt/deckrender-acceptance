@@ -1,0 +1,63 @@
+{
+  "caseId": "REN-R09-quality-06999fa2d67f",
+  "engine": "local",
+  "errors": [],
+  "expectedSourcePages": [
+    1
+  ],
+  "expectedSupport": true,
+  "imageFormat": "png",
+  "interface": "sdk",
+  "pages": [
+    {
+      "actualSha256": "60ffab44986b75c2a52c6835f08c585fc30852820810d4b98f2e172692588662",
+      "artifactSha256": "f993cf710bee2ffe0e962f66a8a864d1c332cf8fe73fc525e1e2781bdeb95eed",
+      "caseId": "REN-R09-quality-06999fa2d67f",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-06999fa2d67f/previews/0/0001.png",
+      "imageSha256": "60ffab44986b75c2a52c6835f08c585fc30852820810d4b98f2e172692588662",
+      "mapping": {
+        "expectedSourcePage": 1,
+        "reportedSourcePage": 1,
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34325874595-quality/evidence/REN-R09-quality-06999fa2d67f/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+      },
+      "referenceSha256": "2bf4b159eb58738c0a4b90b7271d256d4b085f4913e656e389fe82b79bac6636",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167"
+    }
+  ],
+  "sourceSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "status": "review",
+  "target": "image",
+  "variantId": "encoding-png",
+  "variantLabel": "图片编码 png：检查真实解码格式，仅输出源第 1 页"
+}
