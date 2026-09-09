@@ -1,0 +1,121 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "contract": {
+        "errorCodes": [
+          "unsupported_format"
+        ],
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "video",
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R04-render-8f0b0c456eee"
+      ],
+      "expected": "支持的路线成功，不可用组合明确拒绝且不伪造产物",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R04-render-8f0b0c456eee-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "contract": {
+        "errorCodes": [
+          "unsupported_format"
+        ],
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "video",
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R04-render-8f0b0c456eee"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：未知，需独立核定；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R04-render-8f0b0c456eee-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R04-render-8f0b0c456eee"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R04",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R04-render-8f0b0c456eee-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R04-render-8f0b0c456eee",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "cloud"
+  ],
+  "evidence": [
+    "evidence/REN-R04-render-8f0b0c456eee"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"docx_business_report.docx\" --engine cloud --format video -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'docx_business_report.docx',\n  engine: 'cloud',\n  format: 'video',\n  out: './out',\n});"
+  },
+  "format": "docx",
+  "inputSha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": false,
+    "interface": "cli",
+    "sourceFormat": "docx",
+    "target": "video"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6.docx"
+  },
+  "status": "blocked"
+}

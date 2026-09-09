@@ -1,0 +1,68 @@
+{
+  "assertions": [
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R02-dependency-6e4034715a4a"
+      ],
+      "expected": "缺少本地依赖时返回稳定错误及可操作的修复提示；不联网安装或回退",
+      "featureId": "REN-R02",
+      "finding": true,
+      "id": "actionable",
+      "questionId": "REN-R02-dependency-6e4034715a4a-actionable",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "dependency.actionable.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "dependency"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R02-dependency-6e4034715a4a"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R02",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R02-dependency-6e4034715a4a-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "dependency"
+    }
+  ],
+  "caseId": "REN-R02-dependency-6e4034715a4a",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R02-dependency-6e4034715a4a"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pdf\" --engine local -o ./out --json  # 缺失本地 Chromium/office2html 环境",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\n// 缺少本地依赖时调用\nconst result = await render({\n  input: 'markers.pdf',\n  engine: 'local'\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "options": {
+    "engine": "local",
+    "interface": "cli",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf"
+  },
+  "status": "blocked"
+}

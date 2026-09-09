@@ -1,0 +1,836 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "actualEngine": "local",
+        "actualRoute": [
+          "local.pdfjs"
+        ],
+        "environment": {
+          "fonts": {
+            "command": [
+              "fc-list",
+              ":",
+              "family"
+            ],
+            "durationMs": 7,
+            "exitCode": 0,
+            "stderr": "",
+            "stdout": "Lato,Lato Heavy\nLato\nDejaVu Math TeX Gyre\nLato,Lato Black\nDejaVu Sans Mono\nNoto Serif CJK JP\nNoto Serif CJK KR\nNoto Serif CJK HK\nNoto Serif CJK SC\nNoto Serif CJK TC\nNoto Sans Mono CJK SC\nNoto Sans Mono CJK TC\nNoto Sans Mono CJK JP\nNoto Sans Mono CJK HK\nNoto Sans Mono CJK KR\nLato,Lato Medium\nDejaVu Sans,DejaVu Sans Light\nDejaVu Sans\nDejaVu Serif,DejaVu Serif Condensed\nDejaVu Sans,DejaVu Sans Condensed\nLato,Lato Light\nLiberation Mono\nLato,Lato Thin\nLiberation Serif\nLato,Lato Semibold\nNoto Sans CJK HK\nNoto Sans CJK KR\nNoto Sans CJK JP\nLiberation Sans\nNoto Sans CJK SC\nNoto Sans CJK TC\nNoto Color Emoji\nLato,Lato Hairline\nDejaVu Serif\n"
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "rasterizer": "PyMuPDF / Pillow / ffmpeg"
+        },
+        "errors": [],
+        "gtReadiness": {
+          "errors": [],
+          "ready": true,
+          "sourcePages": 15
+        },
+        "metrics": [
+          {
+            "actualSha256": "d485bd1e4df4208d424bb62fdc11403fddfb06333864027a6d51bee3afeed3e0",
+            "artifactSha256": "6f60f715ccbadef961dcad54024291d9acb9a17332537ec7e2d919304e99911c",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/0/0001.png",
+            "imageSha256": "d485bd1e4df4208d424bb62fdc11403fddfb06333864027a6d51bee3afeed3e0",
+            "mapping": {
+              "sourcePage": 1
+            },
+            "outputIndex": 0,
+            "outputPage": 1,
+            "page": 1,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-0-1.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "2b00c108182a611b9f4f3512ec52a517ee60612cf1e62361aaf30619aff6d389",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "17c281cb41a5dbd11b237c0085ce609150d9efe67ac8731039f5e5b75e89784d",
+            "artifactSha256": "fb81745f993605dcbc3b5f95d8e759ec9b59f4f19097df811a1fef6c627331c4",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/1/0001.png",
+            "imageSha256": "17c281cb41a5dbd11b237c0085ce609150d9efe67ac8731039f5e5b75e89784d",
+            "mapping": {
+              "sourcePage": 2
+            },
+            "outputIndex": 1,
+            "outputPage": 2,
+            "page": 2,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-1-2.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "be2d41643743e1739775e2224085ecca81d5649e79ca1152f890da2ae4e608e1",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "b43c8e0dd7c6c90cf7856ca0181f2ded43483287eebfa6042e176da36319c7bb",
+            "artifactSha256": "09af2d4dcf1440aec042dcfe9d753b1a21c7da7de1d380121f04b1d3f532a9c4",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/2/0001.png",
+            "imageSha256": "b43c8e0dd7c6c90cf7856ca0181f2ded43483287eebfa6042e176da36319c7bb",
+            "mapping": {
+              "sourcePage": 3
+            },
+            "outputIndex": 2,
+            "outputPage": 3,
+            "page": 3,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-2-3.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "17075dc692f770f504ec771185007ed3088253089f4c82b62502bde540368411",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "21ee28ebfa93f8601e69fad14f2a90aa64a3b6e23379dee8e283eb4aefe5e23f",
+            "artifactSha256": "05151034199abd4731ac6e8d2e6bbf389889c0e6aa040b507952f6053cb50cb6",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/3/0001.png",
+            "imageSha256": "21ee28ebfa93f8601e69fad14f2a90aa64a3b6e23379dee8e283eb4aefe5e23f",
+            "mapping": {
+              "sourcePage": 4
+            },
+            "outputIndex": 3,
+            "outputPage": 4,
+            "page": 4,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-3-4.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "4854aa7bfe6e78edc2bc0dde90a2b61bc413417a902d1e199cf188ae38d632cb",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "fa71b4cd9d2b3a8a9853e7d91b5227be6cdf58b7d9fbe9ffed2734006f9f0f15",
+            "artifactSha256": "4b7617b533ad010f70eebce25d1bcdbfd98d6f7f13995f326fd8f92430497a78",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/4/0001.png",
+            "imageSha256": "fa71b4cd9d2b3a8a9853e7d91b5227be6cdf58b7d9fbe9ffed2734006f9f0f15",
+            "mapping": {
+              "sourcePage": 5
+            },
+            "outputIndex": 4,
+            "outputPage": 5,
+            "page": 5,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-4-5.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "e7a1625677804a6c357ab7f3c14b570f74f1752f25bcc1c258e855fd73a9b2f1",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "ec1d4739076d46fc5487f1b68896aec8abb35f42d85fbb92276f5968053d2237",
+            "artifactSha256": "c888eaab26d1e6f41da808049103e3571c3deefd9d4cf149708c7e7603c00c76",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/5/0001.png",
+            "imageSha256": "ec1d4739076d46fc5487f1b68896aec8abb35f42d85fbb92276f5968053d2237",
+            "mapping": {
+              "sourcePage": 6
+            },
+            "outputIndex": 5,
+            "outputPage": 6,
+            "page": 6,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-5-6.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "94ed84777706aab3608b140148be20a9560cbb205e7ed1c662aad9fbdfbc9616",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "ca09c5c00a6d423b88ea5a8dcb242b42edf4d701f8f7d69051c57e91d18cff90",
+            "artifactSha256": "36bf35678e99a65f9c5c5041775f8a5af1d228871c6a2b964989fca0c57ca7f6",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/6/0001.png",
+            "imageSha256": "ca09c5c00a6d423b88ea5a8dcb242b42edf4d701f8f7d69051c57e91d18cff90",
+            "mapping": {
+              "sourcePage": 7
+            },
+            "outputIndex": 6,
+            "outputPage": 7,
+            "page": 7,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-6-7.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "d7dc6b5d97a575bc85710cdb820259d51d8b85e28782e945c1f0c77a2ac430a2",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "8edaa80df7c1a252e5eb3c9e6ee6dacce78b634466bb8e89169bf6ab8ab8f308",
+            "artifactSha256": "6be6ae0ff52470bea92ff12171bfd0466141552001453cabf7d8b21e52610cc9",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/7/0001.png",
+            "imageSha256": "8edaa80df7c1a252e5eb3c9e6ee6dacce78b634466bb8e89169bf6ab8ab8f308",
+            "mapping": {
+              "sourcePage": 8
+            },
+            "outputIndex": 7,
+            "outputPage": 8,
+            "page": 8,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-7-8.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "6f59097fbf73fbf59dc92b3ca881a838a31e5f763c717ebb129022abeba32ea9",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "cd1358af3498266a158a19b4db2739c2979e7eca927a4154ad40fa80655b4d46",
+            "artifactSha256": "5ffef67a2690cb8db9b1979e3d3593e9ea3e0bef1214155618a4b87522373350",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/8/0001.png",
+            "imageSha256": "cd1358af3498266a158a19b4db2739c2979e7eca927a4154ad40fa80655b4d46",
+            "mapping": {
+              "sourcePage": 9
+            },
+            "outputIndex": 8,
+            "outputPage": 9,
+            "page": 9,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-8-9.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "b989c96877c5369e8dcd5b6ccd88be1f8e1526f28ce74c0096925fb72ab9b0ff",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "ca366890914088a597c830ac39b012ad051f2e5b4ab2a5ddf9aa00c0630d1823",
+            "artifactSha256": "9ab4217fe824de6ad3fa57d4b3d52401cd8c4d3826191ae3ecec6550d0ebcc6d",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/9/0001.png",
+            "imageSha256": "ca366890914088a597c830ac39b012ad051f2e5b4ab2a5ddf9aa00c0630d1823",
+            "mapping": {
+              "sourcePage": 10
+            },
+            "outputIndex": 9,
+            "outputPage": 10,
+            "page": 10,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-9-10.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "2391bf4ca023b8bd4645ca84aca7b06b8a3c21a788857ae83e0601886b254a90",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "ba44a54e5c85b5cf92f2bf3666d7c5823c7befcf7b0b296156d6073dfef32da3",
+            "artifactSha256": "30b67b08ed90906b9adadbf2031ee6c31431d0227e93d4315e90b346551b60de",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/10/0001.png",
+            "imageSha256": "ba44a54e5c85b5cf92f2bf3666d7c5823c7befcf7b0b296156d6073dfef32da3",
+            "mapping": {
+              "sourcePage": 11
+            },
+            "outputIndex": 10,
+            "outputPage": 11,
+            "page": 11,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-10-11.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "104466684a44e6f51662b0f957d9b892929a708ba5724ace066692b37134abe1",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "6b712b46311f947c0ea6430e16a8a4a30204e05f088d02d681230999db6cd274",
+            "artifactSha256": "23a70d470746a98d5929eb3441817933db211e9a5c19911fd5234c41533f1cfb",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/11/0001.png",
+            "imageSha256": "6b712b46311f947c0ea6430e16a8a4a30204e05f088d02d681230999db6cd274",
+            "mapping": {
+              "sourcePage": 12
+            },
+            "outputIndex": 11,
+            "outputPage": 12,
+            "page": 12,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-11-12.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "e297e3f2557f632898d8331169aa4b11efb7f129fd4d885beb8571f187d3e27b",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "d2fe6c8ef36678ff1677efaee93c86bfe9e2a8e22fd527504b6c62635e14c756",
+            "artifactSha256": "fe88fbf391e7cd065f3c455514f520688df34842f4796ddd2beb8cc9d333a4a5",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/12/0001.png",
+            "imageSha256": "d2fe6c8ef36678ff1677efaee93c86bfe9e2a8e22fd527504b6c62635e14c756",
+            "mapping": {
+              "sourcePage": 13
+            },
+            "outputIndex": 12,
+            "outputPage": 13,
+            "page": 13,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-12-13.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "45acad2d0cdec443bcdb211bba5152a603664f21b212dd96e7d4e82b1e06bccb",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "c68e7b14a95856a0b2df34c778792436f567fdc3450b8cbf40c40b0d02fb237f",
+            "artifactSha256": "10cb4eda31086452c4aafcf9892a286b7016b2d7f0123c445dc24757d081e95a",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/13/0001.png",
+            "imageSha256": "c68e7b14a95856a0b2df34c778792436f567fdc3450b8cbf40c40b0d02fb237f",
+            "mapping": {
+              "sourcePage": 14
+            },
+            "outputIndex": 13,
+            "outputPage": 14,
+            "page": 14,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-13-14.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "5524d6a978237324a8ddbaedc8efd889b5d61264adce7a0a01c38060a888a86a",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          },
+          {
+            "actualSha256": "1d56fcc7885c5b976d215cab39bda071fd970a2d76f91ccc61dc88b97bd30372",
+            "artifactSha256": "117e5d5009764abd93bc28c002f6e5dd9f2a885e408eda87dfa5119972352050",
+            "caseId": "REN-R09-quality-3edab6e1be95",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/14/0001.png",
+            "imageSha256": "1d56fcc7885c5b976d215cab39bda071fd970a2d76f91ccc61dc88b97bd30372",
+            "mapping": {
+              "sourcePage": 15
+            },
+            "outputIndex": 14,
+            "outputPage": 15,
+            "page": 15,
+            "precheck": {
+              "aspectRatio": 0.707,
+              "isUniform": false,
+              "size": [
+                1358,
+                1921
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/previews/reference-14-15.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+            },
+            "referenceSha256": "d91e4c5ef2a6273e217f0e898d897451f685d1fa6121164b386ae25799b03681",
+            "referenceStatus": "approved",
+            "size": [
+              1358,
+              1921
+            ],
+            "sourceSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456"
+          }
+        ],
+        "note": "All PDF pages; five temporal video samples, not all frames; no pixel release threshold; optional independent GT remains subject to human review",
+        "options": {
+          "engine": "local",
+          "expectedSupport": true,
+          "interface": "cli",
+          "sourceFormat": "pdf",
+          "target": "image"
+        },
+        "reviewTemplate": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/visual-review-template.json",
+        "rubric": [
+          "text",
+          "clipping",
+          "overlap",
+          "charts",
+          "hierarchy",
+          "legibility"
+        ],
+        "sourceFormat": "pdf",
+        "status": "review"
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-3edab6e1be95"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：密集布局、字体与多语言",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-3edab6e1be95-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "review",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "decodedPages": 15,
+        "errors": [],
+        "markerEvidence": [],
+        "markerUncertain": false,
+        "oracleGaps": [],
+        "pageCountOracle": 15,
+        "pageOrder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "contract": {
+        "caveat": "Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.",
+        "engine": "local",
+        "evidence": {
+          "formatsSha256": "5af289c24b37939deb909a015315638de77063172e946c2bed9a132f3961d157",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 15,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 15,
+        "route": [
+          "local.pdfjs"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-3edab6e1be95"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：15；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-3edab6e1be95-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "passed",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-3edab6e1be95"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-3edab6e1be95-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-3edab6e1be95",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456.pdf",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34304004399-quality/evidence/REN-R09-quality-3edab6e1be95/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-3edab6e1be95"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"pdf_academic_paper.pdf\" --engine local --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'pdf_academic_paper.pdf',\n  engine: 'local',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456",
+  "options": {
+    "engine": "local",
+    "expectedSupport": true,
+    "interface": "cli",
+    "sourceFormat": "pdf",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/26751704deed4e9fb9211163a18027af7b51d872fcca55f0c72eac8f1ecd8456.pdf"
+  },
+  "status": "failed"
+}

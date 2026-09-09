@@ -1,0 +1,176 @@
+{
+  "assertions": [
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "contract": {
+        "caveat": "Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.",
+        "engine": "local",
+        "errorCodes": [
+          "usage_error"
+        ],
+        "evidence": {
+          "formatsSha256": "5af289c24b37939deb909a015315638de77063172e946c2bed9a132f3961d157",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "local.office2html",
+          "local.capture"
+        ],
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R07-render-6fda0262c591"
+      ],
+      "expected": "非法页面筛选 'abc'：usage_error 且无产物；支持的路线成功，不可用组合明确拒绝且不伪造产物；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R07-render-6fda0262c591-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "contract": {
+        "caveat": "Local PPTX rendering uses office2html plus Chromium with external CDN assets blocked; missing system fonts or icons can differ from the DeckFlow cloud.",
+        "engine": "local",
+        "errorCodes": [
+          "usage_error"
+        ],
+        "evidence": {
+          "formatsSha256": "5af289c24b37939deb909a015315638de77063172e946c2bed9a132f3961d157",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 3,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "local.office2html",
+          "local.capture"
+        ],
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R07-render-6fda0262c591"
+      ],
+      "expected": "非法页面筛选 'abc'：usage_error 且无产物；产物可解码；页序、数量与独立答案一致；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R07-render-6fda0262c591-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Independent Linux namespace/strace monitor unavailable",
+      "evidence": [
+        "evidence/REN-R07-render-6fda0262c591"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R07-render-6fda0262c591-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R07-render-6fda0262c591",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R07-render-6fda0262c591"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine local --format image -o ./out --json --pages \"abc\"",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'local',\n  format: 'image',\n  out: './out',\n  pages: \"abc\",\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "local",
+    "expectedOptionError": "invalidPagesCode",
+    "expectedSupport": false,
+    "interface": "cli",
+    "pages": "abc",
+    "target": "image",
+    "variantId": "page-syntax",
+    "variantLabel": "非法页面筛选 'abc'：usage_error 且无产物"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "blocked"
+}

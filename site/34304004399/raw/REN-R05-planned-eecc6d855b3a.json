@@ -1,0 +1,103 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "contract": {
+        "errorCodes": [
+          "not_implemented"
+        ],
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "status": "declared",
+        "supported": false
+      },
+      "evidence": [
+        "evidence/REN-R05-planned-eecc6d855b3a"
+      ],
+      "expected": "Pages/Numbers 返回明确 planned/unsupported/not_implemented，无虚假成功",
+      "featureId": "REN-R05",
+      "finding": true,
+      "id": "rejected",
+      "questionId": "REN-R05-planned-eecc6d855b3a-rejected",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "planned.rejected.v3",
+      "severity": "major",
+      "status": "blocked",
+      "type": "planned"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R05-planned-eecc6d855b3a"
+      ],
+      "expected": "发布文档与 formats 不宣称该输入当前可渲染",
+      "featureId": "REN-R05",
+      "finding": true,
+      "id": "declaration",
+      "questionId": "REN-R05-planned-eecc6d855b3a-declaration",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "planned.declaration.v3",
+      "severity": "major",
+      "status": "blocked",
+      "type": "planned"
+    },
+    {
+      "actual": "Cloud execution disabled; configure account and explicit usage authorization",
+      "evidence": [
+        "evidence/REN-R05-planned-eecc6d855b3a"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R05",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R05-planned-eecc6d855b3a-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "planned"
+    }
+  ],
+  "caseId": "REN-R05-planned-eecc6d855b3a",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "release"
+  ],
+  "evidence": [
+    "evidence/REN-R05-planned-eecc6d855b3a"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"numbers_planned_workbook.numbers\" --engine cloud --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'numbers_planned_workbook.numbers',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "numbers",
+  "inputSha256": "81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf",
+  "options": {
+    "engine": "cloud",
+    "interface": "cli",
+    "sourceFormat": "numbers",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/81814eec7d90108595f3a6e41457b980c1fd935e16a74d77bad20ab11006dcaf.numbers"
+  },
+  "status": "blocked"
+}
