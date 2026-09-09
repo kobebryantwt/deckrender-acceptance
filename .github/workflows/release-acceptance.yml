@@ -48,7 +48,7 @@ jobs:
       - id: change
         env:
           RELEASE_TAG: ${{ inputs.tag }}
-          FORCE_RUN: ${{ inputs.force }}
+          FORCE_RUN: ${{ inputs.force || github.event_name == 'push' }}
           REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
           REN_AUDIT_COMMAND: ${{ vars.REN_AUDIT_COMMAND }}
           REN_LIFECYCLE_COMMAND: ${{ vars.REN_LIFECYCLE_COMMAND }}
