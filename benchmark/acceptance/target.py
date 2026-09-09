@@ -35,7 +35,12 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
         for k in CREDENTIAL_NAMES:
             if os.getenv(k):env[k]=os.environ[k]
     if privacy:
-        if not doctor(home)['privacyReady']:return {'blocked':'Independent Linux namespace/strace monitor unavailable'}
+        health=doctor(home)
+        if not health['privacyReady']:
+            detail={'platform':health.get('platform'),'strace':health.get('tools',{}).get('strace'),
+                    'unshare':health.get('tools',{}).get('unshare'),'namespaceProbe':health.get('isolation')}
+            atomic(output/'privacy-preflight.json',redact(detail))
+            return {'blocked':'Independent Linux namespace/strace monitor unavailable', 'diagnostics':detail}
         for k in CREDENTIAL_NAMES:env[k]='REN_SENTINEL_NOT_A_REAL_KEY'
         for p in [sandbox/'.deckflow/credentials',sandbox/'.deckops/config.json']:atomic(p,{'token':'REN_SENTINEL_NOT_A_REAL_KEY'})
         env['REN_CREDENTIAL_LOG']=str((output/'credentials.jsonl').resolve())

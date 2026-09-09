@@ -109,7 +109,7 @@ jobs:
         run: |
           if [ "${{ matrix.group }}" = "quality" ] || [ "${{ matrix.group }}" = "local" ]; then
             sudo apt-get update
-            sudo apt-get install -y fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
+            sudo apt-get install -y strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
           elif [ "${{ matrix.group }}" = "privacy" ]; then
             sudo apt-get update
             sudo apt-get install -y strace

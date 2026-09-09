@@ -41,7 +41,7 @@ def build_model(folder, envelope, questions):
             status = a.get('status', 'review')
             req = a.get('featureId') or (cid[:7] if re.match(r'REN-R\d\d', cid) else 'REN-R04')
             title = q.get('question') or f"{cid} · {aid}"
-            expected = a.get('expected') or q.get('answer')
+            expected = a['expected'] if 'expected' in a else q.get('answer')
             actual = a.get('actual')
             
             if status == 'passed': kind = 'matched'
@@ -58,11 +58,13 @@ def build_model(folder, envelope, questions):
             if cmd: method_text.append(f"完整 CLI 命令：{cmd}")
             if sdk: method_text.append(f"等价 SDK 代码：\n{sdk}")
             
-            criteria_text = [
-                f"预期契约：{expected}",
-                "Schema 合规：输出符合公开 JSON Schema，包含 engine、route、pages、outputs 等必要字段",
-                "执行行为：有效生成目标文件且可解码，或在负向/未实现路线下精确拒绝并返回预期错误码"
-            ]
+            criteria_text = [f"预期契约：{expected}"]
+            if aid == 'commonSchema':
+                criteria_text.append('按本项冻结的公共 Schema 检查成功 / 错误分支；逐项缺口见实际结果。')
+            if aid in {'artifacts', 'integrity'}:
+                criteria_text.append('检查产物可解码性、格式、页数及页序；不等于视觉质量已审核。')
+            approval = a.get('reviewStatus', q.get('reviewStatus', 'draft'))
+            review = q.get('review') or {}
             
             protocol = {
                 'kind': '发版契约门禁' if a.get('role') == 'gate' else '视觉/质量观察项',
@@ -80,6 +82,10 @@ def build_model(folder, envelope, questions):
                 'title': title,
                 'status': status,
                 'kind': kind,
+                'comparison': kind,
+                'approval': approval,
+                'role': a.get('role'),
+                'scope': 'full',
                 'expected': expected,
                 'actual': actual,
                 'command': cmd,
@@ -87,9 +93,9 @@ def build_model(folder, envelope, questions):
                 'durationMs': r.get('durationMs', 0),
                 'evidence': [f'raw/{cid.replace(":", "-")}.json', *r.get('evidence', [])],
                 'protocol': protocol,
-                'answer': {'question': title, 'expected': expected, 'status': a.get('reviewStatus', 'draft'), 'evidence': q.get('evidence', {'method': '独立事实与发布规范', 'location': '发版手册标准'})},
+                'answer': {'question': title, 'expected': expected, 'status': approval, 'review': review, 'answerDigest': review.get('digest'), 'evidence': q.get('evidence', {'method': '独立事实与发布规范', 'location': '发版手册标准'})},
                 'sourceIds': source_ids,
-                'targetObservation': {'kind': 'target', 'result': actual} if isinstance(actual, dict) else None
+                'observationKind': 'render-assertion'
             }
             rows.append(row)
             
@@ -102,7 +108,8 @@ def build_model(folder, envelope, questions):
         'target': envelope.get('target', {}),
         'createdAt': envelope.get('createdAt', now()),
         'quality': summary,
-        'counts': envelope.get('counts', {}),
+        'counts': {status: sum(r['status'] == status for r in rows) for status in ['passed','failed','review','blocked']},
+        'caseCounts': envelope.get('counts', {}),
         'context': {'corpusBound': True, 'answersBound': True, 'protocolBound': True},
         'rows': rows,
         'sources': list(sources.values()),

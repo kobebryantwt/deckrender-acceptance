@@ -55,7 +55,7 @@ def check_case(home,case,directory,root,identity):
         private=Path(home)/'private'/directory.parent.name/(case['id']+'.json');atomic(private,proc);private.chmod(0o600)
         atomic(directory/'target.json',redact(proc))
         if proc.get('blocked') or proc.get('timedOut') or proc.get('launchError'):
-            return {ch['id']:('blocked',proc.get('blocked') or proc.get('stderr')) for ch in checks}
+            return {ch['id']:('blocked',{'reason':proc.get('blocked') or proc.get('stderr'),'diagnostics':proc['diagnostics']} if proc.get('diagnostics') else proc.get('blocked') or proc.get('stderr')) for ch in checks}
         result('commonSchema',*ev.common_schema(proc))
         if op=='render':
             support=case['options'].get('expectedSupport')

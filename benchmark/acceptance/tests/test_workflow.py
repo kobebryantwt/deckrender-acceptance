@@ -17,6 +17,14 @@ class FakePackage(unittest.TestCase):
     def test_cli_error_is_stderr_json(self):
         with patch('acceptance.target.package_path',return_value=self.package):p=target.invoke(self.root,self.case,self.root/'cli-out')
         self.assertEqual(p['payload']['error']['code'],'unsupported_format');self.assertEqual(p['exitCode'],2)
+    def test_privacy_preflight_archives_specific_blocker(self):
+        health={'privacyReady':False,'platform':'Linux','tools':{'strace':None,'unshare':'/usr/bin/unshare'},'isolation':{'exitCode':1,'stderr':'Operation not permitted'}}
+        out=self.root/'preflight'
+        with patch('acceptance.target.package_path',return_value=self.package),patch('acceptance.target.doctor',return_value=health):
+            result=target.invoke(self.root,self.case,out,privacy=True)
+        self.assertIn('blocked',result)
+        self.assertIsNone(result['diagnostics']['strace'])
+        self.assertEqual(read(out/'privacy-preflight.json')['namespaceProbe']['stderr'],'Operation not permitted')
     def test_runtime_home_is_private_and_does_not_change_evidence_seal(self):
         (self.package/'dist/cli.js').write_text('import fs from "node:fs"; import path from "node:path"; const p=path.join(process.env.HOME,".cache"); fs.mkdirSync(p,{recursive:true}); fs.writeFileSync(path.join(p,"runtime.db"),"private test state"); console.log(JSON.stringify({ok:true}));')
         out=self.root/'runs'/'test'/'evidence'/'case'
