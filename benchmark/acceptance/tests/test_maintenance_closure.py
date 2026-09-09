@@ -42,6 +42,14 @@ class Closure(unittest.TestCase):
         self.groups();result,e=self.aggregate()
         self.assertEqual(result['qualitySummary']['releaseDecision'],'PASS')
         self.assertEqual(e['executionContractHash'],digest(execution.manifest(self.data)))
+    def test_debug_full_inventory_cannot_be_release_pass(self):
+        self.groups(lambda e:e.update(executionMode='debug'))
+        result,e=self.aggregate()
+        self.assertEqual(result['qualitySummary']['scope'],'partial:debug')
+        self.assertEqual(result['qualitySummary']['releaseDecision'],'INCOMPLETE')
+    def test_mixed_modes_rejected(self):
+        self.groups(lambda e:e.update(executionMode='debug' if e['group']=='cloud' else 'formal'))
+        with self.assertRaisesRegex(ValueError,'Mixed execution modes'):self.aggregate()
     def test_missing_case_rejected(self):
         self.groups(lambda e:e['results'].clear() if e['group']=='local' else None)
         with self.assertRaisesRegex(ValueError,'cases'):self.aggregate()

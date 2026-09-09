@@ -5,6 +5,11 @@ globals().update({k:v for k,v in vars(_v2).items() if not k.startswith('_')})
 
 def declared_outcome(proc,contract):
     if not contract or contract.get('status')!='declared':return 'blocked',{'reason':'Frozen structured expectation unavailable','contract':contract}
+    if contract['supported'] is False:
+        p=proc.get('payload') or {}
+        no_outputs=not list(Path(proc.get('artifactsDir','/nonexistent')).glob('*'))
+        valid=p.get('ok') is False and proc.get('exitCode') not in [0,None] and machine_code(proc) in contract.get('errorCodes',[]) and no_outputs
+        return ('passed' if valid else 'failed'),{'errorCode':machine_code(proc),'expectedErrorCodes':contract.get('errorCodes',[]),'noArtifacts':no_outputs,'payload':p}
     status,actual=outcome(proc,contract['supported'])
     if status!='passed':return status,actual
     p=proc.get('payload') or {};errors=[]

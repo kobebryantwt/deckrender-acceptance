@@ -65,6 +65,7 @@ def check_case(home,case,directory,root,identity):
                 status,actual=ev.declared_outcome(proc,case.get('contract')) if case.get('contract') else ev.outcome(proc,support)
             result('outcome',status,actual)
             if support is True and status=='passed':result('artifacts',*ev.declared_artifacts(proc,case.get('facts',{}),case.get('contract')))
+            elif status=='blocked':result('artifacts','blocked',actual)
             elif support is False:result('artifacts',status,actual)
             else:result('artifacts','review' if support is None else 'failed','No successful render to inspect')
             if case['options'].get('checkPrivacy'):answers.update(ev.privacy_evidence(proc,directory))
@@ -109,6 +110,10 @@ def check_case(home,case,directory,root,identity):
             explicit=any(x in message for x in ['install','executable','binary','chromium','office2html'])
             result('actionable','passed' if err and proc['exitCode'] not in [0,None] and explicit and not (proc.get('payload') or {}).get('ok') else 'failed',proc.get('payload') or message)
         elif op=='auto':
+            access_status,access_detail=ev.outcome(proc,True)
+            if access_status=='blocked':
+                for key in ['selection','warning','upload']:result(key,'blocked',access_detail)
+                return answers
             p=proc.get('payload') or {};expected='local' if (case['format'] in ['pptx','pdf'] and case['options'].get('target')!='video') else 'cloud'
             result('selection','passed' if p.get('engine')==expected else 'failed',{'expectedEngine':expected,'actual':p})
             if expected=='local':result('warning','passed',{'cloudWarningRequired':False})
@@ -125,7 +130,7 @@ def check_case(home,case,directory,root,identity):
             result('upload','passed' if type(uploaded)==bool and uploaded==(expected=='cloud') else 'failed',{'uploaded':uploaded})
         elif op=='quality':
             status,actual=ev.declared_outcome(proc,case.get('contract'))
-            if status!='passed':result('integrity',status,actual);result('visual','review','No usable render; no visual verdict')
+            if status!='passed':result('integrity',status,actual);result('visual','blocked' if status=='blocked' else 'review',actual if status=='blocked' else 'No usable render; no visual verdict')
             else:
                 result('integrity',*ev.declared_artifacts(proc,case.get('facts',{}),case.get('contract')))
                 visual=quality.inspect(proc,case,directory)
@@ -172,4 +177,10 @@ def execute(home, group='all', snapshot=None, run_id=None, selected=None):
     definitions_hash=digest(execution_manifest)
     evaluator={'id':'render-release-and-quality','version':'4','codeSha256':digest({part:core.directory_sha256(REPO/'benchmark'/part) for part in ['acceptance','evaluators','adapters']})}
     envelope={'contractVersion':'2','benchmarkCoreVersion':core.CORE_VERSION,'runId':rid,'createdAt':now(),'suite':suite,'target':{'id':'deckrender','displayName':'@deckflow/deckrender '+identity['version'],**identity,'runtimeIntegrity':runtime_identity},'evaluator':evaluator,'results':results,'findings':core.build_findings(results,suite,{'id':'deckrender'},rid),'qualitySummary':summary,'qualityPolicyHash':digest(suite['qualityPolicy']),'executionContractHash':definitions_hash,'executionManifest':execution_manifest,'snapshotHash':sha(Path(snapshot)/'SHA256SUMS.json') if snapshot else None,'counts':{s:sum(r['status']==s for r in results) for s in ['passed','failed','review','blocked']},'public':bool(snapshot),'group':group}
+    if target.SESSION is not None:
+        envelope['cloudExecution']=target.SESSION.snapshot()
+        envelope['executionMode']=target.SESSION.mode
+        session=envelope['cloudExecution']
+        envelope['executionPolicyHash']=digest({k:session[k] for k in ['mode','enabled','debugCases','limits']})
+        if target.SESSION.mode=='debug':summary['scope']='partial:debug'
     write_report(folder,envelope,[q for q in data['questions'] if q['caseId'] in {c['id'] for c in cases}]);return {'runId':rid,'report':str(folder/'report.html'),'qualitySummary':summary}

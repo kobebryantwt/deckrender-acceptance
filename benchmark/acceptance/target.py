@@ -4,6 +4,16 @@ from .releases import package_path
 
 CREDENTIAL_NAMES=['DECKRENDER_API_KEY','DECKFLOW_API_KEY','DECKHTML_API_KEY','DECKRENDER_TOKEN','DECKFLOW_TOKEN']
 
+def parse_cli_result(text):
+    """Accept warning JSON records followed by one terminal result; never invent fields."""
+    decoder=json.JSONDecoder();records=[];remaining=text.strip()
+    while remaining:
+        record,end=decoder.raw_decode(remaining);records.append(record);remaining=remaining[end:].strip()
+    if len(records)==1:return records[0]
+    if records and all(isinstance(r,dict) and 'warning' in r and 'ok' not in r for r in records[:-1]) and isinstance(records[-1],dict) and type(records[-1].get('ok')) is bool:
+        return records[-1]
+    raise ValueError('Ambiguous or absent CLI result')
+
 def doctor(home):
     commands={k:shutil.which(k) for k in ['python3','node','npm','strace','unshare','fc-list','ffprobe','tesseract','soffice']}
     from .source_preview import find_office
@@ -16,7 +26,14 @@ def doctor(home):
     except ValueError as e:package=None;error=str(e)
     return {'at':now(),'platform':platform.platform(),'tools':commands,'chrome':chrome,'isolation':isolation,'package':package,'packageError':error,'privacyReady':bool(commands['strace'] and isolation['exitCode']==0),'cloudEnabled':os.getenv('REN_ALLOW_CLOUD')=='1','auditConfigured':bool(os.getenv('REN_AUDIT_COMMAND'))}
 
+SESSION=None
+
 def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=False):
+    if SESSION is not None:
+        return SESSION.invoke(_invoke,home,case,output,privacy=privacy,invalid=invalid,missing_dependency=missing_dependency)
+    return _invoke(home,case,output,privacy=privacy,invalid=invalid,missing_dependency=missing_dependency)
+
+def _invoke(home, case, output, privacy=False, invalid=False, missing_dependency=False):
     output=Path(output);output.mkdir(parents=True,exist_ok=True); package=package_path(home,minimal=missing_dependency)
     options=case['options']; source=Path(case['source']['uri'])
     if not source.is_file() or sha(source)!=case['source']['sha256']:return {'blocked':'Source missing or changed'}
@@ -25,6 +42,7 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     is_exhausted=options.get('credentialVariant')=='exhausted_quota'
     if cloud and os.getenv('REN_ALLOW_CLOUD')!='1':return {'blocked':'Cloud execution disabled; configure account and explicit usage authorization'}
     if cloud and not any(os.getenv(k) for k in CREDENTIAL_NAMES) and not is_exhausted:return {'blocked':'Cloud test account not configured; guest mode is not an audit account'}
+    if cloud and is_exhausted and not (os.getenv('DECKRENDER_API_KEY_2') or os.getenv('DECKRENDER_EXHAUSTED_API_KEY')):return {'blocked':'Exhausted quota account Secret missing'}
     if cloud and not case.get('public',False):return {'blocked':'Source is not approved for cloud upload'}
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['TOKEN','SECRET','PASSWORD','API_KEY'])}
     # Browser profiles, caches and credential sentinels are runtime state, not public evidence.
@@ -34,7 +52,7 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     env.update({'HOME':str(sandbox.resolve()),'USERPROFILE':str(sandbox.resolve()),'XDG_CONFIG_HOME':str(sandbox/'config')})
     if cloud:
         if is_exhausted:
-            env['DECKRENDER_API_KEY']=os.getenv('DECKRENDER_API_KEY_2') or os.getenv('DECKRENDER_EXHAUSTED_API_KEY') or 'PKi92fmrbHzel1Bf41whfjxmUvF9eAGjapyfb2geCZKc198Pjcq5oj8VtbfYwHIC'
+            env['DECKRENDER_API_KEY']=os.getenv('DECKRENDER_API_KEY_2') or os.getenv('DECKRENDER_EXHAUSTED_API_KEY')
         else:
             for k in CREDENTIAL_NAMES:
                 if os.getenv(k):env[k]=os.environ[k]
@@ -78,7 +96,7 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     if privacy:command=['unshare','-Urn','strace','-f','-qq','-s','256','-e','trace=network,openat','-o',str((output/'system.trace').resolve()),*command]
     result=process(command,REPO,timeout=300,env=env)
     atomic(output/'process.json',redact(result))
-    try:result['payload']=json.loads(result['stdout'] if result['exitCode']==0 or options['interface']=='sdk' else result['stderr'])
+    try:result['payload']=(json.loads if options['interface']=='sdk' else parse_cli_result)(result['stdout'] if result['exitCode']==0 or options['interface']=='sdk' else result['stderr'])
     except (ValueError,TypeError):result['payload']=None
     result['artifactsDir']=out; result['evidenceDir']=str(output)
     return result

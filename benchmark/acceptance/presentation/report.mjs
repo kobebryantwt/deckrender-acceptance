@@ -95,6 +95,7 @@ function evidenceBlock(name,baseline=false){
  const data=model.evidence[name],d=el('details','raw-block');d.append(el('summary','',(baseline?'查看比较基准':'查看系统完整输出')+' · '+name.split('/').pop()));
  d.addEventListener('toggle',()=>{
   if(!d.open||d.dataset.loaded)return;d.dataset.loaded='true';
+  if(data===undefined){d.append(el('p','hint','本文件未内嵌，请打开归档文件查看；不表示目标字段缺失。'),a('打开归档文件 ↗',name));return;}
   const output=parsedOutput(data);
   if(name==='evidence/performance.json'&&Array.isArray(output)){
    d.append(el('p','hint',`${output.length} 组配置；逐组展开可查看全部原始测量点。`));

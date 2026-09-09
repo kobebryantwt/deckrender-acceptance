@@ -24,6 +24,26 @@ def build_model(folder, envelope, questions):
     sources = {s['id']: s for s in sources_list}
     sources_by_sha = {s['sha256']: s for s in sources_list}
     
+    evidence = {}
+    def evidence_files(result):
+        names = [f"raw/{result['caseId']}.json"]
+        for rel in result.get('evidence', []):
+            path = folder / rel
+            if not path.resolve().is_relative_to(folder.resolve()):
+                continue
+            if path.is_dir():
+                names.extend(str(p.relative_to(folder)) for p in sorted(path.rglob('*')) if p.is_file() and p.suffix in {'.json','.txt','.trace','.jsonl'})
+            elif path.is_file():
+                names.append(rel)
+        for name in names:
+            path = folder / name
+            if path.is_file() and path.stat().st_size <= 262144:
+                try:
+                    text = path.read_text(encoding='utf-8')
+                    evidence[name] = json.loads(text) if path.suffix == '.json' else text
+                except (ValueError, UnicodeError):
+                    pass
+        return list(dict.fromkeys(names))
     rows = []
     for r in envelope.get('results', []):
         cid = r['caseId']
@@ -31,6 +51,7 @@ def build_model(folder, envelope, questions):
         source_meta = sources.get(r.get('sourceId')) or sources_by_sha.get(r.get('inputSha256'), {})
         source_id = source_meta.get('id') or r.get('sourceId') or ''
         source_ids = [source_id] if source_id else []
+        archived = evidence_files(r)
         snip = r.get('executionSnippet') or {}
         cmd = snip.get('cli') or (' '.join(r.get('command', [])) if isinstance(r.get('command'), list) else str(r.get('command', '')))
         sdk = snip.get('sdk', '')
@@ -91,7 +112,7 @@ def build_model(folder, envelope, questions):
                 'command': cmd,
                 'sdkCode': sdk,
                 'durationMs': r.get('durationMs', 0),
-                'evidence': [f'raw/{cid.replace(":", "-")}.json', *r.get('evidence', [])],
+                'evidence': archived,
                 'protocol': protocol,
                 'answer': {'question': title, 'expected': expected, 'status': approval, 'review': review, 'answerDigest': review.get('digest'), 'evidence': q.get('evidence', {'method': '独立事实与发布规范', 'location': '发版手册标准'})},
                 'sourceIds': source_ids,
@@ -103,6 +124,8 @@ def build_model(folder, envelope, questions):
     
     model = {
         'version': 1,
+        'executionMode': envelope.get('executionMode','formal'),
+        'cloudExecution': envelope.get('cloudExecution'),
         'runId': envelope.get('runId', 'latest'),
         'targetVersion': envelope.get('target', {}).get('version', '0.3.1'),
         'target': envelope.get('target', {}),
@@ -113,7 +136,7 @@ def build_model(folder, envelope, questions):
         'context': {'corpusBound': True, 'answersBound': True, 'protocolBound': True},
         'rows': rows,
         'sources': list(sources.values()),
-        'evidence': {}
+        'evidence': evidence
     }
     return model
 
@@ -125,4 +148,10 @@ def render(folder, envelope, questions):
     css = (ASSETS / 'report.css').read_text(encoding='utf-8')
     js = (ASSETS / 'report.mjs').read_text(encoding='utf-8')
     page = template.replace('/*REPORT_CSS*/', css).replace('/*REPORT_JS*/', js).replace('REPORT_DATA_JSON', payload)
+    budget=envelope.get('cloudExecution')
+    if budget:
+        mode='正式周检 / 完整检查清单' if envelope.get('executionMode')=='formal' else '调试 / 部分验收，不可用于完整放行'
+        usage=f"云端调用尝试 {budget['actualCalls']} / {budget['limits']['calls']}；源页提交 {budget['submittedSourcePages']} / {budget['limits']['sourcePages']}（非积分）；复用 {sum(e['status']=='reused' for e in budget['events'])} 次"
+        banner='<section style="padding:16px;background:#fff4da"><strong>'+html.escape(mode)+'</strong><p>'+html.escape(usage)+'</p><details><summary>预算计划与调用身份映射</summary><pre>'+html.escape(json.dumps(budget,ensure_ascii=False,indent=2))+'</pre></details></section>'
+        page=page.replace('<main>', '<main>'+banner,1)
     return page

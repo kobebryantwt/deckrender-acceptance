@@ -48,7 +48,7 @@ def compare(before,after,output):
     if output.exists():raise ValueError('Comparison output must be new')
     b=read(Path(before)/'run.json');a=read(Path(after)/'run.json')
     reasons=[]
-    for key in ['evaluator','qualityPolicyHash','executionContractHash']:
+    for key in ['evaluator','qualityPolicyHash','executionContractHash','executionMode','executionPolicyHash']:
         if b.get(key)!=a.get(key):reasons.append(key+' differs')
     cohort=lambda e:sorted((r['caseId'],r.get('inputSha256')) for r in e['results'])
     if cohort(b)!=cohort(a):reasons.append('source cohort differs')

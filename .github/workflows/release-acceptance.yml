@@ -7,12 +7,28 @@ on:
       tag:
         description: Published GitHub tag (empty means latest formal release)
         type: string
+      mode:
+        description: Debug selection or full formal acceptance
+        type: choice
+        options: [debug, formal]
+        default: debug
+      cloud_cases:
+        description: Space-separated case IDs allowed cloud access in debug mode
+        type: string
+      max_cloud_calls:
+        description: Optional lower call limit (empty uses the frozen plan)
+        type: string
+      max_source_pages:
+        description: Optional source-page submission limit (not credits)
+        type: string
       force:
         description: Re-run an unchanged release
         type: boolean
         default: false
   schedule:
     - cron: '43 6 * * 2' # 每周二北京时间 14:43 (UTC 06:43)
+env:
+  REN_RUN_MODE: ${{ github.event_name == 'schedule' && 'formal' || inputs.mode || 'debug' }}
 permissions:
   contents: read
 concurrency:
@@ -50,7 +66,7 @@ jobs:
       - id: change
         env:
           RELEASE_TAG: ${{ inputs.tag }}
-          FORCE_RUN: ${{ inputs.force || github.event_name == 'push' }}
+          FORCE_RUN: ${{ inputs.force || github.event_name == 'push' || github.event_name == 'schedule' || inputs.mode == 'debug' }}
           REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
           REN_AUDIT_COMMAND: ${{ vars.REN_AUDIT_COMMAND }}
           REN_LIFECYCLE_COMMAND: ${{ vars.REN_LIFECYCLE_COMMAND }}
@@ -76,10 +92,6 @@ jobs:
   verify:
     needs: freeze
     if: needs.freeze.outputs.changed == 'true'
-    strategy:
-      fail-fast: false
-      matrix:
-        group: [release, local, privacy, cloud, quality]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -99,7 +111,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Cache Playwright Chromium
-        if: matrix.group == 'local' || matrix.group == 'quality'
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -107,15 +118,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-playwright-
       - run: pip install -r benchmark/acceptance/requirements.txt
-      - name: Install selective system tools
+      - name: Install execution and privacy tools
         run: |
-          if [ "${{ matrix.group }}" = "quality" ] || [ "${{ matrix.group }}" = "local" ]; then
-            sudo apt-get update
-            sudo apt-get install -y strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
-          elif [ "${{ matrix.group }}" = "privacy" ]; then
-            sudo apt-get update
-            sudo apt-get install -y strace
-          fi
+          sudo apt-get update
+          sudo apt-get install -y strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
       - uses: actions/download-artifact@v4
         with:
           name: frozen-release
@@ -123,26 +129,28 @@ jobs:
           tar -xzf frozen.tgz
           python benchmark/scripts/release_acceptance.py restore-runtime
       - name: Restore cloud audit ledger
-        if: matrix.group == 'cloud'
         run: |
           git fetch origin acceptance-cloud || true
           if git show-ref --verify --quiet refs/remotes/origin/acceptance-cloud; then
             git archive origin/acceptance-cloud cloud | tar -x -C benchmark/artifacts/acceptance
           fi
-      - name: Execute reviewed group
+      - name: Execute complete checklist with shared cloud budget
         env:
-          REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
+          REN_ALLOW_CLOUD: ${{ github.event_name != 'push' && vars.REN_ALLOW_CLOUD || '0' }}
+          REN_DEBUG_CLOUD_CASES: ${{ inputs.cloud_cases }}
+          REN_MAX_CLOUD_CALLS: ${{ inputs.max_cloud_calls || vars.REN_MAX_CLOUD_CALLS }}
+          REN_MAX_SOURCE_PAGES: ${{ inputs.max_source_pages || vars.REN_MAX_SOURCE_PAGES }}
           DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
           DECKRENDER_API_KEY_2: ${{ secrets.DECKRENDER_API_KEY_2 }}
           DECKRENDER_EXHAUSTED_API_KEY: ${{ secrets.DECKRENDER_EXHAUSTED_API_KEY }}
-        run: python benchmark/scripts/release_acceptance.py run --snapshot ci-input/current --group '${{ matrix.group }}' --run-id '${{ github.run_id }}-${{ matrix.group }}'
+        run: python benchmark/scripts/ci_execute.py
       - name: Archive complete group evidence
         if: always()
-        run: tar -czf result.tgz -C benchmark/artifacts/acceptance/runs '${{ github.run_id }}-${{ matrix.group }}'
+        run: tar -czf result.tgz -C benchmark/artifacts/acceptance/runs .
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: result-${{ matrix.group }}
+          name: result-groups
           path: result.tgz
           if-no-files-found: error
           retention-days: 30
@@ -213,12 +221,13 @@ jobs:
           fi
           python benchmark/scripts/release_acceptance.py publish --output history/site
           python benchmark/scripts/ci_driver.py record
-          cp benchmark/artifacts/acceptance/last-attempted.json history/state.json
+          if test -f benchmark/artifacts/acceptance/last-attempted.json; then cp benchmark/artifacts/acceptance/last-attempted.json history/state.json; fi
       - name: Persist immutable reports and processed fingerprint
         run: |
           git -C history config user.name github-actions
           git -C history config user.email github-actions@users.noreply.github.com
-          git -C history add site state.json
+          git -C history add site
+          if test -f history/state.json; then git -C history add state.json; fi
           git -C history diff --cached --quiet || git -C history commit -m 'Archive DeckRender acceptance evidence'
           git -C history push "$GITHUB_WORKSPACE/.git" HEAD:refs/heads/acceptance-results
           git push origin acceptance-results

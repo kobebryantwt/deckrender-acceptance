@@ -32,4 +32,14 @@ def aggregate(home,inputs,run_id,snapshot=None):
     summary=core.summarize_quality(results,cases,baseline['suite'],'command');g=summary['gate']
     summary.update(releaseDecision='FAIL' if g['failed'] else 'INCOMPLETE' if g['blocked'] else 'REVIEW' if g['review'] else 'PASS',decisionReason='strict_handbook_gates',scope='complete')
     envelope={**baseline,'runId':run_id,'createdAt':now(),'group':'all','results':results,'qualitySummary':summary,'counts':{s:sum(r['status']==s for r in results) for s in ['passed','failed','review','blocked']},'executionContractHash':digest(expected_manifest),'findings':core.build_findings(results,baseline['suite'],baseline['target'],run_id),'public':all(e.get('public') for _,e in runs)}
+    modes={e.get('executionMode','formal') for _,e in runs}
+    if len(modes)!=1:raise ValueError('Mixed execution modes')
+    if len({e.get('executionPolicyHash') for _,e in runs})!=1:raise ValueError('Mixed execution budgets or cloud selection')
+    envelope['executionMode']=modes.pop()
+    sessions=[e['cloudExecution'] for _,e in runs if 'cloudExecution' in e]
+    if sessions:envelope['cloudExecution']=max(sessions,key=lambda s:len(s['events']))
+    if envelope['executionMode']=='debug':
+        summary['scope']='partial:debug'
+        summary['releaseDecision']='FAIL' if g['failed'] else 'INCOMPLETE'
+        summary['decisionReason']='debug_run_not_release_signoff'
     write_report(out,envelope,questions);return {'runId':run_id,'report':str(out/'report.html'),'qualitySummary':summary}
