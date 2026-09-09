@@ -5,6 +5,37 @@ from acceptance import previews,quality,evaluation as ev,workbench,difficulty
 from acceptance.common import sha,atomic,process,REPO
 
 class VisualV2(unittest.TestCase):
+    def test_report_page_selection_preserves_images_and_seal(self):
+        from acceptance import reporting
+        from acceptance.common import verify, read
+        from test_workflow import Reports
+        from unittest.mock import patch
+        from PIL import Image
+        for selection in ['1', '3,1', '1-3', None]:
+            with self.subTest(selection=selection), tempfile.TemporaryDirectory() as d:
+                root=Path(d);run=root/'run';cid='REN-R09-selection'
+                image=run/'evidence'/cid/'previews'/'page.png'
+                image.parent.mkdir(parents=True)
+                Image.new('RGB',(30,20),'blue').save(image)
+                options={'target':'image','engine':'local','interface':'cli','pages':selection}
+                metrics=[{'image':str(image),'imageSha256':sha(image),'mapping':{'sourcePage':3}}]
+                envelope=Reports().envelope()
+                envelope['results']=[{'caseId':cid,'inputSha256':'synthetic','status':'review','options':options,
+                    'assertions':[{'id':'visual','type':'quality','role':'observation','status':'review','featureId':'REN-R09',
+                        'actual':{'options':options,'sourceFormat':'pdf','metrics':metrics}}]}]
+                with patch.object(workbench,'write',wraps=workbench.write) as writer:
+                    reporting.write_report(run,envelope,[])
+                    item=writer.call_args.args[1][0]
+                    self.assertEqual(item['pages'],metrics)
+                    self.assertEqual(item['options'],options)
+                    self.assertEqual(item['pageSelection'],selection)
+                self.assertIn('data:image/png;base64,',(run/'visual.html').read_text())
+                self.assertEqual(read(run/'run.json')['results'][0]['options'],options)
+                verify(run)
+                reporting.rebuild(run,root/'rebuilt')
+                verify(root/'rebuilt')
+                self.assertIn('data:image/png;base64,',(root/'rebuilt/visual.html').read_text())
+
     def test_pdf_every_page_and_binding(self):
         import fitz
         with tempfile.TemporaryDirectory() as d:

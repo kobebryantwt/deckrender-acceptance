@@ -51,8 +51,9 @@ def write_report(folder,envelope,questions):
                 if 'previews' in parts:
                     suffix=Path(*parts[parts.index('previews'):]);candidate=folder/'evidence'/result['caseId']/suffix
                     if candidate.exists():row[key]=str(candidate)
-        items.append({'caseId':result['caseId'],'name':result['caseId'],'sourceSha256':result.get('inputSha256'),'status':result['status'],'pages':pages,'reason':visual.get('errors'),
-                      **visual.get('options',{}),'format':visual.get('sourceFormat'),'synthetic':envelope.get('target',{}).get('id')=='fake',
+        options=copy.deepcopy(visual.get('options',{}))
+        items.append({**options,'caseId':result['caseId'],'name':result['caseId'],'sourceSha256':result.get('inputSha256'),'status':result['status'],'pages':pages,'reason':visual.get('errors'),
+                      'options':options,'pageSelection':options.get('pages'),'format':visual.get('sourceFormat'),'synthetic':envelope.get('target',{}).get('id')=='fake',
                       'provenance':{'actualEngine':visual.get('actualEngine'),'actualRoute':visual.get('actualRoute')}})
     write(folder/'visual.html',items,envelope.get('suite',{}).get('displayName','DeckRender')+' · 结果图像对照',run_sha=sha(folder/'run.json'))
     page=page.replace('</main>','<p><a href="visual.html">打开逐页图像对照与人工审核工作台</a></p></main>')
