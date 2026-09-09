@@ -107,11 +107,14 @@ jobs:
           REN_ALLOW_CLOUD: ${{ vars.REN_ALLOW_CLOUD }}
           DECKRENDER_API_KEY: ${{ secrets.DECKRENDER_API_KEY }}
         run: python benchmark/scripts/release_acceptance.py run --snapshot ci-input/current --group '${{ matrix.group }}' --run-id '${{ github.run_id }}-${{ matrix.group }}'
+      - name: Archive complete group evidence
+        if: always()
+        run: tar -czf result.tgz -C benchmark/artifacts/acceptance/runs '${{ github.run_id }}-${{ matrix.group }}'
       - if: always()
         uses: actions/upload-artifact@v4
         with:
           name: result-${{ matrix.group }}
-          path: benchmark/artifacts/acceptance/runs/
+          path: result.tgz
           if-no-files-found: error
           retention-days: 30
   aggregate:
@@ -128,11 +131,18 @@ jobs:
           pattern: result-*
           path: incoming
       - run: pip install -r benchmark/acceptance/requirements.txt
+      - name: Restore complete group evidence
+        run: |
+          for archive in incoming/result-*/result.tgz; do
+            tar -xzf "$archive" -C "$(dirname "$archive")"
+          done
       - run: python benchmark/scripts/release_acceptance.py aggregate --snapshot ci-input/current --inputs incoming --run-id '${{ github.run_id }}'
+      - name: Archive complete aggregate evidence
+        run: tar -czf aggregate.tgz -C benchmark/artifacts/acceptance/runs '${{ github.run_id }}'
       - uses: actions/upload-artifact@v4
         with:
           name: aggregate-report
-          path: benchmark/artifacts/acceptance/runs/
+          path: aggregate.tgz
   persist-and-pages:
     needs: aggregate
     runs-on: ubuntu-24.04
@@ -151,7 +161,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: aggregate-report
-          path: benchmark/artifacts/acceptance/runs
+      - name: Restore complete aggregate evidence
+        run: |
+          mkdir -p benchmark/artifacts/acceptance/runs
+          tar -xzf aggregate.tgz -C benchmark/artifacts/acceptance/runs
       - uses: actions/download-artifact@v4
         with:
           name: frozen-release
@@ -206,5 +219,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: aggregate-report
-          path: benchmark/artifacts/acceptance/runs
+      - name: Restore complete aggregate evidence
+        run: |
+          mkdir -p benchmark/artifacts/acceptance/runs
+          tar -xzf aggregate.tgz -C benchmark/artifacts/acceptance/runs
       - run: python benchmark/scripts/release_acceptance.py verdict --run 'benchmark/artifacts/acceptance/runs/${{ github.run_id }}'

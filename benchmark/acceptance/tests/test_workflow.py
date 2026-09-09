@@ -17,6 +17,16 @@ class FakePackage(unittest.TestCase):
     def test_cli_error_is_stderr_json(self):
         with patch('acceptance.target.package_path',return_value=self.package):p=target.invoke(self.root,self.case,self.root/'cli-out')
         self.assertEqual(p['payload']['error']['code'],'unsupported_format');self.assertEqual(p['exitCode'],2)
+    def test_runtime_home_is_private_and_does_not_change_evidence_seal(self):
+        (self.package/'dist/cli.js').write_text('import fs from "node:fs"; import path from "node:path"; const p=path.join(process.env.HOME,".cache"); fs.mkdirSync(p,{recursive:true}); fs.writeFileSync(path.join(p,"runtime.db"),"private test state"); console.log(JSON.stringify({ok:true}));')
+        out=self.root/'runs'/'test'/'evidence'/'case'
+        with patch('acceptance.target.package_path',return_value=self.package):
+            result=target.invoke(self.root,self.case,out)
+        self.assertEqual(result['exitCode'],0)
+        caches=list((self.root/'private').rglob('runtime.db'))
+        self.assertEqual(len(caches),1)
+        self.assertFalse(list(out.rglob('runtime.db')))
+        seal(out);caches[0].write_text('updated runtime state');verify(out)
     def test_sdk_keeps_code(self):
         self.case['options']['interface']='sdk'
         with patch('acceptance.target.package_path',return_value=self.package):p=target.invoke(self.root,self.case,self.root/'sdk-out')
@@ -64,6 +74,22 @@ class Approval(unittest.TestCase):
         p=self.approved();Path(p['samples'][0]['path']).chmod(0o600);Path(p['samples'][0]['path']).write_bytes(b'changed');self.assertEqual(self.inputs(p)['cases'][0]['reviewStatus'],'draft')
 
 class Reports(unittest.TestCase):
+    def test_archive_transport_preserves_hidden_evidence_and_rejects_loss(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);run=root/'runs'/'sample'
+            atomic(run/'evidence/.metadata/page.json',{'page':1})
+            reporting.write_report(run,self.envelope(),[])
+            archive=root/'result.tgz'
+            subprocess.run(['tar','-czf',str(archive),'-C',str(run.parent),run.name],check=True)
+            incoming=root/'incoming';incoming.mkdir()
+            subprocess.run(['tar','-xzf',str(archive),'-C',str(incoming)],check=True)
+            restored=incoming/run.name
+            verify(restored)
+            self.assertEqual(read(restored/'SHA256SUMS.json'),read(run/'SHA256SUMS.json'))
+            (restored/'evidence/.metadata/page.json').unlink()
+            with self.assertRaisesRegex(ValueError,r'missing=1.*page.json'):verify(restored)
+
     def envelope(self):
         checks=[{'id':'fields','type':'schema','role':'gate','status':'failed','expected':'lifecycle present','actual':'missing','featureId':'REN-R07'}, {'id':'visual','type':'quality','role':'observation','status':'review','expected':'human review','actual':'pending','featureId':'REN-R09'}]
         results=[{'caseId':'REN-R07-fake','status':'failed','source':{'sha256':'abc'},'inputSha256':'abc','command':['fake-only'],'assertions':checks}]

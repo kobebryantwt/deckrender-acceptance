@@ -26,7 +26,9 @@ def invoke(home, case, output, privacy=False, invalid=False, missing_dependency=
     if cloud and not any(os.getenv(k) for k in CREDENTIAL_NAMES):return {'blocked':'Cloud test account not configured; guest mode is not an audit account'}
     if cloud and not case.get('public',False):return {'blocked':'Source is not approved for cloud upload'}
     env={k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ['TOKEN','SECRET','PASSWORD','API_KEY'])}
-    sandbox=output/'sandbox';sandbox.mkdir(exist_ok=True)
+    # Browser profiles, caches and credential sentinels are runtime state, not public evidence.
+    sandbox=Path(home).resolve()/'private'/'sandboxes'/digest(str(output.resolve()))
+    sandbox.mkdir(parents=True,exist_ok=True,mode=0o700)
     # Per-child HOME is isolated; the parent environment is never reassigned.
     env.update({'HOME':str(sandbox.resolve()),'USERPROFILE':str(sandbox.resolve()),'XDG_CONFIG_HOME':str(sandbox/'config')})
     if cloud:

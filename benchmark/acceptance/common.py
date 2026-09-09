@@ -72,7 +72,9 @@ def verify(folder):
     folder=Path(folder); manifest=read(folder/'SHA256SUMS.json')
     if not manifest: raise ValueError('Missing evidence seal')
     actual={str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file() and p.name!='SHA256SUMS.json'}
-    if actual!=set(manifest): raise ValueError('Evidence inventory changed')
+    if actual!=set(manifest):
+        missing=sorted(set(manifest)-actual);extra=sorted(actual-set(manifest))
+        raise ValueError(f'Evidence inventory changed in {folder.name}: missing={len(missing)} {missing[:5]}, extra={len(extra)} {extra[:5]}')
     for rel,want in manifest.items():
         p=inside(folder,rel)
         if p.is_symlink() or sha(p)!=want: raise ValueError(f'Evidence checksum mismatch: {rel}')
