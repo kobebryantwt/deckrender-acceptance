@@ -1,0 +1,220 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "actualEngine": "local",
+        "actualRoute": [
+          "local.pdfjs"
+        ],
+        "environment": {
+          "fonts": {
+            "command": [
+              "fc-list",
+              ":",
+              "family"
+            ],
+            "durationMs": 7,
+            "exitCode": 0,
+            "stderr": "",
+            "stdout": "Lato,Lato Heavy\nLato\nDejaVu Math TeX Gyre\nLato,Lato Black\nDejaVu Sans Mono\nNoto Serif CJK JP\nNoto Serif CJK KR\nNoto Serif CJK HK\nNoto Serif CJK SC\nNoto Serif CJK TC\nNoto Sans Mono CJK SC\nNoto Sans Mono CJK TC\nNoto Sans Mono CJK JP\nNoto Sans Mono CJK HK\nNoto Sans Mono CJK KR\nLato,Lato Medium\nDejaVu Sans,DejaVu Sans Light\nDejaVu Sans\nDejaVu Serif,DejaVu Serif Condensed\nDejaVu Sans,DejaVu Sans Condensed\nLato,Lato Light\nLiberation Mono\nLato,Lato Thin\nLiberation Serif\nLato,Lato Semibold\nNoto Sans CJK HK\nNoto Sans CJK KR\nNoto Sans CJK JP\nLiberation Sans\nNoto Sans CJK SC\nNoto Sans CJK TC\nNoto Color Emoji\nLato,Lato Hairline\nDejaVu Serif\n"
+          },
+          "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+          "rasterizer": "PyMuPDF / Pillow / ffmpeg"
+        },
+        "errors": [],
+        "gtReadiness": {
+          "errors": [],
+          "ready": true,
+          "sourcePages": 1
+        },
+        "metrics": [
+          {
+            "actualSha256": "25eb00ac73d83cbab55fc816bb0a7b0c36261dbdcae2caeffeca56d874c9f92f",
+            "artifactSha256": "9b1e368c68fb028ad44a16f32430515f3cc97065df2a5962b02b09253a8ad304",
+            "caseId": "REN-R09-quality-a0f12e2fe846",
+            "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34370160194-quality/evidence/REN-R09-quality-a0f12e2fe846/previews/0/0001.png",
+            "imageSha256": "25eb00ac73d83cbab55fc816bb0a7b0c36261dbdcae2caeffeca56d874c9f92f",
+            "mapping": {
+              "sourcePage": 1
+            },
+            "outputIndex": 0,
+            "outputPage": 1,
+            "page": 1,
+            "precheck": {
+              "aspectRatio": 1.333,
+              "isUniform": false,
+              "size": [
+                1920,
+                1440
+              ],
+              "status": "passed",
+              "suggestedRubric": {
+                "charts": "待审",
+                "clipping": "待审",
+                "hierarchy": "待审",
+                "legibility": "待审",
+                "overlap": "待审",
+                "text": "待审"
+              }
+            },
+            "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34370160194-quality/evidence/REN-R09-quality-a0f12e2fe846/previews/reference-0-1.png",
+            "referenceProvenance": {
+              "method": "source PDF",
+              "renderer": "PyMuPDF",
+              "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155"
+            },
+            "referenceSha256": "d55143735ee61316e3467a95bd427335ebb3e3fbfc76bf220bcd1437b2e445d2",
+            "referenceStatus": "approved",
+            "size": [
+              1920,
+              1440
+            ],
+            "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155"
+          }
+        ],
+        "note": "All PDF pages; five temporal video samples, not all frames; no pixel release threshold; optional independent GT remains subject to human review",
+        "options": {
+          "engine": "local",
+          "expectedSupport": true,
+          "interface": "cli",
+          "sourceFormat": "pdf",
+          "target": "image"
+        },
+        "reviewTemplate": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34370160194-quality/evidence/REN-R09-quality-a0f12e2fe846/visual-review-template.json",
+        "rubric": [
+          "text",
+          "clipping",
+          "overlap",
+          "charts",
+          "hierarchy",
+          "legibility"
+        ],
+        "sourceFormat": "pdf",
+        "status": "review"
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-a0f12e2fe846"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：密集布局、字体与多语言",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-a0f12e2fe846-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "review",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "decodedPages": 1,
+        "errors": [],
+        "markerEvidence": [],
+        "markerUncertain": false,
+        "oracleGaps": [],
+        "pageCountOracle": 1,
+        "pageOrder": [
+          1
+        ]
+      },
+      "contract": {
+        "caveat": "Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.",
+        "engine": "local",
+        "evidence": {
+          "formatsSha256": "5af289c24b37939deb909a015315638de77063172e946c2bed9a132f3961d157",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "local.pdfjs"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-a0f12e2fe846"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：1；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-a0f12e2fe846-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "passed",
+      "type": "quality"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-a0f12e2fe846"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-a0f12e2fe846-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-a0f12e2fe846",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155.pdf",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34370160194-quality/evidence/REN-R09-quality-a0f12e2fe846/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-a0f12e2fe846"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"pdf_omnidoc_complex.pdf\" --engine local --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'pdf_omnidoc_complex.pdf',\n  engine: 'local',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155",
+  "options": {
+    "engine": "local",
+    "expectedSupport": true,
+    "interface": "cli",
+    "sourceFormat": "pdf",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155.pdf"
+  },
+  "status": "failed"
+}

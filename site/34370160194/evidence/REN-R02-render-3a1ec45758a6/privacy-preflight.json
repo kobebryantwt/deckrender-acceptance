@@ -1,0 +1,16 @@
+{
+  "namespaceProbe": {
+    "command": [
+      "unshare",
+      "-Urn",
+      "true"
+    ],
+    "durationMs": 10,
+    "exitCode": 1,
+    "stderr": "unshare: write failed /proc/self/uid_map: Operation not permitted\n",
+    "stdout": ""
+  },
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "strace": "/usr/bin/strace",
+  "unshare": "/usr/bin/unshare"
+}
