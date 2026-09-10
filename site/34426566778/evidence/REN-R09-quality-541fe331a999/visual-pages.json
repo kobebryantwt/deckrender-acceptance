@@ -1,0 +1,262 @@
+{
+  "caseId": "REN-R09-quality-541fe331a999",
+  "engine": "local",
+  "errors": [],
+  "expectedSupport": true,
+  "interface": "cli",
+  "pages": [
+    {
+      "actualSha256": "c97354b0958c7d3337bb5403655ffa2d66c40128a4c346c17358c217baeeaab8",
+      "artifactSha256": "957e004b5eb22fc100c5a444ad708d728a7738d7be110b34a3a611e5d35330bd",
+      "caseId": "REN-R09-quality-541fe331a999",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/0/0001.png",
+      "imageSha256": "c97354b0958c7d3337bb5403655ffa2d66c40128a4c346c17358c217baeeaab8",
+      "mapping": {
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "publisher paired reference, selected original pages; candidate only",
+        "provenance": {
+          "creators": [
+            {
+              "affiliation": "ScaDS.AI",
+              "name": "Haase, Robert",
+              "orcid": "0000-0001-5949-2327"
+            }
+          ],
+          "derivation": "presentation.xml slide list restricted to original pages 2,11,16; all other ZIP entries preserved byte-for-byte. PDF selects same original pages. Not redrawn; not DeckRender output.",
+          "license": "CC-BY-4.0",
+          "originalPages": [
+            2,
+            11,
+            16
+          ],
+          "originalSlideCount": 86,
+          "originals": [
+            {
+              "filename": "collab_git_v4.pptx",
+              "sha256": "dff59cb7c3a2587f7af52772be60ed2ff614415e15e2030aa7674cd9b636e316",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pptx/content"
+            },
+            {
+              "filename": "collab_git_v4.pdf",
+              "sha256": "2d2a32bb0fada080f726c3f32f8ec842e26a5c74c6098dfba33b9f5ceab4ebc4",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pdf/content"
+            }
+          ],
+          "pairing": "Same publication and total page count; selected page headings match source XML. Human visual pairing review remains required.",
+          "recordSha256": "2e911ba06cdc0391a0e3c904d02a6e35042ee8e97dd77b52a51a8c8f092150bf",
+          "recordUrl": "https://zenodo.org/records/14623257",
+          "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+          "reviewStatus": "draft",
+          "sourceId": "pptx_paired_collaboration",
+          "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+          "title": "Collaborative Working and Version Control with git[hub]",
+          "version": 1
+        },
+        "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+        "renderer": "Author-supplied PDF / PyMuPDF",
+        "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+        "status": "draft"
+      },
+      "referenceSha256": "00a516306c634fc84d7cbf39386b55ca1c4c3c33fd366dc686fcf2c701440758",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d"
+    },
+    {
+      "actualSha256": "953c09d8aad6e732685ee80d5b37b4bc73236983bd84838499c7227f7f844054",
+      "artifactSha256": "14a8909088b07c93c15e7fad637e61bead2d8bef28d8d1e031765d43ef9b625c",
+      "caseId": "REN-R09-quality-541fe331a999",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/1/0001.png",
+      "imageSha256": "953c09d8aad6e732685ee80d5b37b4bc73236983bd84838499c7227f7f844054",
+      "mapping": {
+        "sourcePage": 2
+      },
+      "outputIndex": 1,
+      "outputPage": 2,
+      "page": 2,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/reference-1-2.png",
+      "referenceProvenance": {
+        "method": "publisher paired reference, selected original pages; candidate only",
+        "provenance": {
+          "creators": [
+            {
+              "affiliation": "ScaDS.AI",
+              "name": "Haase, Robert",
+              "orcid": "0000-0001-5949-2327"
+            }
+          ],
+          "derivation": "presentation.xml slide list restricted to original pages 2,11,16; all other ZIP entries preserved byte-for-byte. PDF selects same original pages. Not redrawn; not DeckRender output.",
+          "license": "CC-BY-4.0",
+          "originalPages": [
+            2,
+            11,
+            16
+          ],
+          "originalSlideCount": 86,
+          "originals": [
+            {
+              "filename": "collab_git_v4.pptx",
+              "sha256": "dff59cb7c3a2587f7af52772be60ed2ff614415e15e2030aa7674cd9b636e316",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pptx/content"
+            },
+            {
+              "filename": "collab_git_v4.pdf",
+              "sha256": "2d2a32bb0fada080f726c3f32f8ec842e26a5c74c6098dfba33b9f5ceab4ebc4",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pdf/content"
+            }
+          ],
+          "pairing": "Same publication and total page count; selected page headings match source XML. Human visual pairing review remains required.",
+          "recordSha256": "2e911ba06cdc0391a0e3c904d02a6e35042ee8e97dd77b52a51a8c8f092150bf",
+          "recordUrl": "https://zenodo.org/records/14623257",
+          "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+          "reviewStatus": "draft",
+          "sourceId": "pptx_paired_collaboration",
+          "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+          "title": "Collaborative Working and Version Control with git[hub]",
+          "version": 1
+        },
+        "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+        "renderer": "Author-supplied PDF / PyMuPDF",
+        "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+        "status": "draft"
+      },
+      "referenceSha256": "82165c7fb28cb7c10cdd2a305fdd589daa213417f50caded15f2fe771dba56fa",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d"
+    },
+    {
+      "actualSha256": "a360a6ad9f3f435f816e2cb4968fe45f5f212128e99bd2a4f5222c6dd35b6afc",
+      "artifactSha256": "efd7704b5400b91a49dda4fafbd484bc9c3323be4acb4e0d003ab99e123df2e2",
+      "caseId": "REN-R09-quality-541fe331a999",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/2/0001.png",
+      "imageSha256": "a360a6ad9f3f435f816e2cb4968fe45f5f212128e99bd2a4f5222c6dd35b6afc",
+      "mapping": {
+        "sourcePage": 3
+      },
+      "outputIndex": 2,
+      "outputPage": 3,
+      "page": 3,
+      "precheck": {
+        "aspectRatio": 1.778,
+        "isUniform": false,
+        "size": [
+          1920,
+          1080
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-541fe331a999/previews/reference-2-3.png",
+      "referenceProvenance": {
+        "method": "publisher paired reference, selected original pages; candidate only",
+        "provenance": {
+          "creators": [
+            {
+              "affiliation": "ScaDS.AI",
+              "name": "Haase, Robert",
+              "orcid": "0000-0001-5949-2327"
+            }
+          ],
+          "derivation": "presentation.xml slide list restricted to original pages 2,11,16; all other ZIP entries preserved byte-for-byte. PDF selects same original pages. Not redrawn; not DeckRender output.",
+          "license": "CC-BY-4.0",
+          "originalPages": [
+            2,
+            11,
+            16
+          ],
+          "originalSlideCount": 86,
+          "originals": [
+            {
+              "filename": "collab_git_v4.pptx",
+              "sha256": "dff59cb7c3a2587f7af52772be60ed2ff614415e15e2030aa7674cd9b636e316",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pptx/content"
+            },
+            {
+              "filename": "collab_git_v4.pdf",
+              "sha256": "2d2a32bb0fada080f726c3f32f8ec842e26a5c74c6098dfba33b9f5ceab4ebc4",
+              "url": "https://zenodo.org/api/records/14623257/files/collab_git_v4.pdf/content"
+            }
+          ],
+          "pairing": "Same publication and total page count; selected page headings match source XML. Human visual pairing review remains required.",
+          "recordSha256": "2e911ba06cdc0391a0e3c904d02a6e35042ee8e97dd77b52a51a8c8f092150bf",
+          "recordUrl": "https://zenodo.org/records/14623257",
+          "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+          "reviewStatus": "draft",
+          "sourceId": "pptx_paired_collaboration",
+          "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+          "title": "Collaborative Working and Version Control with git[hub]",
+          "version": 1
+        },
+        "referencePdfSha256": "61d9f8ce8739b1f7efbcedbbffabb4b223f1ced920a7c2f54811cc36dd19e208",
+        "renderer": "Author-supplied PDF / PyMuPDF",
+        "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+        "status": "draft"
+      },
+      "referenceSha256": "9319d6d0983f59133f8c54a4de3717a972b730f06ec0f440615b151161d799af",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d"
+    }
+  ],
+  "sourceFormat": "pptx",
+  "sourceSha256": "09de9045fb5bc315389f895b90e716286d2258802dfbe71905b3ce6ba2b8454d",
+  "status": "review",
+  "target": "image"
+}

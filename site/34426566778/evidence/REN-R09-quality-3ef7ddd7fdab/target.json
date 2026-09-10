@@ -1,0 +1,34 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-3ef7ddd7fdab/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-3ef7ddd7fdab/request.json"
+  ],
+  "durationMs": 4970,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-3ef7ddd7fdab",
+  "exitCode": 0,
+  "payload": {
+    "caveat": "Local PDF output is printed by Chromium from office2html output with external CDN assets blocked; font metrics, icons, and complex effects may differ from the DeckFlow cloud Office pipeline.",
+    "durationMs": 4852,
+    "engine": "local",
+    "format": "pdf",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 36995,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-3ef7ddd7fdab/artifacts/001.pdf",
+        "page": 1
+      }
+    ],
+    "pages": 3,
+    "route": [
+      "local.office2html",
+      "local.capture-pdf",
+      "local.pdf-merge"
+    ]
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"at\":\"2026-09-10T02:48:03.966Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-10T02:48:03.967Z\"}\n{\"kind\":\"warning\",\"message\":\"Local PDF output is printed by Chromium from office2html output with external CDN assets blocked; font metrics, icons, and complex effects may differ from the DeckFlow cloud Office pipeline.\",\"at\":\"2026-09-10T02:48:03.967Z\"}\n{\"kind\":\"warning\",\"message\":\"via local.office2html → local.capture-pdf → local.pdf-merge (3 steps)\",\"at\":\"2026-09-10T02:48:03.967Z\"}\n{\"kind\":\"task\",\"message\":\"Converting a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx locally (first run may take about 40s)\",\"at\":\"2026-09-10T02:48:03.970Z\"}\n{\"kind\":\"task\",\"message\":\"Printing page 2 of 3\",\"at\":\"2026-09-10T02:48:06.723Z\"}\n{\"kind\":\"task\",\"message\":\"Printing page 3 of 3\",\"at\":\"2026-09-10T02:48:07.188Z\"}\n{\"kind\":\"task\",\"message\":\"Printing page 1 of 3\",\"at\":\"2026-09-10T02:48:08.415Z\"}\n{\"kind\":\"task\",\"message\":\"Merging 3 PDF pages locally\",\"at\":\"2026-09-10T02:48:08.528Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-10T02:48:08.817Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx\",\"format\":\"pdf\",\"engine\":\"local\",\"route\":[\"local.office2html\",\"local.capture-pdf\",\"local.pdf-merge\"],\"pages\":3,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-quality/evidence/REN-R09-quality-3ef7ddd7fdab/artifacts/001.pdf\",\"bytes\":36995}],\"durationMs\":4852,\"caveat\":\"Local PDF output is printed by Chromium from office2html output with external CDN assets blocked; font metrics, icons, and complex effects may differ from the DeckFlow cloud Office pipeline.\"}\n"
+}

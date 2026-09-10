@@ -1,0 +1,147 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "actual": {
+          "caveat": "Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.",
+          "durationMs": 1260,
+          "engine": "local",
+          "format": "image",
+          "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+          "ok": true,
+          "outputs": [
+            {
+              "bytes": 26500,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R06-auto-0463b5658233/artifacts/001.png",
+              "height": 1080,
+              "page": 1,
+              "width": 1920
+            },
+            {
+              "bytes": 27357,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R06-auto-0463b5658233/artifacts/002.png",
+              "height": 1080,
+              "page": 2,
+              "width": 1920
+            },
+            {
+              "bytes": 27625,
+              "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R06-auto-0463b5658233/artifacts/003.png",
+              "height": 1080,
+              "page": 3,
+              "width": 1920
+            }
+          ],
+          "pages": 3,
+          "route": [
+            "local.pdfjs"
+          ]
+        },
+        "expectedEngine": "local"
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-0463b5658233"
+      ],
+      "expected": "有本地候选时选择本地；无本地路线才选云端",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "selection",
+      "questionId": "REN-R06-auto-0463b5658233-selection",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.selection.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "cloudWarningRequired": false
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-0463b5658233"
+      ],
+      "expected": "首次上传前产生云端警告",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "warning",
+      "questionId": "REN-R06-auto-0463b5658233-warning",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.warning.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "uploaded": null
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-0463b5658233"
+      ],
+      "expected": "结果提供实际上传状态",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "upload",
+      "questionId": "REN-R06-auto-0463b5658233-upload",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "auto.upload.v3",
+      "severity": "major",
+      "status": "failed",
+      "type": "auto"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R06-auto-0463b5658233"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R06",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R06-auto-0463b5658233-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "auto"
+    }
+  ],
+  "caseId": "REN-R06-auto-0463b5658233",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R06-auto-0463b5658233/request.json"
+  ],
+  "evidence": [
+    "evidence/REN-R06-auto-0463b5658233"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pdf\" --engine auto --format image -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pdf',\n  engine: 'auto',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "options": {
+    "engine": "auto",
+    "interface": "sdk",
+    "sourceFormat": "pdf",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf"
+  },
+  "status": "failed"
+}

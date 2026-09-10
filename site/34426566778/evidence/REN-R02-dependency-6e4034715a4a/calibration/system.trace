@@ -1,0 +1,35 @@
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/glibc-hwcaps/x86-64-v4/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/glibc-hwcaps/x86-64-v3/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/glibc-hwcaps/x86-64-v2/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.14/x64/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+5079  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+5079  openat(AT_FDCWD, "/etc/ssl/openssl.cnf", O_RDONLY) = 3
+5079  openat(AT_FDCWD, "/proc/version_signature", O_RDONLY|O_CLOEXEC) = 4
+5079  openat(AT_FDCWD, "/proc/self/cgroup", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.max", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.high", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/proc/meminfo", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/proc/self/maps", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 20
+5079  openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 20
+5079  openat(AT_FDCWD, "/opt/hostedtoolcache/node/22.23.2/x64/bin/node", O_RDONLY) = 20
+5079  openat(AT_FDCWD, "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/credential-probe.cjs", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R02-dependency-6e4034715a4a/calibration/credentials.jsonl", O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC, 0666) = 20
+5079  openat(AT_FDCWD, "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/private/sandboxes/030f66f8fa809e202ad762d1e1cab06508dbd722fc0ae419b75dce67021c6f52/.deckflow/credentials", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/etc/localtime", O_RDONLY|O_CLOEXEC) = 20
+5079  openat(AT_FDCWD, "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34426566778-local/evidence/REN-R02-dependency-6e4034715a4a/calibration/credentials.jsonl", O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC, 0666) = 20
+5079  openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 20
+5079  socket(AF_INET, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, IPPROTO_IP) = 21
+5079  connect(21, {sa_family=AF_INET, sin_port=htons(9), sin_addr=inet_addr("192.0.2.1")}, 16) = -1 ENETUNREACH (Network is unreachable)
+5079  getsockname(21, {sa_family=AF_INET, sin_port=htons(0), sin_addr=inet_addr("0.0.0.0")}, [128 => 16]) = 0
