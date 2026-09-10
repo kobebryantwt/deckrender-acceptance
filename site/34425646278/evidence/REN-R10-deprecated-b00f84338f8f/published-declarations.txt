@@ -1,0 +1,2423 @@
+FILE source/README.md
+# DeckRender
+
+> Render PPTX, PDF, DOCX, Keynote, HTML and Markdown into images, PDF or video.
+
+DeckRender turns supported document and web inputs into images, PDFs, or videos through one predictable CLI and TypeScript contract. Use it to move visual document work out of one-off desktop steps and into repeatable software workflows.
+
+It ships two interchangeable engines: a Community engine that renders supported formats on your machine, and the existing DeckFlow cloud engine with a wider matrix. Run `deckrender formats --engine local|cloud`, or read [the matrices](#supported-formats) below.
+
+```bash
+deckrender deck.pptx -o deck.png
+deckrender deck.pptx -o deck.pdf
+deckrender deck.pptx -o deck.mp4
+```
+
+It is to documents what `ffmpeg` is to media: one command, a small set of flags, predictable output. It deliberately does **not** parse content, extract text, or edit files — those belong to other tools in the [DeckFlow](https://github.com/deckflow) family.
+
+## Where it creates value
+
+- **Product previews and delivery** — turn document pages and slides into visual
+  artifacts that web and mobile products can display.
+- **AI vision pipelines** — create page or slide images for multimodal models
+  and document-understanding workflows.
+- **Automated publishing** — generate images, PDFs, or videos from scripts and
+  CI when the selected input/output route supports them.
+- **Review handoffs** — produce concrete visual artifacts that people or agents
+  can inspect before downstream delivery.
+
+## Install
+
+```bash
+npx -y @deckflow/deckrender@latest deck.pptx
+```
+
+```bash
+npm install -g @deckflow/deckrender
+```
+
+Requires Node.js 18 or newer.
+
+For Community/local rendering, install Chrome or Chromium. DeckRender has one optional converter dependency, `@deckflow/office2html@0.2.1`; that package installs the matching platform runtime. DeckRender does not maintain the platform mapping or bundle/republish the binaries. See [Local engine setup](docs/engines.md#local-engine-setup).
+
+Only the current OS/CPU binary is installed, as selected by `@deckflow/office2html`. Cloud-only and browser-only users can skip optional local dependencies with `npm install --omit=optional @deckflow/deckrender` (add `-g` for the CLI). To enable local rendering later, reinstall with `npm install --include=optional @deckflow/deckrender`. pnpm users can omit local dependencies with `pnpm add --no-optional @deckflow/deckrender`.
+
+For cloud-only installs, npm's `--omit=optional` and pnpm's `--no-optional` leave the converter entry package and its platform runtime uninstalled.
+
+`office2html` is resolved only for local PPTX conversion; cloud, browser, HTML, and PDF routes do not need it. Rendering never runs a package installer or downloads a missing binary automatically.
+
+## Quick start
+
+Render every slide to PNG. With no `-o`, output lands in a directory named after the input:
+
+```bash
+$ deckrender presentation.pptx
+presentation/
+```
+
+```
+presentation/
+├── 001.png
+├── 002.png
+└── 003.png
+```
+
+Pick a format, a size, and a page range:
+
+```bash
+deckrender report.pdf --pages 1-5 --width 2560 -o pages/
+deckrender deck.pptx --format pdf -o deck.pdf
+deckrender page.html -o screenshot.png
+deckrender https://example.com -o screenshot.png
+cat page.html | deckrender - --from html -o screenshot.png
+```
+
+Machine-readable output for scripts and agents:
+
+```bash
+$ deckrender deck.pptx --json
+{
+  "ok": true,
+  "input": "deck.pptx",
+  "format": "image",
+  "engine": "cloud",
+  "route": ["convertor.ppt2image"],
+  "pages": 3,
+  "outputs": [
+    { "page": 1, "file": "presentation/001.png", "width": 1920, "height": 1080, "bytes": 184320 }
+  ],
+  "durationMs": 8123
+}
+```
+
+Keep PPTX/PDF/HTML rendering on the machine:
+
+```bash
+deckrender config set engine local
+deckrender deck.pptx -o frames/
+```
+
+Or choose per invocation with `--engine local|cloud|auto`. `auto` is local-first and prints a warning before falling back to cloud; an explicit `local` choice never uploads or silently falls back.
+
+## Supported formats
+
+The table below is the default cloud matrix. Use `deckrender formats --engine local` for the Community matrix.
+
+| Input          | → image | → pdf | → video |
+| -------------- | ------- | ----- | ------- |
+| `.pptx`        | ✅      | ✅    | ✅      |
+| `.ppt`         | ✅      | 🕓    | ✅      |
+| `.pdf`         | ✅      | ✅    | 🕓      |
+| `.key`         | ✅      | ✅    | 🕓      |
+| `.docx`        | ✅      | ✅    | —       |
+| `.doc`         | —       | —     | —       |
+| `.xlsx`        | 🕓      | 🕓    | —       |
+| `.pages`       | 🕓      | 🕓    | —       |
+| `.numbers`     | 🕓      | 🕓    | —       |
+| `.html` + URLs | ✅      | ✅    | ✅      |
+| `.md`          | ✅      | —     | —       |
+
+Image output supports `png`, `jpg` and `webp` via `--image-format`.
+
+**🕓** means the DeckFlow cloud has no converter for it yet; those report `not_implemented` with a message naming the missing backend task — the full list is under [Coming soon](docs/roadmap.md#coming-soon). Unsupported pairs fail with a clear message rather than producing something approximate.
+
+The local matrix currently supports `.pptx → image/pdf`, `.pdf → image/pdf`, and `.html`/URL → image. Local WebP and video are not supported. The two matrices remain independent: choosing `local` never borrows a missing cloud route.
+
+Pages and Numbers are recognized but not renderable yet — DeckRender will not answer with the thumbnail iWork embeds. Export to PDF or PPTX and render that. Keynote `.key` is unaffected.
+
+Legacy Word `.doc` files are not supported. Save them as `.docx` or export them to PDF first.
+Legacy PowerPoint `.ppt` files support image and video output; PDF conversion waits on the backend.
+
+Full detail, including which flags each route accepts: [`docs/formats.md`](docs/formats.md).
+
+## Authentication is optional for cloud
+
+DeckRender works with no setup at all — rendering runs in guest mode. Log in when you want higher quotas or a private workspace:
+
+```bash
+deckrender auth login
+```
+
+Credentials are stored in `~/.deckflow/credentials` and **shared across every DeckFlow CLI**. Log in once through DeckRender and DeckHTML picks it up too, and vice versa. If your machine already has `DECKHTML_API_KEY` set, or you have logged in with the `deckops` CLI, DeckRender uses that automatically.
+
+A credential the backend rejects is treated as no credential: DeckRender drops it and retries the render in guest mode, warning on stderr rather than failing. Rendering is supposed to work with no setup at all, and stale state on a machine should not take that away. See [`docs/errors.md`](docs/errors.md#a-rejected-credential-falls-back-to-guest-mode).
+
+```bash
+deckrender config list    # shows every value and exactly where it came from
+```
+
+See [`docs/configuration.md`](docs/configuration.md) for the full resolution order.
+
+The local engine does not resolve or send credentials.
+
+## Use it as a library
+
+The CLI and the programmatic API ship in the same package. The root import is the
+Node.js API; browser applications use the separate cloud-only entry below.
+
+```ts
+import { render } from '@deckflow/deckrender';
+
+const result = await render({
+  input: 'deck.pptx',
+  engine: 'local',
+  format: 'image',
+  pages: '1-10',
+  out: 'frames/',
+});
+
+console.log(result.route); // ['local.office2html', 'local.capture']
+console.log(result.outputs); // [{ page: 1, file: 'frames/001.png', ... }]
+```
+
+Reuse configuration, or swap in your own render backend:
+
+```ts
+import { createRenderer, type RenderEngine } from '@deckflow/deckrender';
+
+const renderer = createRenderer({
+  apiKey: process.env.DECKFLOW_API_KEY,
+  onWarning: (message) => console.warn(message),
+});
+```
+
+### Browser applications
+
+```ts
+import { createRenderer } from '@deckflow/deckrender/browser';
+
+const renderer = createRenderer({ getToken: () => auth.getDeckFlowToken() });
+const result = await renderer.render({ input: file, format: 'image', pages: '1-3' });
+
+previewImage.src = result.outputs[0]!.url;
+// When removing the preview:
+result.dispose();
+```
+
+The SDK accepts `File`, named `Blob`/binary input, and inline HTML/Markdown. It
+returns URLs with lazy `blob()` downloads instead of writing files. Rendering is
+cloud-only (PDF passthrough stays in memory); no Node polyfills are required.
+Use a user token or explicitly opt into `guest: true`, never embed an application
+API key. See [Browser SDK](docs/browser.md) for authentication, CORS, and lifecycle details.
+
+## Documentation
+
+|                                        |                                                         |
+| -------------------------------------- | ------------------------------------------------------- |
+| [Quick start](docs/quickstart.md)      | Install and first render                                |
+| [CLI reference](docs/cli.md)           | Every command and flag                                  |
+| [Formats](docs/formats.md)             | What converts to what, and the flags each route accepts |
+| [Profiles](docs/profiles.md)           | Named flag presets                                      |
+| [Configuration](docs/configuration.md) | Credentials, shared auth, render defaults               |
+| [Errors](docs/errors.md)               | Error codes and exit codes                              |
+| [Roadmap](docs/roadmap.md)             | What is coming and what is blocked upstream             |
+| [Engines](docs/engines.md)             | Local/cloud selection, setup, privacy and fidelity       |
+| [Browser SDK](docs/browser.md)        | Cloud-only browser entry, inputs, previews, auth and CORS |
+
+## How it works
+
+```
+Input (file | URL | stdin)
+   → InputResolver     normalize and classify
+   → RenderPlan        engine-specific source × target route table
+   → LocalEngine       office2html + Chromium + PDF.js
+     or CloudEngine    DeckOps tasks
+   → ArtifactWriter    page selection, naming, files / directory / zip
+   → Result            human text or --json
+```
+
+Cloud rendering is performed through [`@deckops/sdk`](https://www.npmjs.com/package/@deckops/sdk). Community rendering uses the bundled local orchestration layer and optional local dependencies. Both share input resolution, artifact naming, errors and the result contract.
+
+### Where rendering happens
+
+| Engine        | Where rendering runs | What leaves your machine |
+| ------------- | -------------------- | ------------------------ |
+| `local`       | your machine         | no document bytes        |
+| `cloud`       | DeckFlow cloud       | source and intermediates |
+| `passthrough` | your machine         | nothing                  |
+
+Local PPTX capture blocks the CDN references emitted by `office2html` and uses local CSS/system-font fallbacks. URL input still fetches the URL the user requested, and generic HTML may load its own referenced assets; neither path calls the DeckFlow API. `--json` reports the actual `engine` and route so the boundary is auditable.
+
+Full detail, including chained routes and URL input: [`docs/formats.md`](docs/formats.md#where-rendering-happens).
+
+## Development
+
+Issues and pull requests are welcome. Node.js 18 or newer.
+
+```bash
+pnpm install
+pnpm check                    # typecheck + lint + unit + integration
+pnpm build && pnpm test:e2e   # e2e drives the built binary
+
+DECKRENDER_E2E=1 pnpm test:cloud    # guest render against the live backend
+DECKRENDER_LOCAL_E2E=1 pnpm test:local  # real Chrome/PDF.js local routes
+pnpm test:conformance              # every format pair; needs credentials
+```
+
+The cloud table in `src/core/routes.ts` and local table in `src/engines/local/routes.ts`
+decide what converts to what. Probe the corresponding engine before adding a route — several
+plausible-looking conversions do not actually work, so a route inferred from type
+definitions alone can be wrong. `pnpm test:conformance` confirms the matrix end
+to end.
+
+A missing local route stays local-only unsupported and never falls back unless the user explicitly selected `auto`. A missing cloud route remains an upstream DeckOps ask; do not use one matrix to conceal a gap in the other.
+
+The `--json` envelope, error codes, exit codes and the shared credential file
+format are what other people's scripts depend on. Changing any of them is a
+breaking change; note it in `CHANGELOG.md`.
+
+## License
+
+MIT © DeckFlow
+
+FILE source/SECURITY.md
+# Security Policy
+
+## Supported versions
+
+The latest published release receives security fixes.
+
+## Reporting a vulnerability
+
+Please do not open a public issue for security problems.
+
+Report privately through [GitHub Security Advisories](https://github.com/deckflow/deckrender/security/advisories/new),
+or email security@deckflow.com. We aim to acknowledge within three business days.
+
+Include reproduction steps, affected versions, and impact if you can.
+
+## Handling credentials
+
+DeckRender stores credentials at `~/.deckflow/credentials` with mode `0600`,
+inside a directory with mode `0700`. Permissions are enforced on every write.
+
+Secrets are masked wherever they are displayed (`config list`, `auth status`)
+and are never written to stdout, logs, or the `--json` envelope.
+
+For CI and containers, prefer the environment (`DECKFLOW_API_KEY`) over a file
+on disk.
+
+If you believe a credential has leaked, rotate it in your DeckFlow workspace
+settings and run `deckrender auth logout`.
+
+## Rendering untrusted documents
+
+Rendering happens on the DeckFlow backend, not on your machine. DeckRender does
+fetch URLs you pass it and sends the resulting HTML to that backend, so treat
+`deckrender <url>` as you would any request to an untrusted host.
+
+FILE source/docs/browser.md
+# Browser SDK
+
+Use `@deckflow/deckrender/browser` in browser applications. The SDK runs in the
+browser; document conversion runs in the DeckFlow cloud. The existing package
+root remains the Node.js API. No Node polyfills or `@types/node` are needed by
+browser consumers.
+
+This entry requires a modern browser in a secure context (HTTPS or localhost).
+Importing it during SSR is safe, but call its browser rendering API on the client.
+It is framework-independent: React, Vue, and other frameworks use the same API.
+
+## Install and render
+
+The browser entry is available starting with DeckRender 0.3.0:
+
+```sh
+npm install --omit=optional @deckflow/deckrender@^0.3.0
+```
+
+To test a development checkout from another project:
+
+```sh
+# In the DeckRender repository:
+pnpm build
+pnpm pack
+
+# In your frontend project, install the .tgz path printed by pnpm pack:
+npm install --omit=optional /absolute/path/to/generated-package.tgz
+```
+
+Skipping optional dependencies avoids installing native local-rendering tools.
+If the same installation also uses the Node local engine, keep those dependencies.
+
+```ts
+import { createRenderer } from '@deckflow/deckrender/browser';
+
+const renderer = createRenderer({
+  // Implement this in your application's authentication layer. The returned
+  // token must be a DeckFlow user token, not an arbitrary application JWT.
+  getToken: () => auth.getDeckFlowToken(),
+  onWarning: (message) => console.warn(message),
+});
+
+const result = await renderer.render({
+  input: fileInput.files![0]!,
+  format: 'image',
+  imageFormat: 'png',
+  pages: '1-3',
+  width: 1920,
+  onProgress: (event) => console.log(event.phase, event.message),
+});
+
+const first = result.outputs[0];
+if (first) {
+  previewImage.src = first.url;       // no eager download of every output
+  const blob = await first.blob();   // optional, downloads only this artifact
+  console.log(first.page, first.width, blob.size);
+}
+
+// When the preview is no longer used (e.g. component unmount):
+result.dispose();
+```
+
+The `auth`, `fileInput`, and `previewImage` values above belong to your application.
+The SDK does not provide a login UI. A one-shot `render({ input, token, ... })` is
+also exported. Reuse `createRenderer()` for multiple renders.
+
+## Inputs
+
+```ts
+await renderer.render({ input: file }); // File from a picker or drag-and-drop
+await renderer.render({ input: { data: blob, name: 'deck.pptx' } });
+await renderer.render({ input: { data: bytes, name: 'deck.pptx' } }); // Uint8Array / ArrayBuffer
+await renderer.render({ input: { html: '<h1>Hello</h1>', baseUrl: 'https://example.com/deck/' } });
+await renderer.render({ input: { markdown: '# Hello' } });
+await renderer.render({ input: { data: bytes, name: 'document.bin' }, from: 'pdf' });
+```
+
+- Names are filenames, not paths. The extension determines the source format
+  unless `from` is supplied. `.htm` and `.markdown` aliases are supported.
+- Inline text is uploaded as an HTML/Markdown file. `baseUrl` supplies the base
+  for relative assets; it does not upload those assets or reproduce an authenticated
+  browser session. An existing HTML `<base>` is preserved.
+- Paths, URL strings, raw unnamed Blobs, `local`/`auto`, `out`, native executable
+  paths, profiles, and `AbortSignal` are not part of this first browser release.
+  Unsupported options are rejected rather than silently ignored.
+- To render a hosted document, fetch it with your application's own CORS/auth
+  policy, then pass `{ data: blob, name }`. Never send private session cookies to
+  an arbitrary asset host or build an unrestricted URL proxy.
+
+The [cloud format matrix](formats.md) and option restrictions still apply. The
+browser entry does not add converters. `pages` filters results and subsequent
+per-page conversion work; the upstream initial conversion still renders the
+whole document. Derived routes (e.g. DOCX → PDF → image, or WebP output) download
+and re-upload intermediate artifacts in the browser. Large documents can use
+substantial memory and bandwidth; keep native/server orchestration for that case.
+
+## Results and lifetime
+
+`BrowserRenderResult` contains `ok`, `input`, `format`, `engine`, `route`, `pages`,
+`outputs`, `durationMs`, optional `caveat`, and `dispose()`.
+
+Each output has `page`, `url`, `ext`, `mimeType`, optional `width`/`height`/`bytes`,
+and `blob()`. This is separate from the Node result's `outputs[].file` contract.
+
+- Cloud outputs retain the backend URLs. They may expire; this SDK does not
+  invent an expiration time or make them permanent. `blob()` fetches on each call
+  with credentials omitted and reports expiry/CORS/download failures.
+- PDF → PDF is an unchanged-document passthrough. It creates a local object URL
+  and does not resolve a token or upload anything. `pages: 1` in that result means
+  one unchanged document, not a measured physical PDF page count. Page selection
+  and image-only options are rejected for this route.
+- Call `dispose()` after previews are removed. It revokes only object URLs the
+  SDK created, is safe to call repeatedly, and does not delete remote files.
+- `dispose()` is not cancellation. There is currently no public `AbortSignal` or
+  server task-cancellation promise. `timeout` is a wait timeout **per task**, in
+  seconds (default 300), not an end-to-end upload/render deadline. Closing a tab
+  can leave already-created cloud tasks running; derived pipelines cannot continue
+  orchestration after the tab closes.
+
+Progress events describe phases, not a synthetic overall percentage. Not every
+phase has `ratio`; browser rendering does not emit a disk `write` phase.
+
+## Authentication and CORS
+
+Use **one** of `token`, `getToken`, or explicit `guest: true`:
+
+```ts
+const signedIn = createRenderer({ token: userToken });
+const refreshing = createRenderer({ getToken: () => auth.getDeckFlowToken() });
+const guest = createRenderer({ guest: true }); // explicit consent to guest uploads
+```
+
+`getToken` is called before each cloud render; your application owns refresh.
+Missing tokens fail before upload. HTTP 401/403/402 does not restart a render as
+a guest. To retry after login, get a valid user token and explicitly render again.
+An explicit guest configuration cannot be combined with tokens or `spaceId`.
+
+Each render gets its own client to isolate parallel authentication state. The
+SDK keeps tokens and its client UUID in memory, not in localStorage or Node
+credential files. The module reuses its in-memory UUID across renderers and
+one-shot calls for the page's lifetime. Reloading is not a new entitlement or quota.
+The backend remains responsible for authorization and guest rate limiting.
+
+Never put a long-lived application API key in a frontend bundle. When your
+application only has such a key, use an authenticated server integration. A custom
+`apiBase` must be an absolute HTTP(S) DeckOps-compatible API root without a query
+or fragment, **not** an
+arbitrary render endpoint. For a same-origin proxy use, for example,
+`new URL('/api/deckops', window.location.origin).href`; enforce user/space/task
+ownership on the server and do not expose a generic privileged forwarding proxy.
+
+Before enabling production browser traffic, verify:
+
+1. API preflights allow the frontend origin and the actual request headers,
+   including `X-Auth-Token`, `X-Auth-UUID`, `Content-Type`, and `response-event-stream`.
+2. Signed upload storage permits the required PUT/POST methods and signed headers.
+   Multipart OSS uploads must expose `ETag` to JavaScript.
+3. Intermediate and final artifact storage allows browser fetches. Displaying an
+   image with `<img>` is not proof that `blob()` or canvas access will work.
+4. The application's CSP permits the API/storage hosts via `connect-src` and
+   preview hosts (including `blob:` for passthrough) via `img-src`/`media-src`.
+
+The tests use cross-origin loopback fake endpoints. They verify the browser's
+CORS enforcement and the client protocol, **not the production cloud's CORS
+configuration or conversion fidelity**. No real document uploads are required.
+
+## Build and verification
+
+```sh
+pnpm build
+pnpm test:browser          # isolated DOM-only TypeScript consumer + browser bundle + SSR import
+pnpm test:browser:e2e      # real Chromium, loopback fake cloud; requires Chrome/Chromium
+node scripts/browser-fixture.mjs # optional interactive browser test page
+```
+
+The Node build runs first, then a separate browser build emits
+`dist/browser/index.js` and `index.d.ts`. The browser bundle includes its transport
+dependencies so consumers never resolve the broken upstream entry themselves.
+
+Upstream `@deckops/sdk@0.7.3` supports browser uploads/SSE but still publishes Node
+dynamic imports and an incorrect type entry. `scripts/deckops-browser.ts` is a
+build-only, SHA-256-guarded compatibility bridge: it removes filesystem inputs,
+Node UUID persistence and Node runtime selection while preserving the existing
+upload/hash/multipart/task implementation. It does not edit `node_modules`, add
+polyfills, or affect the Node build. Unknown upstream contents fail the build.
+Replace this bridge with a verified upstream browser export when one is available.
+
+FILE source/docs/cli.md
+# CLI Reference
+
+```bash
+deckrender <input> [options]
+deckrender <command> [options]
+```
+
+`<input>` is a file path, an `http(s)` URL, or `-` for stdin. One input per invocation.
+
+## Render options
+
+| Flag                   | Description                                       | Default                        |
+| ---------------------- | ------------------------------------------------- | ------------------------------ |
+| `-o, --output <path>`  | Output file, directory, `.zip`, or `-` for stdout | Derived from the input         |
+| `--engine <engine>`    | `local`, `cloud`, `auto`                          | Config/env, then `cloud`       |
+| `--format <format>`    | `image`, `pdf`, `video`                           | `image`, or inferred from `-o` |
+| `--image-format <fmt>` | `png`, `jpg`, `webp`                              | `png`                          |
+| `--from <format>`      | Source format. Required for stdin                 | From the file extension        |
+| `--pages <ranges>`     | Pages to keep: `1-5`, `3`, `1,3,5-7`              | All                            |
+| `--page <n>`           | A single page. Conflicts with `--pages`           | —                              |
+| `--width <px>`         | Target long edge in pixels                        | Backend default                |
+| `--scale <n>`          | Multiply the default long edge                    | —                              |
+| `--quality <level>`    | `low`, `medium`, `high`                           | —                              |
+| `--profile <name>`     | `web`, `presentation`, `print`, `thumbnail`       | —                              |
+| `--embed-fonts`        | Embed fonts on routes passing through HTML→PPTX   | Off                            |
+| `--timeout <seconds>`  | Task wait timeout                                 | `300`                          |
+| `--json`               | Machine-readable result on stdout                 | Off                            |
+| `--quiet`              | Suppress progress and warnings                    | Off                            |
+| `-v, --verbose`        | Detailed logs on stderr                           | Off                            |
+| `--version`            | Print the version                                 | —                              |
+| `-h, --help`           | Show help                                         | —                              |
+
+`--quiet` and `--verbose` conflict.
+
+`--engine local` is strict: a missing local route or runtime dependency fails without uploading. `--engine auto` uses a matching local route first and warns before choosing cloud. See [engines.md](engines.md).
+
+Not every flag applies to every route — `--width` on Keynote input, for example, has no backend parameter to land on. Those cases fail with `unsupported_option` and an explanation rather than being ignored. See [formats.md](formats.md).
+
+## Input forms
+
+```bash
+deckrender deck.pptx                          # local file
+deckrender https://example.com/page.html      # URL
+cat page.html | deckrender - --from html      # stdin
+```
+
+Stdin has no filename to infer from, so `--from` is required.
+
+A URL is fetched locally and given a `<base href>` so relative assets resolve. The resulting HTML is uploaded as the cloud task's source file. Scripts still run — the page is rendered in a real browser.
+
+## Choosing the output format
+
+`--format` and the `-o` extension both work; if they disagree, `--format` wins and a warning is printed.
+
+| `-o` extension                | Format                             |
+| ----------------------------- | ---------------------------------- |
+| `.png` `.jpg` `.jpeg` `.webp` | `image`, and sets `--image-format` |
+| `.pdf`                        | `pdf`                              |
+| `.mp4`                        | `video`                            |
+| `.zip`                        | Keeps `--format`, packs the result |
+| none                          | Treated as a directory             |
+
+## Where the output lands
+
+`-o` and the number of rendered frames together decide the shape of the output.
+
+| Situation                          | Result                                                   |
+| ---------------------------------- | -------------------------------------------------------- |
+| No `-o`, multiple frames           | Directory named after the input, `001.png`, `002.png`, … |
+| No `-o`, single file               | Beside the input, same base name, new extension          |
+| `-o dir/` or an extensionless path | That directory, numbered frames                          |
+| `-o out.png`, single frame         | Exactly `out.png`                                        |
+| `-o out.png`, multiple frames      | `out-001.png`, `out-002.png`, …                          |
+| `-o out.zip`                       | A zip of numbered frames                                 |
+| `-o -`, single frame               | Bytes on stdout                                          |
+| `-o -`, multiple frames            | `usage_error`                                            |
+
+Frame numbers are zero-padded to at least three digits, widening for documents past 999 pages.
+
+`-o -` writes the artifact's raw bytes to stdout and nothing else, so it cannot be combined with `--json`.
+
+## Sizing
+
+`--width` sets the long edge directly and accepts integer values from 1 to 32768. `--scale`
+multiplies the route's own base — 1920 for slides, 1080 for PDF — and accepts values greater
+than 0 up to 16. `--timeout` accepts whole seconds from 1 to 86400.
+
+`convertor.ppt2image` only accepts 1080, 1920 or 2560, so other values snap to the nearest tier and the chosen value is reported on stderr:
+
+```
+Warning: Resolution 2000 snapped to 1920: convertor.ppt2image accepts only 1080/1920/2560.
+```
+
+`--quality` is a shorthand for a (long edge, encoding) pair on image routes. It is not accepted on PDF or video, where the backend has no quality parameters at all.
+
+| `--quality` | Slides | PDF  | Encoding |
+| ----------- | ------ | ---- | -------- |
+| `low`       | 1080   | 1080 | jpg      |
+| `medium`    | 1920   | 1600 | png      |
+| `high`      | 2560   | 2560 | png      |
+
+An explicit `--width`, `--scale` or `--image-format` overrides the preset.
+
+## Page selection
+
+```bash
+deckrender report.pdf --pages 1-5
+deckrender report.pdf --pages 1,3,5-7
+deckrender deck.pptx --page 3
+```
+
+Pages are 1-based, capped at 100000, and ranges are inclusive. Requesting a page past the end of
+the document is an error.
+
+On cloud routes, `--pages` filters at download time — the backend still renders every page. On local PPTX/PDF image routes, only selected pages are captured/rasterized, so it also saves compute. It does not apply to single-file output (pdf, video) or to HTML and Markdown.
+
+For webp output the filter is applied before conversion, so narrowing the range also narrows the work.
+
+## Commands
+
+### `deckrender auth`
+
+| Command       | Description                                                            |
+| ------------- | ---------------------------------------------------------------------- |
+| `auth login`  | Browser login; stores the token in the shared DeckFlow credential file |
+| `auth status` | Verify credentials against the backend and show their source           |
+| `auth logout` | Clear stored credentials                                               |
+| `auth path`   | Print the credential file path                                         |
+
+`auth login` accepts `--port <n>` (default `3737`).
+
+### `deckrender config`
+
+| Command                    | Description                                      |
+| -------------------------- | ------------------------------------------------ |
+| `config set <key> <value>` | Store a value                                    |
+| `config unset <key>`       | Remove a value                                   |
+| `config list`              | Show effective settings and where each came from |
+| `config path`              | Print the config file paths                      |
+
+| Key                                                                   | Goes to                                                     |
+| --------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `api-key`                                                             | `~/.deckflow/credentials` — shared with every DeckFlow tool |
+| `engine` `office2html-path` `profile` `format` `image-format` `quality` `width` `scale` `timeout` | `~/.deckrender/config.json` |
+
+### `deckrender formats`
+
+Prints the input/output matrix. Use `--engine local|cloud|auto`. `--json` includes the selected engine and exact task chain for each route.
+
+## Exit codes
+
+| Code | Meaning                                                |
+| ---- | ------------------------------------------------------ |
+| `0`  | Success                                                |
+| `1`  | Render or conversion failure                           |
+| `2`  | Usage error, unsupported format, or unsupported option |
+| `3`  | Authentication error                                   |
+
+## Examples
+
+```bash
+deckrender deck.pptx
+deckrender deck.pptx --engine local -o frames/
+deckrender deck.pptx -o deck.pdf
+deckrender deck.pptx -o deck.mp4
+deckrender deck.pptx --profile web -o frames/
+deckrender deck.pptx --pages 1-5 --image-format webp -o frames.zip
+deckrender report.pdf --page 1 --width 640 -o thumb.png
+deckrender page.html -o shot.png
+deckrender https://example.com -o shot.png
+cat page.html | deckrender - --from html -o shot.png
+deckrender deck.pptx --json | jq -r '.outputs[].file'
+deckrender deck.pptx --json | jq -r '.route | join(" -> ")'
+```
+
+FILE source/docs/configuration.md
+# Configuration
+
+## Authentication is optional
+
+DeckRender renders without any credentials. Guest mode covers casual use; log in for higher quotas and private workspaces.
+
+```bash
+deckrender deck.pptx        # works immediately, no setup
+deckrender auth login       # opt in when you need more
+```
+
+Nothing prompts for credentials up front. If the backend returns `401` mid-render, the browser login opens and the request retries automatically.
+
+## Credentials are shared across DeckFlow
+
+Credentials live in `~/.deckflow/credentials` and are shared by every DeckFlow CLI. Log in through DeckRender and DeckHTML uses the same token; log in through DeckHTML and DeckRender picks it up.
+
+```bash
+deckrender auth login
+deckrender config set api-key sk-...
+```
+
+Both write to the shared file. Writes are merged, so keys another tool stored there are preserved.
+
+If your machine is already configured for another DeckFlow tool, DeckRender finds it:
+
+- `DECKHTML_API_KEY` in the environment
+- a token stored by `deckops login` in `~/.deckops/config.json` (read-only — DeckRender never writes there)
+
+## Resolution order
+
+Each field resolves independently, first match wins:
+
+|     | Source                                                   |
+| --- | -------------------------------------------------------- |
+| 1   | Explicit argument (`--api-key`, `--token`, `--api-base`) |
+| 2   | Environment variables                                    |
+| 3   | `~/.deckflow/credentials`                                |
+| 4   | `~/.deckops/config.json` (read-only)                     |
+| 5   | Built-in default                                         |
+
+Environment variables, in order:
+
+| Field    | Variables                                                      |
+| -------- | -------------------------------------------------------------- |
+| API key  | `DECKRENDER_API_KEY` → `DECKFLOW_API_KEY` → `DECKHTML_API_KEY` |
+| Token    | `DECKRENDER_TOKEN` → `DECKFLOW_TOKEN`                          |
+| Space    | `DECKRENDER_SPACE_ID` → `DECKFLOW_SPACE_ID`                    |
+| API base | `DECKRENDER_API_BASE` → `DECKFLOW_API_BASE`                    |
+
+Independent resolution means an API key from the environment can combine with a `spaceId` left behind by a `deckops` login.
+
+Levels 2–4 are inherited rather than chosen, so a machine set up for another DeckFlow tool is not in guest mode even when nothing was configured for DeckRender. Whatever the source, a credential the backend rejects is treated as absent: DeckRender drops it — along with the `spaceId` that belongs to it — and retries in guest mode with a warning. See [A rejected credential falls back to guest mode](errors.md#a-rejected-credential-falls-back-to-guest-mode); `deckrender config list` shows what is in effect before you hit it.
+
+## Seeing what is in effect
+
+When something authenticates as the wrong account, this is the command that answers why:
+
+```bash
+$ deckrender config list
+Credentials
+  api-key   sk-a************wxyz  (env:DECKHTML_API_KEY)
+  token     (unset)
+  space-id  space_abc             (file:~/.deckops/config.json)
+  api-base  https://app.deckflow.com/v1  (default)
+
+Render defaults
+  profile      web
+  format       (unset)
+  ...
+
+Files
+  shared credentials  ~/.deckflow/credentials
+  render defaults     ~/.deckrender/config.json
+  deckops (read-only) ~/.deckops/config.json
+```
+
+Secrets are always masked. `--json` gives the same data for scripts.
+
+```bash
+deckrender auth status      # also verifies the credential against the backend
+```
+
+## Render defaults
+
+Preferences you do not want to retype go in `~/.deckrender/config.json`, kept separate from credentials so changing a default never rewrites a file other tools read.
+
+```bash
+deckrender config set engine local
+deckrender config set office2html-path /opt/deckflow/office2html
+deckrender config set profile web
+deckrender config set image-format webp
+deckrender config set width 2560
+deckrender config unset width
+```
+
+| Key            | Values                                      |
+| -------------- | ------------------------------------------- |
+| `engine`       | `local`, `cloud`, `auto`                    |
+| `office2html-path` | absolute/local executable path         |
+| `profile`      | `web`, `presentation`, `print`, `thumbnail` |
+| `format`       | `image`, `pdf`, `video`                     |
+| `image-format` | `png`, `jpg`, `webp`                        |
+| `quality`      | `low`, `medium`, `high`                     |
+| `width`        | integer from `1` to `32768`                 |
+| `scale`        | number greater than `0`, up to `16`         |
+| `timeout`      | integer seconds from `1` to `86400`         |
+
+Precedence, lowest first:
+
+```
+profile defaults  <  ~/.deckrender/config.json  <  command-line flags
+```
+
+Engine selection additionally reads `DECKRENDER_ENGINE`, with precedence `--engine > environment > config > cloud`. Local executable overrides use `DECKRENDER_OFFICE2HTML_PATH` and `DECKRENDER_CHROMIUM_EXECUTABLE_PATH`; see [engines.md](engines.md).
+
+A stored default that a particular route cannot honour is dropped with a warning, not an error — only a flag you typed produces `unsupported_option`. So `config set image-format webp` will not break `deckrender notes.md`.
+
+## CI, Docker, and agents
+
+Use the environment; nothing is written to disk:
+
+```bash
+export DECKFLOW_API_KEY=sk-...
+deckrender deck.pptx --json --quiet
+```
+
+Redirect config to a scratch directory when you need isolation:
+
+```bash
+export DECKFLOW_CONFIG_DIR=/tmp/deckflow
+export DECKRENDER_CONFIG_DIR=/tmp/deckrender
+export DECKOPS_CONFIG_DIR=/tmp/deckops
+```
+
+## File permissions
+
+| Path                      | Mode   |
+| ------------------------- | ------ |
+| `~/.deckflow/`            | `0700` |
+| `~/.deckflow/credentials` | `0600` |
+
+Enforced on every write, including to files that already exist.
+
+## The credential file format
+
+Anyone implementing another DeckFlow tool reads and writes the same file, so the format is specified rather than left to whatever DeckRender happens to do.
+
+`~/.deckflow/credentials` is JSON. Every field is optional.
+
+```json
+{
+  "apiKey": "sk-...",
+  "token": "...",
+  "spaceId": "...",
+  "apiBase": "https://app.deckflow.com/v1"
+}
+```
+
+| Field     | Meaning                                                           |
+| --------- | ----------------------------------------------------------------- |
+| `apiKey`  | Long-lived key, sent as `Authorization: Bearer`                   |
+| `token`   | Session token from the browser login flow, sent as `X-Auth-Token` |
+| `spaceId` | Default workspace                                                 |
+| `apiBase` | API root. Defaults to `https://app.deckflow.com/v1`               |
+
+Rules for implementors:
+
+1. **Read-merge-write.** Never rewrite the file wholesale. Unknown keys belong to another tool and must survive.
+2. **Tolerate malformed content.** A corrupt or partially written file resolves to "no credentials", never a crash.
+3. **Never write another tool's config.** `~/.deckops/config.json` is readable as a fallback but is owned by the DeckOps CLI.
+4. **Keep tool-specific settings out.** Render defaults and the like belong in the tool's own directory.
+
+### Login flow
+
+Byte-for-byte compatible with the DeckOps CLI, so a token obtained by any tool works in all of them:
+
+```
+GET {apiBase minus /v1}/cli/auth?redirect_url=http://localhost:3737
+      ↓ browser completes login, redirects back
+GET http://localhost:3737/?token=<token>&spaceId=<spaceId>
+```
+
+The callback server accepts `spaceId` or `space_id`, listens on port 3737 by default, and times out after five minutes. Checkout, for a `402 Payment Required`, follows the same shape at `/cli/checkout`.
+
+### Guest mode
+
+Credentials are optional. Without them the backend creates tasks in a pending state that need an explicit `PUT /tools/tasks/:id/start`. Clients must issue that call when unauthenticated; authenticated tasks start on their own.
+
+Nothing should demand credentials up front. A `401` means the credential is not usable, so the client drops it and retries as a guest; an interactive login is the right response only when the guest request is refused too.
+
+FILE source/docs/engines.md
+# Render engines
+
+DeckRender exposes one CLI and SDK contract over two independent engines.
+
+| Engine  | Intended use | Supported routes |
+| ------- | ------------ | ---------------- |
+| `local` | Community, private/offline document rendering | PPTX→image/PDF, PDF→image/PDF, HTML/URL→image |
+| `cloud` | Broad format support and the managed DeckFlow production system | See `deckrender formats --engine cloud` |
+| `auto`  | Local-first convenience | Uses local when that exact route exists; otherwise warns and uses cloud |
+
+The default remains `cloud` for compatibility with releases before 0.3. Set the Community default once with:
+
+```bash
+deckrender config set engine local
+```
+
+Selection precedence is:
+
+```text
+--engine > DECKRENDER_ENGINE > ~/.deckrender/config.json > cloud
+```
+
+An explicit `--engine local` is a privacy boundary. Missing formats and runtime failures are returned as errors; they never trigger a cloud retry. `auto` is the only mode that may choose cloud, and it emits a warning before doing so.
+
+## Local engine setup
+
+Local image/PDF routes use:
+
+- `office2html` for PPTX→HTML;
+- Chrome or Chromium driven by `playwright-core` for HTML capture and PDF printing;
+- PDF.js in the same browser for PDF→image;
+- `pdf-lib` for numeric-order PDF page merging.
+
+`playwright-core`, `pdfjs-dist`, `pdf-lib`, and `@deckflow/office2html` are optional dependencies. DeckRender depends only on that converter entry package; it owns platform detection and installs the matching runtime through its optional dependencies. An unsupported platform installs no official binary; cloud, browser, HTML, and PDF routes do not require `office2html`.
+
+```bash
+# No office2html binary or other optional local dependencies:
+npm install -g --omit=optional @deckflow/deckrender
+
+# Enable local dependencies later, including only this machine's binary:
+npm install -g --include=optional @deckflow/deckrender
+
+# The equivalent lightweight installation with pnpm:
+pnpm add -g --no-optional @deckflow/deckrender
+# Enable local dependencies again:
+pnpm add -g @deckflow/deckrender
+```
+
+Both npm's `--omit=optional` and pnpm's `--no-optional` leave the converter entry package and its platform runtime uninstalled.
+
+For an SDK project, omit `-g`. If you only need local HTML or PDF rendering, start with `--omit=optional` and explicitly add the required libraries (for example `npm install --omit=optional playwright-core@1.55.1` for HTML capture; add `pdfjs-dist@4.8.69` for PDF rasterization). This does not install `office2html`.
+
+The main npm tarball contains no platform binaries, and source checkouts use the same registry dependencies as consumers. No install hook or render operation runs an installer. Do not configure pnpm's `supportedArchitectures` for extra platforms unless a multi-platform installation is intentional.
+
+Chrome/Chromium resolution order:
+
+```text
+--executable-path
+> DECKRENDER_CHROMIUM_EXECUTABLE_PATH
+> an existing Playwright browser cache
+> standard Chrome/Chromium/Edge installation paths
+> PATH
+```
+
+`playwright-core` does not download a browser. Install Chrome/Chromium yourself when none is present.
+
+`office2html` resolution order:
+
+```text
+config office2html-path
+> DECKRENDER_OFFICE2HTML_PATH
+> @deckflow/office2html getBinaryPath()
+> PATH
+```
+
+The tested upstream entry package is pinned to `0.2.1`, independently of DeckRender's version. DeckRender calls its public `getBinaryPath()` API and does not know platform package names or binary layouts. The entry package also exposes the `office2html` CLI.
+
+If optional dependencies were omitted, reinstall DeckRender with `--include=optional`, or explicitly add `@deckflow/office2html@0.2.1` to the SDK project. Other local libraries must also be present for the chosen route.
+
+Explicit paths and `PATH` remain available for enterprise mirrors, offline installations, custom builds, or platforms without an official package:
+
+```bash
+deckrender config set office2html-path /opt/deckflow/office2html
+```
+
+Missing local dependencies produce an actionable error when the relevant route is used; DeckRender does not install them in the background or fall back to cloud.
+
+### Dependency and release checks
+
+`pnpm verify:office2html` validates that DeckRender declares exactly one pinned converter entry package, checks its lockfile integrity, and exercises the installed package's public `getBinaryPath()` API. CI adds `--require-installed` so a failed optional runtime install cannot silently pass. Versions and tarball integrity come from the upstream npm release and `pnpm-lock.yaml`, not repository-owned binary copies.
+
+`pnpm build && pnpm test:packaging` verifies the published wrapper tarball and its public API/CLI contract, then tests native and cloud-only DeckRender installs with npm and pnpm. Platform-routing correctness belongs to `@deckflow/office2html`; DeckRender's release test deliberately does not duplicate that package's platform table. It also checks both DeckRender tarballs contain no binaries, direct platform-package dependencies, or workspace references. It never publishes packages; the release workflow publishes only DeckRender. Set `KEEP_PACKAGING_ARTIFACTS=1` to retain the test's temporary files.
+
+## office2html output contract
+
+The 2026-08-31 binary defaults to a lazy-slides deck: `index.html` is a player shell and each slide is a separate HTML file. DeckRender calls `office2html input.pptx -o output/`, reads the `slide-meta` manifest, and renders the referenced slide documents directly. In this build `slides/0000.html` is the first page: metadata indexes are zero-based, while all DeckRender page numbers remain one-based. Do not infer page numbers by counting files or copy a one-based `0001.html` assumption from a standalone capture example.
+
+The converter's new `pages: N, assets: M` summary and the legacy `Slides: N, assets: M` summary are both recognized. Legacy single-file decks remain supported for binary overrides. DeckRender does not pass `--no-player` (which disables the lazy layout), or forward `--pages` to the converter (which reports only the filtered count); image selection happens against the validated complete manifest.
+
+Standalone capture and PDF printing share a worker pool capped at four pages, fixed slide bounds, animation freezing, local asset/font settling, and strict local request interception. Results are written directly to temporary files and emitted in numeric page order. Workers finish or fail before their shared browser context and temporary files are cleaned up.
+
+## Privacy and network boundary
+
+Local PPTX and PDF routes do not call DeckFlow and do not upload document bytes. They also do not resolve cloud credentials.
+
+`office2html` currently emits references to Tailwind CDN, Google Fonts, and Font Awesome. DeckRender blocks those requests on the PPTX fast path, injects a local utility-CSS compatibility layer, and uses installed system fonts, including explicit CJK fallback for Chromium PDF printing. This keeps rendering local but means a missing local font/icon can differ from a cloud render. The long-term upstream fix is a self-contained `office2html --offline` output.
+
+HTML/URL capture is different: URL input must fetch the requested URL, and HTML may intentionally reference remote assets. It still does not contact the DeckFlow rendering API. Callers needing air-gapped generic HTML should make the HTML and its assets self-contained.
+
+## Output and lifecycle guarantees
+
+Both engines share the same `--json` envelope, error/exit codes, output naming, zip/stdout behavior, and 1-based numeric page identifiers. Local temporary artifacts remain available until the common writer has copied them, then are removed on success or failure.
+
+Every multi-page path sorts by numeric `RenderArtifact.page`, never by filename. A 12-page selection therefore remains `1, 2, …, 10, 11, 12`, regardless of temporary names.
+
+Local PDF output is printed from the `office2html` HTML deck and merged page-by-page. Text remains selectable, but Office effects, font metrics, and PDF.js rasterization can differ from the managed cloud pipeline. These differences are surfaced as `caveat` in JSON and warnings on stderr.
+
+## SDK
+
+```ts
+import { render } from '@deckflow/deckrender';
+
+const result = await render({
+  input: 'deck.pptx',
+  engine: 'local',
+  format: 'image',
+  pages: '1-5',
+  out: 'frames/',
+});
+```
+
+The existing custom-engine API remains compatible:
+
+```ts
+const renderer = createRenderer({ engine: myRenderEngine });
+```
+
+For the one-shot `render()` helper, `engine` accepts either a built-in engine name or the legacy custom `RenderEngine` object. `customEngine` is also available on `RendererOptions` when a less overloaded spelling is preferred.
+
+A renderer already constructed with a custom engine rejects a second built-in engine name on `.render()`: the two authorities are mutually exclusive, which prevents a contradictory `local` label from being handed to a cloud custom engine.
+
+FILE source/docs/errors.md
+# Errors
+
+Errors go to stderr. Scripts should branch on the exit code first and parse the JSON only when they need the detail.
+
+## Exit codes
+
+| Code | Meaning                                                |
+| ---- | ------------------------------------------------------ |
+| `0`  | Success                                                |
+| `1`  | Render or conversion failure                           |
+| `2`  | Usage error, unsupported format, or unsupported option |
+| `3`  | Authentication error                                   |
+
+## Error codes
+
+| Code                 | Meaning                                                      | Exit |
+| -------------------- | ------------------------------------------------------------ | ---- |
+| `usage_error`        | Invalid flags, missing input, conflicting flags              | 2    |
+| `unsupported_format` | No route exists for this input/output pair                   | 2    |
+| `unsupported_option` | The route exists, but this flag cannot reach the backend     | 2    |
+| `not_implemented`    | The DeckFlow cloud cannot convert this pair yet              | 2    |
+| `auth_error`         | Credentials required, missing, or rejected                   | 3    |
+| `render_error`       | The render itself failed                                     | 1    |
+| `conversion_error`   | Rendered, but the artifact could not be retrieved or written | 1    |
+
+## JSON form
+
+```bash
+$ deckrender report.docx --format video --json
+```
+
+```json
+{
+  "ok": false,
+  "error": {
+    "code": "unsupported_format",
+    "message": "Cannot render .docx to video. Supported outputs for .docx: image, pdf.",
+    "hint": "Run `deckrender formats` or see docs/formats.md for the full support matrix."
+  }
+}
+```
+
+Written to stderr, so stdout stays empty on failure. `requestId` is included when the failure came from the backend — quote it in bug reports.
+
+## The three DeckRender-specific codes
+
+The render matrix has real holes, so these exist to tell apart "impossible", "not yet", and "that knob does not exist here".
+
+### `unsupported_format`
+
+No route at all, and none planned. The message lists what the input _can_ become:
+
+```
+Error: Cannot render .docx to video. Supported outputs for .docx: image, pdf.
+  Run `deckrender formats` or see docs/formats.md for the full support matrix.
+```
+
+Run `deckrender formats` for the whole matrix. A combination marked 🕓 there is
+`not_implemented` instead — `.pdf` to video, for one.
+
+### `unsupported_option`
+
+The conversion works; that particular flag has nowhere to land. The message says why, and offers a workaround where one exists:
+
+```
+Error: --width is not supported for .key input.
+  Rendering .key offers no resolution control. Workaround: render to PDF first, then run deckrender on the PDF.
+```
+
+DeckRender never accepts a flag and quietly ignores it — silently rendering something other than what you asked for is worse than failing.
+
+The exception is options inherited from a profile or config file, which are dropped with a warning instead. See [profiles.md](profiles.md).
+
+### `not_implemented`
+
+The DeckFlow cloud cannot do this conversion yet. The message says "coming soon" and names the missing backend capability:
+
+```
+Error: Rendering .xlsx to pdf is coming soon — not supported yet.
+  The DeckFlow cloud has no spreadsheet converter yet.
+  Track it in docs/roadmap.md.
+```
+
+The distinction from `unsupported_format` matters: one is worth waiting for, the
+other means find another approach. `deckrender formats` marks these `soon`.
+
+Rendering happens in the cloud, so this code always points upstream. DeckRender
+will not fill the gap locally with an approximation — see
+[the roadmap](roadmap.md#rendering-is-the-clouds-job).
+
+## Common cases
+
+| Message                                                 | Cause                                                                       |
+| ------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Reading from stdin requires an explicit source format` | Add `--from html` (or whichever format)                                     |
+| `Unrecognized input extension`                          | Set `--from` explicitly                                                     |
+| `--quiet conflicts with --verbose`                      | Pick one                                                                    |
+| `--pages conflicts with --page`                         | Pick one                                                                    |
+| `Requested page 9 but the document rendered 3 pages`    | Out-of-range `--pages`                                                      |
+| `--fps is not supported yet`                            | The video task accepts no parameters — see the [roadmap](roadmap.md)        |
+| `unknown option '--x'`                                  | Typo, or a flag that no longer exists — `--mode` was removed in v0.1        |
+| `... is coming soon`                                    | Planned combination; see `deckrender formats` and the [roadmap](roadmap.md) |
+| `Input is a directory`                                  | An iWork package — re-save it as a single file, or export to PDF           |
+| `Invalid value for quality: ultra`                      | `config set` rejected the value; the message lists what is allowed          |
+| `Authentication failed`                                 | `deckrender auth login`, or set `DECKFLOW_API_KEY`                          |
+
+## Authentication failures
+
+DeckRender does not ask for credentials up front — guest mode covers most use. A `401` mid-render opens the browser login and retries automatically.
+
+`auth_error` means that could not happen: an invalid or expired key, or a non-interactive session (no TTY, or `--json`) where the backend rejected the guest request.
+
+```bash
+deckrender auth status    # verifies against the backend and shows the source
+deckrender config list    # shows which credential is winning, and from where
+```
+
+`config list` is usually the fastest way to answer "why is it not using the key I just set?".
+
+### A rejected credential falls back to guest mode
+
+Credentials resolve from a [five-level chain](configuration.md), which includes
+files written by the other DeckFlow CLIs. A machine that once used `deckops` or
+exported `DECKHTML_API_KEY` is **not** in guest mode, even though nothing was
+configured for DeckRender.
+
+When the backend rejects whatever was sent, DeckRender treats it as no credential
+at all: it drops the credential, retries the render as a guest, and warns on
+stderr.
+
+```
+Warning: The backend rejected the token from ~/.deckops/config.json, so it is
+being ignored and the render retried in guest mode, which is rate-limited. Run
+`deckrender auth login` for full access, or `deckrender config list` to see where
+that credential came from.
+```
+
+An invalid credential is not a credential, and rendering is supposed to work with
+no setup at all — so leftover state on a machine must not turn a render guest mode
+would have completed into a hard failure. Agents and scripts are what hit this: an
+expired token nobody remembers configuring fails on a developer machine where the
+same code succeeds in a clean container. The warning names what was dropped, so
+the fallback is never silent.
+
+Two things travel with the rejected credential:
+
+- The `spaceId`, which belongs to that credential's workspace. Sending it as a
+  guest earns a `403`, so it is left behind too. A `403` that names your own data
+  is treated exactly like a `401` for the same reason — the workspace outlived
+  the login it belonged to.
+- The quota. Guest rendering is rate-limited; `deckrender auth login` restores
+  full access.
+
+Only a rejected credential triggers this. A `402 Payment Required` — a workspace
+out of balance — is a real answer about your account and is reported as such, not
+retried. If guest mode is refused as well, that failure is what you see:
+
+```
+Error: Authentication failed: invalid token
+  Run `deckrender auth login`, or set DECKFLOW_API_KEY in the environment.
+```
+
+At a terminal, that second failure opens the browser login and retries once more.
+
+## Retries
+
+Transient network and upstream failures are retried automatically, both for backend calls and artifact downloads. Explicit failures — 401, 403, 404 — fail immediately rather than stalling behind retries.
+
+### Intermittent Keynote failures
+
+Large Keynote files fail intermittently on the backend, with no detail beyond
+`Unknown error`. During development `.key` conversions succeeded roughly two runs
+in three on an 8.7 MB deck, producing a valid result when they did, and the same
+file's image render ranged from 20s to 150s — which points at load or an internal
+timeout rather than the document.
+
+DeckRender does **not** retry a failed conversion: the backend has already spent
+the work, and a second attempt would spend it again on what might be a genuine
+failure. Retry it yourself when the message carries no detail:
+
+```bash
+deckrender deck.key --format pdf -o deck.pdf || deckrender deck.key --format pdf -o deck.pdf
+```
+
+`scripts/conformance.mjs` retries once and labels the result flaky, so the
+project's own matrix check tolerates this without hiding it.
+
+A backend task that ends in `failed` surfaces as `render_error` with the backend's own message and the task id:
+
+```
+Error: Task convertor.ppt2image failed: unsupported embedded font
+  Inspect the task with: deckops task get task_abc123
+```
+
+FILE source/docs/formats.md
+# Formats
+
+```bash
+deckrender formats          # print this matrix in your terminal
+deckrender formats --engine local
+deckrender formats --engine auto
+deckrender formats --json   # machine-readable, includes the backend task chain
+```
+
+## Cloud matrix
+
+| Input                   | → image | → pdf | → video |
+| ----------------------- | ------- | ----- | ------- |
+| `.pptx`                 | ✅      | ✅    | ✅      |
+| `.ppt`                  | ✅      | 🕓    | ✅      |
+| `.pdf`                  | ✅      | ✅    | 🕓      |
+| `.key`                  | ✅      | ✅    | 🕓      |
+| `.docx`                 | ✅      | ✅    | —       |
+| `.doc`                  | —       | —     | —       |
+| `.xlsx`                 | 🕓      | 🕓    | —       |
+| `.pages`                | 🕓      | 🕓    | —       |
+| `.numbers`              | 🕓      | 🕓    | —       |
+| `.html` `.htm` and URLs | ✅      | ✅    | ✅      |
+| `.md`                   | ✅      | —     | —       |
+
+Image output supports `png`, `jpg` and `webp`.
+
+**🕓** means the DeckFlow cloud cannot convert it yet. Those fail with `not_implemented` and a message naming the missing backend task, rather than pretending the combination is impossible. What each one waits on is listed under [Coming soon](roadmap.md#coming-soon) in the roadmap.
+
+Every ✅ in this table is a cloud conversion. A cloud gap is not concealed by the local matrix.
+
+## Community/local matrix
+
+| Input                   | → image | → pdf | → video |
+| ----------------------- | ------- | ----- | ------- |
+| `.pptx`                 | ✅      | ✅    | —       |
+| `.pdf`                  | ✅      | ✅    | —       |
+| `.html` `.htm` and URLs | ✅      | 🕓    | —       |
+| `.ppt` `.key` `.docx` `.doc` `.xlsx` `.pages` `.numbers` `.md` | 🕓 | 🕓 | — |
+
+Local image output supports PNG and JPEG. WebP reports `unsupported_option`; it never becomes a hidden cloud conversion. The planned rows wait on `office2html` format support.
+
+A pair with no route at all — and none planned — fails immediately with the alternatives spelled out:
+
+```
+Error: Cannot render .docx to video. Supported outputs for .docx: image, pdf.
+  Run `deckrender formats` or see docs/formats.md for the full support matrix.
+```
+
+`--json` reports the exact route a conversion took, including the intermediate steps of a chained one:
+
+```json
+"route": ["convertor.doc2pdf", "convertor.pdf2image"]
+```
+
+## Which flags each route accepts
+
+Not every option applies everywhere. What a route can honour depends on how the image is produced, which is why `docx → image` accepts `--width` while `docx → pdf` does not.
+
+The cloud flag matrix is:
+
+| Input → image    | `--width` / `--scale`        | `--image-format` | `--pages`   |
+| ---------------- | ---------------------------- | ---------------- | ----------- |
+| `.pptx` `.ppt`   | ✅ snapped to 1080/1920/2560 | png, jpg, webp   | ✅          |
+| `.pdf`           | ✅ any value                 | png, jpg, webp   | ✅          |
+| `.docx`          | ✅ any value                 | png, jpg, webp   | ✅          |
+| `.key`           | ✗                            | png, webp        | ✅          |
+| `.html` and URLs | ✅                           | png, webp        | ✗ one image |
+| `.md`            | ✅                           | png, webp        | ✗ one image |
+
+`webp` works everywhere: it is produced by a separate conversion step rather than by the renderer itself.
+
+The local flag matrix is:
+
+| Input → image    | `--width` / `--scale` | `--image-format` | `--pages` |
+| ---------------- | --------------------- | ---------------- | --------- |
+| `.pptx`          | ✅ continuous         | png, jpg         | ✅ only selected pages are captured |
+| `.pdf`           | ✅ continuous         | png, jpg         | ✅ only selected pages are rasterized |
+| `.html` and URLs | ✅                    | png, jpg         | ✗ generic capture |
+
+PDF and video output accept no sizing, encoding, quality or page options — the backend tasks have no such parameters.
+
+## Where rendering happens
+
+| Engine/route             | Where          | What leaves your machine                    |
+| ------------------------ | -------------- | ------------------------------------------- |
+| `local` PPTX/PDF         | your machine   | no document bytes                           |
+| `local` HTML/URL         | your machine   | no DeckFlow upload; requested remote assets may be fetched |
+| `cloud`                  | DeckFlow cloud | the document, and any intermediate artifact |
+| `.pdf` → pdf             | your machine   | nothing — the file is copied as-is          |
+
+`.pdf → pdf` is the single exception, and it is not a render: the input is already in the target format, so the file is copied. No backend has a task for it, and uploading a PDF to get the same PDF back would be pure waste.
+
+A chained route uploads each intermediate too: `.docx → image` runs `convertor.doc2pdf`, downloads the PDF, and uploads it again for `convertor.pdf2image`. URL input is fetched by DeckRender on your machine, and it is that fetched HTML — not the URL — that is uploaded.
+
+`--json` reports which engine ran, so this is checkable rather than something to take on faith:
+
+```bash
+$ deckrender deck.pptx -o out/ --json | jq -r .engine
+cloud
+```
+
+`local` and `passthrough` mean document bytes were not uploaded to DeckFlow. `cloud` means they were. An explicit local selection never falls back; only `auto` may select cloud, with a warning. See [engines.md](engines.md) for setup, network boundaries and fidelity caveats.
+
+## Per-format notes
+
+Everything marked ✅ in the matrix works. These notes are about what the output _is_ — the
+cases where the result differs from a plain full-fidelity render.
+
+### Legacy Office formats
+
+Legacy PowerPoint `.ppt` files render to images and video. PDF output waits on the backend: the
+reliable route normalizes `.ppt` to `.pptx` before PDF conversion, and no task does that today.
+
+Legacy Word `.doc` files have no backend converter at all. Save them as `.docx` or export
+them to PDF before rendering.
+
+### Pages and Numbers — not yet
+
+`.pages` and `.numbers` are recognized but not renderable: the DeckFlow cloud has
+no converter for either, so both report `not_implemented`.
+
+They are deliberately not backed by the first-page preview iWork embeds in every
+document. That preview is a thumbnail, not a render — one page, at whatever size
+iWork happened to save — and answering `--format pdf` with it would report
+success for something the user did not ask for. A converter upstream is the only
+fix, and it is on the [roadmap](roadmap.md#coming-soon).
+
+In the meantime, export to PDF, PPTX or DOCX from Pages or Numbers and render that.
+
+Keynote is unaffected: `.key` has a cloud converter and renders every slide.
+
+iWork can also save a document as a *directory bundle* that Finder shows as a
+single file. There is nothing to upload in that shape, so DeckRender rejects it
+and says how to re-save it as a single file.
+
+### HTML to PDF and video — laid out as slides
+
+HTML is reconstructed as a slide document before export, so layout follows the
+slide model rather than the browser's. The video is a slideshow of that
+reconstruction, not a capture of the live page. DeckRender warns on stderr and
+reports a `caveat` in `--json`.
+
+For the most faithful HTML output today, render to image.
+
+### URLs
+
+The page is fetched and given a `<base href>` so relative assets resolve.
+Scripts still execute — rendering happens in a real browser.
+
+### Video
+
+`.pptx`, `.ppt` and `.html` convert to video. There are no video parameters yet,
+so `--fps`, `--duration` and `--transition` fail with an explanation rather than
+being quietly ignored. PDF and Keynote to video are on the
+[roadmap](roadmap.md).
+
+### webp
+
+Each frame is converted individually, four at a time, so a long deck takes
+noticeably longer in webp than in png. `--pages` is applied first, so narrowing
+the range also narrows the work.
+
+### No SVG
+
+Nothing in the pipeline emits SVG, so `--image-format svg` is not offered.
+Offering a value that always fails would be worse than leaving it out.
+
+## Behind the matrix
+
+`deckrender formats --engine <engine> --json` reports how each combination is produced, including the engine and ordered task list. The cloud matrix is verified by `scripts/conformance.mjs`; local contract, planning, ordering and real-browser routes have their own tests.
+
+FILE source/docs/index.md
+# DeckRender
+
+> Render PPTX, PDF, DOCX, Keynote, HTML and Markdown into images, PDF or video.
+
+```bash
+deckrender deck.pptx -o deck.png
+deckrender deck.pptx -o deck.pdf
+deckrender deck.pptx -o deck.mp4
+```
+
+DeckRender is a pure render engine: document in, pixels out. It does not parse content, extract text, or edit files — those belong to other DeckFlow tools.
+
+Choose the Community/local engine for private on-machine rendering or the managed cloud engine for the wider matrix. See [Engines](engines.md) and [Formats](formats.md), holes included.
+
+## Documentation
+
+|                                   |                                                           |
+| --------------------------------- | --------------------------------------------------------- |
+| [Quick start](quickstart.md)      | Install and first render                                  |
+| [CLI reference](cli.md)           | Every command and flag                                    |
+| [Formats](formats.md)             | What converts to what, and which flags each route accepts |
+| [Engines](engines.md)             | Local/cloud selection, setup and privacy boundaries       |
+| [Browser SDK](browser.md)         | Cloud-only browser API, input, preview, authentication and CORS |
+| [Profiles](profiles.md)           | Named flag presets                                        |
+| [Configuration](configuration.md) | Credentials, shared auth, render defaults                 |
+| [Errors](errors.md)               | Error codes and exit codes                                |
+| [Roadmap](roadmap.md)             | What is coming, and what is blocked upstream              |
+
+FILE source/docs/profiles.md
+# Profiles
+
+A profile is a named bundle of flag defaults. It never changes which backend tasks run — it only pre-fills options, and anything you type wins.
+
+```bash
+deckrender deck.pptx --profile web -o frames/
+deckrender config set profile web    # make it the default
+```
+
+## Built-in profiles
+
+| Profile        | Equivalent to                                                          |
+| -------------- | ---------------------------------------------------------------------- |
+| `web`          | `--format image --image-format webp --width 1920 --quality medium`     |
+| `presentation` | `--format image --image-format png --width 1920 --quality high`        |
+| `print`        | `--format pdf`                                                         |
+| `thumbnail`    | `--format image --image-format jpg --width 640 --quality low --page 1` |
+
+`print` carries no `--quality` on purpose: PDF routes reject it, and a profile should not ship a default that is guaranteed to be discarded.
+
+## Precedence
+
+Lowest first:
+
+```
+profile defaults  <  ~/.deckrender/config.json  <  command-line flags
+```
+
+```bash
+deckrender deck.pptx --profile web --image-format png
+# webp from the profile, png from the flag → png wins
+```
+
+## Profile defaults bend, explicit flags do not
+
+Not every option applies to every route. `--pages` is meaningless for HTML, which renders to a single image.
+
+If you type it, that is an error worth surfacing:
+
+```bash
+$ deckrender page.html --page 1
+Error: --pages is not supported for .html input, which renders to a single image.
+  The backend task convertor.html2png produces one full-page image.
+```
+
+If it came from a profile, DeckRender drops it and carries on:
+
+```bash
+$ deckrender page.html --profile thumbnail -o thumb.jpg
+Warning: Ignoring --pages from profile/config: --pages is not supported for .html input...
+Warning: Ignoring --image-format from profile/config: --image-format jpg is not supported...
+thumb.jpg
+```
+
+The distinction is deliberate. Silently discarding what you asked for hides bugs; failing on a default you never typed makes profiles useless. Dropped defaults are always announced on stderr — suppress them with `--quiet`.
+
+## Rolling your own
+
+There is no user-defined profile format yet. Use `config set` for persistent defaults, or a shell alias for a one-off combination:
+
+```bash
+alias deck-social='deckrender --format image --image-format webp --width 1200 --quality medium'
+```
+
+FILE source/docs/quickstart.md
+# Quick Start
+
+## Install
+
+```bash
+npx -y @deckflow/deckrender@latest deck.pptx
+```
+
+Or install it on your PATH:
+
+```bash
+npm install -g @deckflow/deckrender
+deckrender --version
+```
+
+Requires Node.js 18 or newer. No credentials needed to start.
+
+The compatible default is cloud guest mode. For Community rendering on your machine, install/configure Chrome, then select local. The optional `@deckflow/office2html` entry package installs the matching platform runtime:
+
+```bash
+deckrender config set engine local
+deckrender deck.pptx -o frames/
+```
+
+For a smaller cloud-only install, use `npm install -g --omit=optional @deckflow/deckrender`. Enable local rendering later with `npm install -g --include=optional @deckflow/deckrender`; only the current OS/CPU binary is installed. No binaries are downloaded during rendering.
+
+See [engines.md](engines.md) for dependency resolution and privacy details.
+
+## Render a deck
+
+```bash
+$ deckrender presentation.pptx
+presentation
+```
+
+```
+presentation/
+├── 001.png
+├── 002.png
+└── 003.png
+```
+
+With no `-o`, DeckRender writes a directory named after the input.
+
+## Pick a format
+
+The output extension is enough:
+
+```bash
+deckrender deck.pptx -o deck.pdf
+deckrender deck.pptx -o deck.mp4
+deckrender deck.pptx -o slide.png
+```
+
+Or say it explicitly:
+
+```bash
+deckrender deck.pptx --format pdf -o out/report.pdf
+```
+
+## Control size and pages
+
+```bash
+deckrender report.pdf --pages 1-5 --width 2560 -o pages/
+deckrender report.pdf --page 1 --width 640 -o thumb.png
+```
+
+On cloud routes `--pages` filters downloads after rendering. On local PPTX/PDF image routes only the selected pages are captured, so it also saves compute.
+
+## Other inputs
+
+```bash
+deckrender page.html -o shot.png
+deckrender https://example.com -o shot.png
+cat page.html | deckrender - --from html -o shot.png
+deckrender notes.md -o notes.png
+```
+
+Stdin has no filename to infer from, so `--from` is required there.
+
+## Use a profile
+
+Profiles are named bundles of flags:
+
+```bash
+deckrender deck.pptx --profile web -o frames/
+```
+
+`web` means `--format image --image-format webp --width 1920 --quality medium`. See [profiles.md](profiles.md).
+
+## Script it
+
+```bash
+$ deckrender deck.pptx --json
+{
+  "ok": true,
+  "input": "deck.pptx",
+  "format": "image",
+  "engine": "cloud",
+  "route": ["convertor.ppt2image"],
+  "pages": 3,
+  "outputs": [
+    { "page": 1, "file": "deck/001.png", "width": 1920, "height": 1080, "bytes": 184320 }
+  ],
+  "durationMs": 8123
+}
+```
+
+stdout carries only the JSON; progress and warnings go to stderr, so pipelines stay clean:
+
+```bash
+FIRST=$(deckrender deck.pptx --json | jq -r '.outputs[0].file')
+```
+
+Branch on the exit code: `0` success, `1` render failure, `2` usage, `3` auth. See [errors.md](errors.md).
+
+## Log in (optional)
+
+```bash
+deckrender auth login
+deckrender auth status
+```
+
+The token is stored in `~/.deckflow/credentials` and shared with every DeckFlow CLI — DeckHTML included. If your machine already has `DECKHTML_API_KEY` set, or you have run `deckops login`, DeckRender already uses it.
+
+```bash
+deckrender config list    # shows every value and where it came from
+```
+
+## Next
+
+- [CLI reference](cli.md) — every command and flag
+- [Formats](formats.md) — what converts to what, and which flags each route accepts
+- [Engines](engines.md) — Community/local and cloud setup and boundaries
+- [Configuration](configuration.md) — credentials and render defaults
+
+FILE source/docs/roadmap.md
+# Roadmap
+
+## Shipped
+
+### v0.1 — cloud client
+
+- Cloud conversion over `@deckops/sdk`
+- Profiles, JSON envelope, page selection, zip/stdout output
+- Shared credentials and guest mode
+
+### v0.2 — stricter cloud boundaries
+
+- Unsupported/planned cloud routes are explicit
+- Rejected credentials fall back to guest mode
+- Runtime validation for SDK inputs and custom engine output
+
+### v0.3 — Community/local engine and browser SDK
+
+- Independent `local` and `cloud` route tables
+- `--engine local|cloud|auto`, config and environment selection
+- PPTX→image/PDF through `office2html` and Chromium
+- PDF→image through PDF.js in Chromium; PDF→PDF passthrough
+- HTML/URL→image through Chromium
+- Numeric page-order guarantees and post-write temporary cleanup
+- Strict local PPTX/PDF boundary: no credential resolution, upload or silent cloud fallback
+- One pinned upstream `@deckflow/office2html` dependency that owns platform-runtime selection; cloud-only installs can omit it
+- A separate cloud-only browser entry with File/binary/inline text input and URL/Blob output
+- Shared planning and artifact execution; Node/CLI filesystem behavior stays compatible
+- Explicit browser guest opt-in, user-token authentication, and DOM-only consumer tests
+
+## Engine boundaries
+
+The Community engine sells local capability: engine, CLI and SDK. The cloud tiers sell a managed production system and a wider conversion matrix. One matrix never hides a gap in the other.
+
+- Explicit `local` is strict and never falls back.
+- `auto` is local-first and warns before selecting cloud.
+- Cloud-only combinations remain upstream DeckOps asks.
+- Local-only planned combinations remain upstream `office2html` asks.
+
+See [engines.md](engines.md) for setup and privacy details.
+
+## Next
+
+### Browser SDK follow-ups
+
+- Replace the temporary checksum-guarded upstream build bridge when DeckOps publishes a browser-safe export.
+- Production-origin CORS validation and live conversion checks remain deployment acceptance work.
+
+### Local distribution and offline fidelity
+
+- Add `office2html --version` and machine-readable conversion output.
+- Add upstream `office2html --offline` self-contained HTML so the local compatibility CSS/system-font fallback can be retired.
+- Add versioned local font/icon assets where licensing permits.
+- Extend local routes as `office2html` gains DOCX, XLSX and Keynote support.
+
+### Throughput
+
+- Batch rendering across many inputs
+- `--watch`
+- Render cache keyed on input hash, engine and normalized parameters
+- Reuse a warm browser across safe local batch jobs
+
+### Cloud upstream asks
+
+| Ask | Unlocks |
+| --- | ------- |
+| Publish a resolvable `@deckops/sdk` successor to 0.7.3 | Remove the current dependency pin and tsconfig declaration workaround |
+| Publish a browser-safe SDK export with correct declarations | Remove the browser build compatibility bridge |
+| Publish `html.getByURL` | Runtime-DOM cloud URL capture |
+| Parameters for `convertor.ppt2video` | FPS, duration and transitions |
+| Resolution/format parameters for Keynote image output | Keynote sizing and JPEG |
+| Page ranges on conversion tasks | Cloud compute savings from `--pages` |
+| Task chaining by upstream task id | Remove derived-route download/upload round trips |
+| Native HTML→PDF | Remove cloud HTML reconstruction caveat |
+| Pages, Numbers, PDF-video and Keynote-video converters | Fill current cloud planned cells |
+
+## v1.0 — frozen contracts
+
+The CLI JSON envelope, error codes, exit codes, engine-selection semantics and artifact layout become stable under semver.
+
+## Out of scope
+
+DeckRender renders. It does not parse document meaning, extract text, understand structure or edit files. Those belong to DeckProbe, DeckUse and DeckOps.
+
+FILE package/dist/cli.d.ts
+#!/usr/bin/env node
+/// <reference types="node" />
+import { Command } from 'commander';
+
+declare function buildProgram(): Command;
+
+export { buildProgram };
+
+FILE package/dist/index.d.ts
+/// <reference types="node" />
+import { DeckTaskType, DeckClient } from '@deckops/sdk';
+import { z } from 'zod';
+
+/** Built-in render backend selection. `auto` prefers a capable local route. */
+declare const ENGINE_PREFERENCES: readonly ["local", "cloud", "auto"];
+type EnginePreference = (typeof ENGINE_PREFERENCES)[number];
+/** Tasks understood by the bundled Community/local engine. */
+declare const LOCAL_TASK_TYPES: readonly ["local.office2html", "local.capture", "local.capture-pdf", "local.pdf-merge", "local.pdfjs"];
+type LocalTaskType = (typeof LOCAL_TASK_TYPES)[number];
+/** Output artifact families DeckRender can produce. */
+declare const TARGET_FORMATS: readonly ["image", "pdf", "video"];
+type TargetFormat = (typeof TARGET_FORMATS)[number];
+/** Image encodings. `webp` is always produced by a trailing conversion step. */
+declare const IMAGE_FORMATS: readonly ["png", "jpg", "webp"];
+type ImageFormat = (typeof IMAGE_FORMATS)[number];
+/**
+ * Input families DeckRender knows how to route.
+ *
+ * A URL is not a family of its own: it is fetched locally and classified as
+ * `html` (or whatever `--from` says), so one row of the render matrix serves
+ * both local files and hosted pages.
+ */
+declare const SOURCE_FORMATS: readonly ["pptx", "ppt", "pdf", "key", "docx", "doc", "xlsx", "pages", "numbers", "html", "md"];
+type SourceFormat = (typeof SOURCE_FORMATS)[number];
+declare const QUALITIES: readonly ["low", "medium", "high"];
+type Quality = (typeof QUALITIES)[number];
+declare const PROFILE_NAMES: readonly ["web", "presentation", "print", "thumbnail"];
+type ProfileName = (typeof PROFILE_NAMES)[number];
+/**
+ * A step in a RenderPlan.
+ *
+ * Cloud plans contain DeckOps tasks; local plans contain LocalTaskType values.
+ * `passthrough` copies the input unchanged, which is not a render.
+ */
+type RenderStepTask = DeckTaskType | LocalTaskType | 'passthrough';
+interface RenderStep {
+    task: RenderStepTask;
+    /**
+     * `single` runs one backend task for the whole carrier.
+     * `per-frame` runs one backend task per artifact produced so far.
+     */
+    fanout: 'single' | 'per-frame';
+    /** Task parameters, already mapped from normalized options. */
+    params: Record<string, unknown>;
+}
+type RouteKind = 'direct' | 'derived' | 'passthrough';
+/**
+ * The render pipeline IR.
+ *
+ * This is deliberately a plan for *rendering*, not a model of the document:
+ * DeckRender never parses content.
+ */
+interface RenderPlan {
+    source: SourceFormat;
+    target: TargetFormat;
+    imageFormat: ImageFormat;
+    kind: RouteKind;
+    steps: RenderStep[];
+    /** Selected 1-based page numbers, or undefined for "all pages". */
+    pages?: number[];
+    /** Known fidelity trade-off for this route, surfaced to the user. */
+    caveat?: string;
+}
+interface RenderArtifact {
+    /** 1-based page number as rendered by the backend. */
+    page: number;
+    /** http(s) URL, or an absolute local path for passthrough routes. */
+    source: string;
+    /** Lowercased extension including the dot, e.g. `.png`. */
+    ext: string;
+    bytes?: number;
+    width?: number;
+    height?: number;
+}
+interface RenderInput {
+    kind: 'file' | 'url' | 'stdin' | 'memory';
+    format: SourceFormat;
+    /** Absolute local path, when the source is a file the engine can upload. */
+    path?: string;
+    /** In-memory bytes for stdin, downloaded URLs, and browser input — no temp file needed. */
+    bytes?: Uint8Array;
+    /** Upload filename for `bytes`. */
+    name?: string;
+    /**
+     * Text payload. HTML and Markdown stay in memory until the cloud engine
+     * uploads them as source files; no temporary local file is needed.
+     */
+    text?: string;
+    /** Value shown in the result: path, URL, browser filename, or `-` for stdin. */
+    display: string;
+}
+interface RenderOptions {
+    /** File path, URL, or `-` for stdin. */
+    input: string;
+    /** Built-in engine. `auto` prefers local and never silently uploads from an explicit local choice. */
+    engine?: EnginePreference;
+    /** Explicit source format. Required for stdin. */
+    from?: SourceFormat;
+    format?: TargetFormat;
+    imageFormat?: ImageFormat;
+    out?: string;
+    /** Page selection, e.g. `1-5`, `3`, `1,3,5-7`. */
+    pages?: string;
+    /** Target long edge in pixels. */
+    width?: number;
+    /** Multiplier applied to the format's base long edge. */
+    scale?: number;
+    quality?: Quality;
+    profile?: ProfileName;
+    /** Embed fonts when the route passes through html2pptx. */
+    embedFonts?: boolean;
+    /** Task wait timeout in seconds. */
+    timeout?: number;
+    /** Chromium/Chrome executable used by the local engine. */
+    executablePath?: string;
+    /** office2html executable used by local PPTX routes. */
+    office2htmlPath?: string;
+    /**
+     * Options that came from a profile or config file rather than being chosen
+     * explicitly. A route that cannot honour these drops them with a warning
+     * instead of failing. See `SoftOption` in core/plan.ts.
+     */
+    soft?: ReadonlySet<'imageFormat' | 'width' | 'scale' | 'quality' | 'pages' | 'embedFonts'>;
+    onProgress?: (event: ProgressEvent) => void;
+}
+interface ProgressEvent {
+    phase: 'resolve' | 'plan' | 'upload' | 'task' | 'wait' | 'download' | 'write';
+    message: string;
+    /** Present for `task`/`wait` phases. */
+    task?: RenderStepTask;
+    /** 0..1 when the phase reports granular progress. */
+    ratio?: number;
+}
+interface RenderOutputEntry {
+    page: number;
+    file: string;
+    width?: number;
+    height?: number;
+    bytes?: number;
+}
+interface RenderResult {
+    ok: true;
+    input: string;
+    format: TargetFormat;
+    engine: string;
+    /** Observable projection of the RenderPlan: every backend task, in order. */
+    route: RenderStepTask[];
+    /** Total pages the document rendered to, before `--pages` filtering. */
+    pages: number;
+    outputs: RenderOutputEntry[];
+    durationMs: number;
+    /** Present when the route has a known fidelity trade-off. */
+    caveat?: string;
+}
+
+interface ExecuteContext {
+    input: RenderInput;
+    onProgress?: (event: ProgressEvent) => void;
+}
+interface EngineOutput {
+    /** Artifacts after page selection, in page order. */
+    artifacts: RenderArtifact[];
+    /** Pages the document rendered to, before `--pages` filtering. */
+    totalPages: number;
+    /** Release temporary engine resources after the artifact writer has consumed them. */
+    cleanup?: () => Promise<void> | void;
+}
+/**
+ * A render backend.
+ *
+ * DeckRender ships cloud and local implementations. The plan, parameter
+ * mapping, artifact naming and output envelope stay engine-agnostic, and a
+ * caller may still substitute a custom backend.
+ */
+interface RenderEngine {
+    readonly name: string;
+    /** Whether this engine can execute the plan as written. */
+    supports(plan: RenderPlan): boolean;
+    execute(plan: RenderPlan, ctx: ExecuteContext): Promise<EngineOutput>;
+}
+
+/**
+ * Shape of `~/.deckflow/credentials`.
+ *
+ * DeckHTML documents this path but ships no implementation, so DeckRender is
+ * the first writer. Every field is optional and writes are read-merge-write:
+ * a future DeckHTML implementation adding its own keys must not lose them.
+ * See docs/configuration.md.
+ */
+declare const SharedCredentialsSchema: z.ZodObject<{
+    apiKey: z.ZodOptional<z.ZodString>;
+    token: z.ZodOptional<z.ZodString>;
+    spaceId: z.ZodOptional<z.ZodString>;
+    apiBase: z.ZodOptional<z.ZodString>;
+}, "passthrough", z.ZodTypeAny, z.objectOutputType<{
+    apiKey: z.ZodOptional<z.ZodString>;
+    token: z.ZodOptional<z.ZodString>;
+    spaceId: z.ZodOptional<z.ZodString>;
+    apiBase: z.ZodOptional<z.ZodString>;
+}, z.ZodTypeAny, "passthrough">, z.objectInputType<{
+    apiKey: z.ZodOptional<z.ZodString>;
+    token: z.ZodOptional<z.ZodString>;
+    spaceId: z.ZodOptional<z.ZodString>;
+    apiBase: z.ZodOptional<z.ZodString>;
+}, z.ZodTypeAny, "passthrough">>;
+type SharedCredentials = z.infer<typeof SharedCredentialsSchema>;
+/** Where a resolved value came from. Surfaced by `deckrender config list`. */
+type CredentialSource = 'flag' | `env:${string}` | 'file:~/.deckflow/credentials' | 'file:~/.deckops/config.json' | 'default';
+interface ResolvedCredentials {
+    apiKey?: string;
+    token?: string;
+    spaceId?: string;
+    apiBase: string;
+    sources: {
+        apiKey?: CredentialSource;
+        token?: CredentialSource;
+        spaceId?: CredentialSource;
+        apiBase: CredentialSource;
+    };
+}
+interface CredentialOverrides {
+    apiKey?: string;
+    token?: string;
+    spaceId?: string;
+    apiBase?: string;
+}
+declare const DEFAULT_API_BASE = "https://app.deckflow.com/v1";
+declare function readSharedCredentials(): Promise<SharedCredentials>;
+/**
+ * Resolve credentials through the five-level chain in docs/configuration.md:
+ *
+ *   flags → env → ~/.deckflow/credentials → ~/.deckops/config.json → defaults
+ *
+ * Each field resolves independently, so an API key from the environment can
+ * combine with a spaceId stored by the DeckOps CLI.
+ */
+declare function resolveCredentials(overrides?: CredentialOverrides): Promise<ResolvedCredentials>;
+declare function hasCredentials(resolved: ResolvedCredentials): boolean;
+/**
+ * Describe which credentials are being sent, and where they came from.
+ *
+ * The resolution chain picks up credentials nobody configured for DeckRender —
+ * another DeckFlow tool's `~/.deckops/config.json`, an exported
+ * `DECKHTML_API_KEY`. When one of those is expired the backend answers with a
+ * bare "Authentication failed" and nothing points at the file to clean up.
+ * Returns undefined in guest mode, where there is no credential to name.
+ */
+declare function describeCredentialOrigin(resolved: ResolvedCredentials): string | undefined;
+/**
+ * Merge values into `~/.deckflow/credentials`.
+ *
+ * Read-merge-write so that keys owned by other DeckFlow tools survive.
+ * Passing `null` for a field deletes it.
+ */
+declare function writeSharedCredentials(patch: Partial<Record<keyof SharedCredentials, string | null>>): Promise<string>;
+
+interface RendererOptions extends CredentialOverrides {
+    /** Pre-built DeckOps client. Supplying one skips credential resolution. */
+    client?: DeckClient;
+    /** Custom engine. Overrides built-in engine construction. */
+    engine?: RenderEngine;
+    /** Preferred spelling for a custom engine; `engine` remains for compatibility. */
+    customEngine?: RenderEngine;
+    /** Local Chromium override. */
+    executablePath?: string;
+    /** Local office2html override. */
+    office2htmlPath?: string;
+    /** Called with non-fatal notices, e.g. a snapped resolution. */
+    onWarning?: (message: string) => void;
+    /** Interactive login hook, invoked by the SDK on a 401. */
+    onUnauthorized?: () => Promise<{
+        token: string;
+        spaceId?: string;
+    } | string>;
+    /** Checkout hook, invoked by the SDK on a 402. */
+    onPaymentRequired?: () => Promise<void>;
+}
+interface Renderer {
+    render(options: RenderOptions): Promise<RenderResult>;
+}
+declare function createRenderer(rendererOptions?: RendererOptions): Renderer;
+/** One-shot render. Equivalent to `createRenderer(opts).render(opts)`. */
+type OneShotRenderOptions = Omit<RenderOptions, 'engine'> & Omit<RendererOptions, 'engine'> & {
+    /** Built-in engine name, or the legacy custom RenderEngine value. */
+    engine?: EnginePreference | RenderEngine;
+};
+declare function render(options: OneShotRenderOptions): Promise<RenderResult>;
+
+interface PlanInput {
+    /** Concrete plan backend. `auto` is resolved before planning. */
+    engine?: Exclude<EnginePreference, 'auto'>;
+    source: SourceFormat;
+    target: TargetFormat;
+    imageFormat?: ImageFormat;
+    width?: number;
+    scale?: number;
+    quality?: Quality;
+    pages?: number[];
+    embedFonts?: boolean;
+    /**
+     * Option names that came from a profile or config file rather than from the
+     * command line.
+     *
+     * An option the user typed must never be silently dropped — that is the
+     * whole reason `unsupported_option` exists. But a default inherited from
+     * `--profile thumbnail` should not make an otherwise valid render fail, so
+     * soft options are dropped with a warning instead of throwing.
+     */
+    soft?: ReadonlySet<SoftOption>;
+}
+type SoftOption = 'imageFormat' | 'width' | 'scale' | 'quality' | 'pages' | 'embedFonts';
+interface PlanWarning {
+    message: string;
+}
+interface PlanResult {
+    plan: RenderPlan;
+    warnings: PlanWarning[];
+}
+declare function buildPlan(input: PlanInput): PlanResult;
+
+/** Public guardrails shared by the SDK, CLI and persisted configuration. */
+declare const MAX_RENDER_WIDTH = 32768;
+declare const MAX_RENDER_SCALE = 16;
+declare const MAX_TIMEOUT_SECONDS = 86400;
+declare const MAX_PAGE_NUMBER = 100000;
+
+/**
+ * Parse a page selection: `3`, `1-5`, `1,3,5-7`.
+ *
+ * 1-based, inclusive ranges. Returns sorted unique page numbers.
+ *
+ * Note this only *selects* pages for download — the backend still renders the
+ * whole document, because no DeckOps conversion task accepts a page range.
+ * See docs/formats.md.
+ */
+declare function parsePageSelection(spec: string): number[];
+/**
+ * Keep only the selected pages.
+ *
+ * Selections beyond the rendered page count are reported rather than silently
+ * dropped — a typo in `--pages` should not look like a successful render.
+ */
+declare function applyPageSelection<T extends {
+    page: number;
+}>(items: T[], pages: number[]): T[];
+
+declare const DECKRENDER_ENGINE_ENV = "DECKRENDER_ENGINE";
+/** Resolve CLI/config selection without letting an invalid env value slip through. */
+declare function resolveEnginePreference(explicit?: EnginePreference, configured?: EnginePreference, env?: NodeJS.ProcessEnv): EnginePreference;
+interface ConcreteEngineSelection {
+    engine: Exclude<EnginePreference, 'auto'>;
+    fellBackToCloud: boolean;
+}
+/** `auto` is local-first; explicit `local` is never allowed to become cloud. */
+declare function concreteEngineFor(preference: EnginePreference, source: SourceFormat, target: TargetFormat): ConcreteEngineSelection;
+
+/**
+ * The render matrix.
+ *
+ * Every entry here is backed by a task type that actually exists in
+ * @deckops/sdk — see docs/formats.md for the line-by-line citations.
+ * Absence from this table is the single source of truth for
+ * `unsupported_format`.
+ *
+ * This is the cloud matrix only. A format the backend cannot convert stays a
+ * visible cloud gap until DeckOps gains a task; the separate local matrix must
+ * not be used to make this table look wider than the managed service is.
+ */
+interface BaseRoute {
+    kind: RouteKind;
+    /** Ordered backend tasks. Empty only for the passthrough route. */
+    tasks: DeckTaskType[];
+    /** Known fidelity trade-off, surfaced to the user on stderr and in --json. */
+    caveat?: string;
+}
+/**
+ * Combinations the DeckFlow cloud cannot do yet, but is expected to.
+ *
+ * Kept in the table rather than left to fall through to `unsupported_format`
+ * so the message can say "not yet" instead of "never", and name the missing
+ * backend capability. Every entry here is an upstream ask, not local work:
+ * DeckRender never renders a format itself to fill a gap. See docs/roadmap.md.
+ */
+declare const NOT_IMPLEMENTED: Readonly<Partial<Record<SourceFormat, Partial<Record<TargetFormat, string>>>>>;
+declare function plannedReason(source: SourceFormat, target: TargetFormat): string | undefined;
+declare const ROUTES: Readonly<Record<SourceFormat, Partial<Record<TargetFormat, BaseRoute>>>>;
+/**
+ * Extensions we recognize as documents but cannot render.
+ *
+ * Listed separately from ROUTES so the error can name the format instead of
+ * falling back to the vaguer "unknown extension".
+ */
+declare const KNOWN_UNRENDERABLE_EXTENSIONS: readonly [".xls", ".txt", ".rtf", ".odt", ".ods", ".odp"];
+declare function findRoute(source: SourceFormat, target: TargetFormat): BaseRoute | undefined;
+declare function supportedTargets(source: SourceFormat): TargetFormat[];
+/** How `--width` / `--scale` can land on a given task. */
+type ResolutionSupport = {
+    kind: 'none';
+}
+/** Fixed set of allowed values; anything else is snapped to the nearest. */
+ | {
+    kind: 'tiered';
+    tiers: number[];
+    base: number;
+}
+/** Arbitrary pixel value for the long edge. */
+ | {
+    kind: 'free';
+    base: number;
+}
+/** Multiplier plus an optional explicit viewport/page width. */
+ | {
+    kind: 'scale';
+    widthParam: 'width' | 'pageWidth';
+};
+interface TaskCapability {
+    resolution: ResolutionSupport;
+    /** Whether the task lets the caller choose png vs jpg. */
+    imageFormat: boolean;
+    /** Whether the task emits one artifact per document page. */
+    multiFrame: boolean;
+}
+declare function capabilityFor(task: DeckTaskType): TaskCapability;
+/**
+ * The task whose parameters govern image output for this route.
+ *
+ * For chained routes this is the *last* image producer, which is why
+ * `docx → image` gains `--width` support that `docx → pdf` cannot have:
+ * the resolution knob belongs to `convertor.pdf2image` at the end of the chain.
+ */
+declare function imageProducingTask(tasks: DeckTaskType[]): DeckTaskType | undefined;
+/** Snap to the nearest allowed tier. Ties round up to the higher tier. */
+declare function snapToTier(value: number, tiers: number[]): number;
+
+/**
+ * Normalize a `tasks.down()` payload into ordered artifacts.
+ *
+ * DeckOps returns three different shapes depending on the task
+ * (see DeckTaskTypeResult in @deckops/sdk):
+ *
+ *   ConvertFileResult[]  — multi-frame converters (ppt2image, pdf2image, ...)
+ *   FileResult           — single-file converters (html2png, convertWebp, ...)
+ *   { target: FileResult } — html2pptx
+ *
+ * A file tuple is `[path, bytes, hash, bounds?]`, where `bounds` carries the
+ * page geometry, so width/height never have to be measured locally.
+ */
+declare function normalizeTaskResult(result: unknown): RenderArtifact[];
+/** Extension from a URL or path, ignoring query strings. Defaults to `.bin`. */
+declare function extensionOf(source: string): string;
+
+interface CloudEngineOptions {
+    client: DeckClient;
+    /**
+     * Whether a token or API key was resolved.
+     *
+     * Guest tasks are created in a pending state and need an explicit
+     * `tasks.start()`; authenticated tasks start on their own.
+     */
+    authenticated: boolean;
+    /**
+     * Read the current authentication state.
+     *
+     * The SDK may obtain credentials lazily after a 401, so callers that use
+     * interactive login should provide this instead of relying on the initial
+     * `authenticated` snapshot.
+     */
+    isAuthenticated?: () => boolean;
+    /**
+     * Where the credentials being sent came from, named in the 401 hint.
+     *
+     * Read on each failure rather than captured once, so that a credential
+     * replaced mid-render by an interactive login is not blamed for a later 401.
+     */
+    credentialOrigin?: () => string | undefined;
+    /** Task wait timeout in seconds. */
+    timeout?: number;
+    /** Parallel task count for per-frame steps. */
+    concurrency?: number;
+    /** Browser errors must not suggest CLI login or environment variables. */
+    runtime?: 'node' | 'browser';
+}
+declare class CloudEngine implements RenderEngine {
+    readonly name = "cloud";
+    private readonly client;
+    private readonly isAuthenticated;
+    private readonly credentialOrigin;
+    private readonly timeout;
+    private readonly limit;
+    private readonly runtime;
+    constructor(options: CloudEngineOptions);
+    /** `mapSdkError` with this engine's credential context attached. */
+    private mapError;
+    supports(plan: RenderPlan): boolean;
+    execute(plan: RenderPlan, ctx: ExecuteContext): Promise<EngineOutput>;
+    private runSingle;
+    private runPerFrame;
+    private runTask;
+    /** Reduce a carrier to bytes the backend can accept as a file. */
+    private materialize;
+    private upload;
+    private download;
+}
+
+interface LocalRoute {
+    kind: RouteKind;
+    tasks: LocalTaskType[];
+    caveat?: string;
+}
+/**
+ * Community engine capability table.
+ *
+ * It deliberately stays separate from the DeckOps table: selecting `local`
+ * is a privacy boundary, so absence here must never become an implicit cloud
+ * fallback.
+ */
+declare const LOCAL_ROUTES: Readonly<Record<SourceFormat, Partial<Record<TargetFormat, LocalRoute>>>>;
+/** Local combinations expected to become available as converters are added. */
+declare const LOCAL_NOT_IMPLEMENTED: Readonly<Partial<Record<SourceFormat, Partial<Record<TargetFormat, string>>>>>;
+declare function findLocalRoute(source: SourceFormat, target: TargetFormat): LocalRoute | undefined;
+declare function localPlannedReason(source: SourceFormat, target: TargetFormat): string | undefined;
+declare function localSupportedTargets(source: SourceFormat): TargetFormat[];
+
+declare const OFFICE2HTML_PATH_ENV = "DECKRENDER_OFFICE2HTML_PATH";
+declare function resolveOffice2htmlBinary(explicitPath?: string): Promise<string>;
+
+declare const CHROMIUM_PATH_ENV = "DECKRENDER_CHROMIUM_EXECUTABLE_PATH";
+
+interface LocalEngineOptions {
+    /** Per-operation timeout in seconds. */
+    timeout?: number;
+    executablePath?: string;
+    office2htmlPath?: string;
+}
+declare class LocalEngine implements RenderEngine {
+    readonly name = "local";
+    private readonly timeoutMs;
+    private readonly executablePath?;
+    private readonly office2htmlPath?;
+    constructor(options?: LocalEngineOptions);
+    supports(plan: RenderPlan): boolean;
+    execute(plan: RenderPlan, ctx: ExecuteContext): Promise<EngineOutput>;
+}
+
+/** Preserve relative assets when inline HTML is detached from its origin. */
+declare function withBaseHref(html: string, url: string): string;
+
+interface ResolveInputOptions {
+    /** Explicit source format. Required for stdin, optional elsewhere. */
+    from?: SourceFormat;
+    /** Injected for tests. */
+    readStdin?: () => Promise<Uint8Array>;
+    fetchImpl?: typeof fetch;
+}
+declare function resolveInput(spec: string, options?: ResolveInputOptions): Promise<RenderInput>;
+/** Base name used when deriving an output path from the input. */
+declare function inputBaseName(input: RenderInput): string;
+
+interface WriteOptions {
+    /** `-o` value. Undefined means "derive from the input". */
+    out?: string;
+    /** Base name used when `out` is absent, e.g. `presentation`. */
+    baseName: string;
+    /** Directory used when `out` is absent. */
+    baseDir: string;
+    onProgress?: (event: ProgressEvent) => void;
+}
+interface WriteResult {
+    entries: RenderOutputEntry[];
+    /** What the human-readable success line prints. */
+    target: string;
+}
+/**
+ * Persist artifacts, following the layout rules in docs/cli.md.
+ *
+ * The shape of the output depends on both `-o` and how many frames came back,
+ * so all of that decision-making lives here rather than being spread across
+ * the engine and the CLI.
+ */
+declare function writeArtifacts(artifacts: RenderArtifact[], options: WriteOptions): Promise<WriteResult>;
+
+/** Default file extension for a target format when nothing else says otherwise. */
+declare const DEFAULT_EXTENSION: Record<TargetFormat, string>;
+interface InferredOutput {
+    format?: TargetFormat;
+    imageFormat?: 'png' | 'jpg' | 'webp';
+}
+/** Infer `--format` / `--image-format` from an output path's extension. */
+declare function inferFromOutputPath(out: string): InferredOutput;
+/**
+ * Zero-padded frame name: `001.png`.
+ *
+ * Width is at least 3 so small decks still sort correctly next to large ones.
+ */
+declare function frameName(index: number, total: number, ext: string): string;
+/** `out.png` + frame 2 of 12 → `out-002.png`. */
+declare function templatedName(out: string, index: number, total: number): string;
+
+interface ProfileDefaults {
+    format?: TargetFormat;
+    imageFormat?: ImageFormat;
+    width?: number;
+    quality?: Quality;
+    pages?: string;
+}
+/**
+ * Named bundles of flag defaults — not separate execution paths.
+ *
+ * A profile never changes the route; it only pre-fills flags, and anything the
+ * user types wins. Values that a given route cannot honour are dropped with a
+ * warning rather than failing the render (see `SoftOption` in core/plan.ts).
+ */
+declare const PROFILES: Record<ProfileName, ProfileDefaults>;
+type LayeredOptions = Pick<RenderOptions, 'format' | 'imageFormat' | 'width' | 'scale' | 'quality' | 'pages' | 'embedFonts' | 'timeout'>;
+interface LayerResult {
+    options: LayeredOptions;
+    /** Which options came from a profile or config rather than the command line. */
+    soft: Set<SoftOption>;
+}
+/**
+ * Merge configuration layers.
+ *
+ * Precedence, lowest first: profile defaults, config file, explicit flags.
+ * Environment variables are handled by the credential layer, which is a
+ * separate concern from render defaults.
+ */
+declare function layerOptions(profile: ProfileDefaults | undefined, config: LayeredOptions, explicit: LayeredOptions): LayerResult;
+
+/**
+ * Error codes and exit codes.
+ *
+ * The first four codes are shared verbatim with DeckHTML so that scripts can
+ * treat any DeckFlow CLI the same way. `unsupported_format` and
+ * `unsupported_option` are DeckRender-specific: the render matrix has real
+ * holes (see docs/formats.md) and users need to tell "this pair has
+ * no route at all" apart from "the route exists but this knob does not".
+ */
+declare const ERROR_CODES: readonly ["usage_error", "auth_error", "unsupported_format", "unsupported_option", "not_implemented", "render_error", "conversion_error"];
+type ErrorCode = (typeof ERROR_CODES)[number];
+declare const ExitCode: {
+    readonly SUCCESS: 0;
+    readonly ERROR: 1;
+    readonly USAGE: 2;
+    readonly AUTH: 3;
+};
+type ExitCodeValue = (typeof ExitCode)[keyof typeof ExitCode];
+
+interface DeckRenderErrorOptions {
+    /** Actionable next step. Rendered on its own line after the message. */
+    hint?: string;
+    /** Backend request id, when the failure came from the DeckOps API. */
+    requestId?: string;
+    cause?: unknown;
+}
+declare class DeckRenderError extends Error {
+    readonly code: ErrorCode;
+    readonly hint?: string;
+    readonly requestId?: string;
+    constructor(code: ErrorCode, message: string, options?: DeckRenderErrorOptions);
+    get exitCode(): ExitCodeValue;
+    toJSON(): {
+        code: ErrorCode;
+        message: string;
+        hint?: string;
+        requestId?: string;
+    };
+    static usage(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    static auth(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    static unsupportedFormat(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    static unsupportedOption(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    /** Planned capability that has not shipped. Distinct from "impossible". */
+    static notImplemented(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    static render(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+    static conversion(message: string, options?: DeckRenderErrorOptions): DeckRenderError;
+}
+declare function isDeckRenderError(value: unknown): value is DeckRenderError;
+
+interface SdkErrorContext {
+    /**
+     * Where the credentials being sent came from, as
+     * `describeCredentialOrigin` phrases it. Named in the 401 hint, because a
+     * credential the user never configured for DeckRender is the hardest kind to
+     * find. Omitted in guest mode, where there is nothing to name.
+     */
+    credentialOrigin?: string;
+    runtime?: 'node' | 'browser';
+}
+/**
+ * Whether the backend rejected the credentials that were sent.
+ *
+ * Two shapes mean the same thing. A 401 is the credential itself being refused.
+ * A 403 naming the caller's own data is a `spaceId` that outlived the login it
+ * belonged to — the workspace is real, it just is not this caller's any more.
+ *
+ * Reads the HTTP status rather than the mapped `ErrorCode`, in both directions:
+ * a stale-space 403 arrives as `conversion_error` when it surfaces from an
+ * upload, and a 402 arrives as `auth_error` even though a workspace out of
+ * balance is a real answer about the account, not a bad credential. See the
+ * guest fallback in core/renderer.ts.
+ */
+declare function credentialsRejected(error: unknown): boolean;
+/**
+ * Translate a thrown value into a DeckRenderError.
+ *
+ * DeckRenderErrors pass through untouched — they already carry the code the
+ * caller intended. Everything else is classified, with `APIError` (from
+ * @deckops/sdk) mapped by HTTP status so that 401/402 surface as auth failures
+ * rather than generic render failures.
+ */
+declare function mapSdkError(error: unknown, fallback?: ErrorCode, context?: SdkErrorContext): DeckRenderError;
+
+/**
+ * Package version.
+ *
+ * Inlined rather than read from package.json at runtime: the bundled CLI lives
+ * in dist/ and reading `../package.json` breaks under global installs and npx.
+ * Kept in sync by scripts/sync-version.mjs, which CI verifies.
+ */
+declare const VERSION = "0.3.1";
+
+export { type BaseRoute, CHROMIUM_PATH_ENV, CloudEngine, type CloudEngineOptions, type ConcreteEngineSelection, type CredentialOverrides, type CredentialSource, DECKRENDER_ENGINE_ENV, DEFAULT_API_BASE, DEFAULT_EXTENSION, DeckRenderError, ENGINE_PREFERENCES, ERROR_CODES, type EngineOutput, type EnginePreference, type ErrorCode, type ExecuteContext, ExitCode, IMAGE_FORMATS, type ImageFormat, KNOWN_UNRENDERABLE_EXTENSIONS, LOCAL_NOT_IMPLEMENTED, LOCAL_ROUTES, LOCAL_TASK_TYPES, LocalEngine, type LocalEngineOptions, type LocalRoute, type LocalTaskType, MAX_PAGE_NUMBER, MAX_RENDER_SCALE, MAX_RENDER_WIDTH, MAX_TIMEOUT_SECONDS, NOT_IMPLEMENTED, OFFICE2HTML_PATH_ENV, type OneShotRenderOptions, PROFILES, PROFILE_NAMES, type PlanInput, type PlanResult, type ProfileDefaults, type ProfileName, type ProgressEvent, QUALITIES, type Quality, ROUTES, type RenderArtifact, type RenderEngine, type RenderInput, type RenderOptions, type RenderOutputEntry, type RenderPlan, type RenderResult, type RenderStep, type RenderStepTask, type Renderer, type RendererOptions, type ResolveInputOptions, type ResolvedCredentials, type RouteKind, SOURCE_FORMATS, type SdkErrorContext, type SharedCredentials, type SoftOption, type SourceFormat, TARGET_FORMATS, type TargetFormat, type TaskCapability, VERSION, type WriteOptions, type WriteResult, applyPageSelection, buildPlan, capabilityFor, concreteEngineFor, createRenderer, credentialsRejected, describeCredentialOrigin, extensionOf, findLocalRoute, findRoute, frameName, hasCredentials, imageProducingTask, inferFromOutputPath, inputBaseName, isDeckRenderError, layerOptions, localPlannedReason, localSupportedTargets, mapSdkError, normalizeTaskResult, parsePageSelection, plannedReason, readSharedCredentials, render, resolveCredentials, resolveEnginePreference, resolveInput, resolveOffice2htmlBinary, snapToTier, supportedTargets, templatedName, withBaseHref, writeArtifacts, writeSharedCredentials };

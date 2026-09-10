@@ -1,0 +1,48 @@
+{
+  "artifactsDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts",
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/request.json"
+  ],
+  "durationMs": 1660,
+  "evidenceDir": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233",
+  "exitCode": 0,
+  "payload": {
+    "caveat": "Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.",
+    "durationMs": 1518,
+    "engine": "local",
+    "format": "image",
+    "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+    "ok": true,
+    "outputs": [
+      {
+        "bytes": 26500,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/001.png",
+        "height": 1080,
+        "page": 1,
+        "width": 1920
+      },
+      {
+        "bytes": 27357,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/002.png",
+        "height": 1080,
+        "page": 2,
+        "width": 1920
+      },
+      {
+        "bytes": 27625,
+        "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/003.png",
+        "height": 1080,
+        "page": 3,
+        "width": 1920
+      }
+    ],
+    "pages": 3,
+    "route": [
+      "local.pdfjs"
+    ]
+  },
+  "stderr": "{\"kind\":\"resolve\",\"message\":\"Resolving /home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"at\":\"2026-09-10T01:34:55.909Z\"}\n{\"kind\":\"plan\",\"message\":\"Building render plan\",\"at\":\"2026-09-10T01:34:55.911Z\"}\n{\"kind\":\"warning\",\"message\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\",\"at\":\"2026-09-10T01:34:55.911Z\"}\n{\"kind\":\"task\",\"message\":\"Rasterizing PDF page 1 of 3\",\"at\":\"2026-09-10T01:34:56.903Z\"}\n{\"kind\":\"task\",\"message\":\"Rasterizing PDF page 2 of 3\",\"at\":\"2026-09-10T01:34:57.103Z\"}\n{\"kind\":\"task\",\"message\":\"Rasterizing PDF page 3 of 3\",\"at\":\"2026-09-10T01:34:57.230Z\"}\n{\"kind\":\"write\",\"message\":\"Writing artifacts\",\"at\":\"2026-09-10T01:34:57.425Z\"}\n",
+  "stdout": "{\"ok\":true,\"input\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf\",\"format\":\"image\",\"engine\":\"local\",\"route\":[\"local.pdfjs\"],\"pages\":3,\"outputs\":[{\"page\":1,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/001.png\",\"width\":1920,\"height\":1080,\"bytes\":26500},{\"page\":2,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/002.png\",\"width\":1920,\"height\":1080,\"bytes\":27357},{\"page\":3,\"file\":\"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-local/evidence/REN-R06-auto-0463b5658233/artifacts/003.png\",\"width\":1920,\"height\":1080,\"bytes\":27625}],\"durationMs\":1518,\"caveat\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"}\n"
+}

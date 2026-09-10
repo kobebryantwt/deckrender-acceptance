@@ -1,0 +1,56 @@
+{
+  "caseId": "REN-R09-quality-a0f12e2fe846",
+  "engine": "local",
+  "errors": [],
+  "expectedSupport": true,
+  "interface": "cli",
+  "pages": [
+    {
+      "actualSha256": "25eb00ac73d83cbab55fc816bb0a7b0c36261dbdcae2caeffeca56d874c9f92f",
+      "artifactSha256": "9b1e368c68fb028ad44a16f32430515f3cc97065df2a5962b02b09253a8ad304",
+      "caseId": "REN-R09-quality-a0f12e2fe846",
+      "image": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-quality/evidence/REN-R09-quality-a0f12e2fe846/previews/0/0001.png",
+      "imageSha256": "25eb00ac73d83cbab55fc816bb0a7b0c36261dbdcae2caeffeca56d874c9f92f",
+      "mapping": {
+        "sourcePage": 1
+      },
+      "outputIndex": 0,
+      "outputPage": 1,
+      "page": 1,
+      "precheck": {
+        "aspectRatio": 1.333,
+        "isUniform": false,
+        "size": [
+          1920,
+          1440
+        ],
+        "status": "passed",
+        "suggestedRubric": {
+          "charts": "待审",
+          "clipping": "待审",
+          "hierarchy": "待审",
+          "legibility": "待审",
+          "overlap": "待审",
+          "text": "待审"
+        }
+      },
+      "referenceImage": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-quality/evidence/REN-R09-quality-a0f12e2fe846/previews/reference-0-1.png",
+      "referenceProvenance": {
+        "method": "source PDF",
+        "renderer": "PyMuPDF",
+        "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155"
+      },
+      "referenceSha256": "d55143735ee61316e3467a95bd427335ebb3e3fbfc76bf220bcd1437b2e445d2",
+      "referenceStatus": "approved",
+      "size": [
+        1920,
+        1440
+      ],
+      "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155"
+    }
+  ],
+  "sourceFormat": "pdf",
+  "sourceSha256": "85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155",
+  "status": "review",
+  "target": "image"
+}

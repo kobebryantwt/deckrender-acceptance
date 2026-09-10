@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runtimes/v0.3.1/node_modules/@deckflow/deckrender/dist/cli.js",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155.pdf",
+    "--engine",
+    "local",
+    "--format",
+    "image",
+    "--output",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-quality/evidence/REN-R09-quality-a0f12e2fe846/artifacts",
+    "--json",
+    "--width",
+    "1920"
+  ],
+  "durationMs": 1955,
+  "exitCode": 0,
+  "stderr": "{\"warning\":\"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"}\n",
+  "stdout": "{\n  \"ok\": true,\n  \"input\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/85edcfc173a942aa82fa0123f51cb2fffed11e15b9a328970e74e3a66bbab155.pdf\",\n  \"format\": \"image\",\n  \"engine\": \"local\",\n  \"route\": [\n    \"local.pdfjs\"\n  ],\n  \"pages\": 1,\n  \"outputs\": [\n    {\n      \"page\": 1,\n      \"file\": \"/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34425646278-quality/evidence/REN-R09-quality-a0f12e2fe846/artifacts/001.png\",\n      \"width\": 1920,\n      \"height\": 1440,\n      \"bytes\": 1440765\n    }\n  ],\n  \"durationMs\": 1763,\n  \"caveat\": \"Local PDF images are rasterized by PDF.js; complex transparency and blend modes can differ slightly from Acrobat or the DeckFlow cloud.\"\n}\n"
+}

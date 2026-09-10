@@ -1,0 +1,181 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "imageEncoding": "jpg",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.doc2pdf",
+          "convertor.pdf2image"
+        ],
+        "selectedSourcePages": [
+          1
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R07-render-501fa9952cfa"
+      ],
+      "expected": "图片编码 jpg：检查真实解码格式，仅输出源第 1 页；支持的路线成功，不可用组合明确拒绝且不伪造产物；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "outcome",
+      "questionId": "REN-R07-render-501fa9952cfa-outcome",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.outcome.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "imageEncoding": "jpg",
+        "optionEvidence": [
+          {
+            "file": "source/docs/formats.md",
+            "sha256": "f25f974b87ca9dffc11a2fae56ee232893b071cefd62f614544aefed6a8ac736"
+          },
+          {
+            "file": "source/src/types.ts",
+            "sha256": "254f60b4a26104dbd9dcb02c72bd7a37a833cb876823c501f6b4e319141ac938"
+          },
+          {
+            "file": "source/src/core/pages.ts",
+            "sha256": "7702488fe83436f88991bdc5b2c6f1015bda16051b4967fbd68aec6256d0495e"
+          },
+          {
+            "file": "source/src/core/plan.ts",
+            "sha256": "4afecb4126f21e68822caf0b549b31bf9957f095e7cc864bfb598055820b61d4"
+          }
+        ],
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 3,
+        "route": [
+          "convertor.doc2pdf",
+          "convertor.pdf2image"
+        ],
+        "selectedSourcePages": [
+          1
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R07-render-501fa9952cfa"
+      ],
+      "expected": "图片编码 jpg：检查真实解码格式，仅输出源第 1 页；产物可解码；页序、数量与独立答案一致；筛选输出按原始源页码匹配 GT，不按结果序号重编号",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "artifacts",
+      "questionId": "REN-R07-render-501fa9952cfa-artifacts",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "render.artifacts.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R07-render-501fa9952cfa"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R07-render-501fa9952cfa-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "render"
+    }
+  ],
+  "caseId": "REN-R07-render-501fa9952cfa",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R07-render-501fa9952cfa"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"docx_business_report.docx\" --engine cloud --format image -o ./out --json --pages \"1\" --image-format jpg",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'docx_business_report.docx',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n  pages: \"1\",\n  imageFormat: \"jpg\",\n});"
+  },
+  "format": "docx",
+  "inputSha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+  "options": {
+    "engine": "cloud",
+    "expectedSourcePages": [
+      1
+    ],
+    "expectedSupport": true,
+    "imageFormat": "jpg",
+    "interface": "sdk",
+    "pages": "1",
+    "target": "image",
+    "variantId": "encoding-jpg",
+    "variantLabel": "图片编码 jpg：检查真实解码格式，仅输出源第 1 页"
+  },
+  "qualityCaseId": "REN-R09-quality-501fa9952cfa",
+  "source": {
+    "sha256": "2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/2b21345cb1f276bfeab04f2600c9d1447b6a36a16af4340b74764b65440c08a6.docx"
+  },
+  "status": "blocked"
+}

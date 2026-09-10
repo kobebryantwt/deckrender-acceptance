@@ -1,0 +1,102 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R07-schema-f9d32a12090e"
+      ],
+      "expected": "错误提供稳定 machine code，CLI 退出码与发布文档一致",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "error",
+      "questionId": "REN-R07-schema-f9d32a12090e-error",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.error.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "schema"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R07-schema-f9d32a12090e"
+      ],
+      "expected": "CLI 与 SDK 公共结果语义一致，忽略调用独有路径与任务身份",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "parity",
+      "questionId": "REN-R07-schema-f9d32a12090e-parity",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.parity.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "schema"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R07-schema-f9d32a12090e"
+      ],
+      "expected": "不存在的输入明确失败，符合公共错误 Schema 且不产生渲染产物",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "boundary",
+      "questionId": "REN-R07-schema-f9d32a12090e-boundary",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "schema.boundary.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "schema"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R07-schema-f9d32a12090e"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R07",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R07-schema-f9d32a12090e-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "schema"
+    }
+  ],
+  "caseId": "REN-R07-schema-f9d32a12090e",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "local"
+  ],
+  "evidence": [
+    "evidence/REN-R07-schema-f9d32a12090e"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"markers.pptx\" --engine cloud -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pptx',\n  engine: 'cloud'\n});"
+  },
+  "format": "pptx",
+  "inputSha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+  "options": {
+    "engine": "cloud",
+    "interface": "cli",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a22ec2124a347e489d31d2a80148ba5ab14b3f895b1476cb3c1c9713394e06b4.pptx"
+  },
+  "status": "blocked"
+}
