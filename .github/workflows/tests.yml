@@ -14,5 +14,10 @@ jobs:
           cache-dependency-path: 'benchmark/acceptance/requirements.txt'
       - run: pip install -r benchmark/acceptance/requirements.txt
       - run: python benchmark/scripts/deck_benchmark.py core-check
+      - name: Install namespace test tools
+        run: sudo apt-get update && sudo apt-get install -y iproute2 util-linux strace
       - run: python -m unittest discover -s benchmark/acceptance/tests -v
+        env:
+          REN_ALLOW_SUDO_NETNS: '1'
+          REN_TEST_NETNS: '1'
       - run: python -m unittest discover -s casework/tests -v

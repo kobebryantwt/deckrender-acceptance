@@ -26,3 +26,9 @@
 报告分别显示断言计数、云端调用尝试、复用次数及源页提交量；调用数不冒充服务端任务或计费次数。模式和预算策略不兼容时，历史比较不得归因产品回归。
 
 删除审计继续使用独立持久化账本和定时恢复工作流；无可验证接口时保持阻塞。Linux 隔离探针失败也保持阻塞；预算优化不绕过网络隔离和监控要求。
+
+## Linux 隔离兼容性
+
+CI 设置 `REN_ALLOW_SUDO_NETNS=1`。优先尝试映射当前用户的无特权网络命名空间；失败后可用 sudo 仅创建网络命名空间并启用 loopback，随后 setpriv 降至 runner 的 UID/GID、清除附加组并设置 no-new-privs，再执行 Python/Node。不会修改 AppArmor 或全局 sysctl。
+
+探针必须证明目标身份不是 root、网络命名空间不同于宿主且仅有 loopback。凭据哨兵与网络 strace 负向校准仍在每个受保护 case 执行前进行。框架 CI 另有真实 Linux 集成测试，验证 loopback 可绑定、外部连接返回 ENETUNREACH 且被 strace 记录。任一必要探针失败仍阻塞验收。

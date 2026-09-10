@@ -1,6 +1,7 @@
 import os, platform, shutil, tempfile
 from .common import *
 from .releases import package_path
+from . import isolation as network_isolation
 
 CREDENTIAL_NAMES=['DECKRENDER_API_KEY','DECKFLOW_API_KEY','DECKHTML_API_KEY','DECKRENDER_TOKEN','DECKFLOW_TOKEN']
 
@@ -20,7 +21,7 @@ def doctor(home):
     commands['soffice']=find_office(home)
     chrome=next((shutil.which(k) for k in ['chromium','chromium-browser','google-chrome'] if shutil.which(k)),None)
     chrome=chrome or ( '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' if Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome').exists() else None )
-    isolation=process(['unshare','-Urn','true']) if platform.system()=='Linux' and commands['unshare'] else {'exitCode':None,'stderr':'Linux unshare unavailable'}
+    isolation=network_isolation.probe()
     try:
         package=str(package_path(home));health=process(['node',str(Path(package)/'dist/cli.js'),'--version']);error=None if health['exitCode']==0 else health['stderr']
     except ValueError as e:package=None;error=str(e)
@@ -71,7 +72,7 @@ def _invoke(home, case, output, privacy=False, invalid=False, missing_dependency
         calibration_env={**env,'REN_CREDENTIAL_LOG':str((calibration/'credentials.jsonl').resolve())}
         sentinel=str((sandbox/'.deckflow/credentials').resolve())
         probe="require('fs').readFileSync("+json.dumps(sentinel)+");void process.env.DECKRENDER_API_KEY;const s=require('net').connect(9,'192.0.2.1');s.on('error',()=>{});setTimeout(()=>{s.destroy();process.exit(0)},150)"
-        calibration_proc=process(['unshare','-Urn','strace','-f','-qq','-s','256','-e','trace=network,openat','-o',str((calibration/'system.trace').resolve()),'node','-e',probe],timeout=10,env=calibration_env)
+        calibration_proc=network_isolation.run(health['isolation'],['strace','-f','-qq','-s','256','-e','trace=network,openat','-o',str((calibration/'system.trace').resolve()),'node','-e',probe],timeout=10,env=calibration_env)
         from .evaluation import privacy_evidence
         observed=privacy_evidence(calibration_proc,calibration)
         atomic(calibration/'calibration.json',{'process':calibration_proc,'observed':observed})
@@ -93,8 +94,8 @@ def _invoke(home, case, output, privacy=False, invalid=False, missing_dependency
         if 'pages' in render:command+=['--pages',render['pages']]
         if 'imageFormat' in render:command+=['--image-format',render['imageFormat']]
         # Dependency absence comes from the frozen --omit=optional installation, not invented CLI flags.
-    if privacy:command=['unshare','-Urn','strace','-f','-qq','-s','256','-e','trace=network,openat','-o',str((output/'system.trace').resolve()),*command]
-    result=process(command,REPO,timeout=300,env=env)
+    if privacy:command=['strace','-f','-qq','-s','256','-e','trace=network,openat','-o',str((output/'system.trace').resolve()),*command]
+    result=network_isolation.run(health['isolation'],command,env,timeout=300,cwd=REPO) if privacy else process(command,REPO,timeout=300,env=env)
     atomic(output/'process.json',redact(result))
     try:result['payload']=(json.loads if options['interface']=='sdk' else parse_cli_result)(result['stdout'] if result['exitCode']==0 or options['interface']=='sdk' else result['stderr'])
     except (ValueError,TypeError):result['payload']=None

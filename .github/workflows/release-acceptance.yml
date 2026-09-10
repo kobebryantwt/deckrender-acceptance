@@ -28,6 +28,7 @@ on:
   schedule:
     - cron: '43 6 * * 2' # 每周二北京时间 14:43 (UTC 06:43)
 env:
+  REN_ALLOW_SUDO_NETNS: '1' # Create network namespace, then drop back to runner UID
   REN_RUN_MODE: ${{ github.event_name == 'schedule' && 'formal' || inputs.mode || 'debug' }}
 permissions:
   contents: read
@@ -121,7 +122,7 @@ jobs:
       - name: Install execution and privacy tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
+          sudo apt-get install -y iproute2 util-linux strace fonts-liberation fonts-noto-cjk ffmpeg tesseract-ocr
       - uses: actions/download-artifact@v4
         with:
           name: frozen-release
