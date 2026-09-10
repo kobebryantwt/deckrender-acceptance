@@ -97,6 +97,11 @@ def main(argv=None):
                     out=aggregate(home,a.inputs,a.run_id,a.snapshot)
                 elif a.command=='verdict':
                     verify(a.run);e=read(a.run/'run.json');out=e['qualitySummary'];print(encoded(out))
+                    if e.get('executionMode')=='debug':
+                        if e.get('group')!='all' or out.get('scope')!='partial:debug' or out.get('releaseDecision')=='PASS':
+                            raise ValueError('Invalid debug report scope or release decision')
+                        print('Debug report generated successfully; no release sign-off. Findings remain in the report.')
+                        return
                     from .state import record
                     record(home,e)
                     if e.get('group')!='all' or out.get('scope')!='complete' or out['releaseDecision']!='PASS':raise SystemExit(1)
