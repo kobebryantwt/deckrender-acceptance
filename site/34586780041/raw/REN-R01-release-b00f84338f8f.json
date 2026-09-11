@@ -1,0 +1,81 @@
+{
+  "assertions": [
+    {
+      "actual": {
+        "licenseBodiesEqual": true,
+        "npmLicense": "MIT",
+        "tagLicense": "MIT"
+      },
+      "evidence": [
+        "evidence/REN-R01-release-b00f84338f8f"
+      ],
+      "expected": "发布 tag 与 npm 包均为 MIT；许可证正文一致",
+      "featureId": "REN-R01",
+      "finding": true,
+      "id": "mit",
+      "questionId": "REN-R01-release-b00f84338f8f-mit",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "release.mit.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "release"
+    },
+    {
+      "actual": {
+        "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+        "frozenAt": "2026-09-11T09:57:45.743591+00:00",
+        "notes": "DeckRender now depends only on @deckflow/office2html@0.2.1 for PPTX conversion. Platform selection and native runtime layout are delegated to that package through its public getBinaryPath API. Release checks now verify the wrapper contract and native/cloud-only npm and pnpm installs.",
+        "npmIntegrity": "sha512-q0o3/TXJhMAUCi7QKZMVxPZ5Pm6A/POOLMFFv7enobrNvlLwZBCzwRtSAuga+xKgFz/Rq7l3PjZUrqdXL8NWew==",
+        "npmTarballSha256": "4ab8b80d97e2366f5056dc751a551b1869b27e50d4afe5984e7cf9fe6a2c15fd",
+        "packageLockSha256": "6f2a835032c32cdf0fc50ea265b5ab89628ed9c852f96c2422afd0a0dcf19416",
+        "publishedAt": "2026-09-02T06:04:24Z",
+        "releaseUrl": "https://github.com/deckflow/deckrender/releases/tag/v0.3.1",
+        "repository": "deckflow/deckrender",
+        "sourceArchiveSha256": "a86a8efb6d572012f4777605cd18a353f211204355495dc090d3a13eda86778d",
+        "tag": "v0.3.1",
+        "version": "0.3.1"
+      },
+      "evidence": [
+        "evidence/REN-R01-release-b00f84338f8f"
+      ],
+      "expected": "tag、commit、包版本与发布说明一致",
+      "featureId": "REN-R01",
+      "finding": true,
+      "id": "identity",
+      "questionId": "REN-R01-release-b00f84338f8f-identity",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "release.identity.v3",
+      "severity": "major",
+      "status": "passed",
+      "type": "release"
+    }
+  ],
+  "caseId": "REN-R01-release-b00f84338f8f",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "release"
+  ],
+  "evidence": [
+    "evidence/REN-R01-release-b00f84338f8f"
+  ],
+  "executionSnippet": {
+    "cli": "npm view @deckflow/deckrender@0.3.1 && git verify-tag v0.3.1",
+    "interface": "cli",
+    "sdk": "// 校验发布包元数据与 package.json\nconst pkg = require(\"@deckflow/deckrender/package.json\");"
+  },
+  "format": "md",
+  "inputSha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+  "options": {},
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/fdfbc73d374a7b5b0d06ee8f778c368cea24507236edd3b1ace8165a7d57d31d.md"
+  },
+  "status": "passed"
+}

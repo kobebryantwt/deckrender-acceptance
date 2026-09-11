@@ -1,0 +1,157 @@
+{
+  "assertions": [
+    {
+      "actual": [],
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "整个进程树无外部网络连接尝试",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "network",
+      "questionId": "REN-R03-privacy-df89b014b389-network",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.network.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "environment": [],
+        "files": [],
+        "scope": "Node property-read probe plus whole process-tree file trace; no claim about native direct environment reads"
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "无凭据文件读取或云凭据环境变量读取",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "credentials",
+      "questionId": "REN-R03-privacy-df89b014b389-credentials",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.credentials.v3",
+      "severity": "critical",
+      "status": "passed",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "durationMs": 11,
+        "engine": "passthrough",
+        "format": "pdf",
+        "input": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf",
+        "ok": true,
+        "outputs": [
+          {
+            "bytes": 2333,
+            "file": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34586780041-privacy/evidence/REN-R03-privacy-df89b014b389/artifacts/001.pdf",
+            "page": 1
+          }
+        ],
+        "pages": 1,
+        "route": [
+          "passthrough"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "结果明确标记 local；不发生云端回退",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "local",
+      "questionId": "REN-R03-privacy-df89b014b389-local",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "privacy.local.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "privacy"
+    },
+    {
+      "actual": {
+        "branch": "success",
+        "errors": [
+          "Missing/invalid lifecycle",
+          "Missing caveat (explicit null allowed for no known caveat)"
+        ]
+      },
+      "evidence": [
+        "evidence/REN-R03-privacy-df89b014b389"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R03",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R03-privacy-df89b014b389-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "failed",
+      "type": "privacy"
+    }
+  ],
+  "caseId": "REN-R03-privacy-df89b014b389",
+  "command": [
+    "/usr/bin/sudo",
+    "-n",
+    "/usr/bin/unshare",
+    "--net",
+    "/usr/bin/sh",
+    "-c",
+    "\"$1\" link set lo up && shift && exec \"$@\"",
+    "namespace",
+    "/usr/sbin/ip",
+    "/usr/bin/setpriv",
+    "--reuid",
+    "1001",
+    "--regid",
+    "1001",
+    "--clear-groups",
+    "--no-new-privs",
+    "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+    "-I",
+    "-c",
+    "import json,os,sys; e=json.load(open(sys.argv[1])); os.execvpe(sys.argv[2],sys.argv[2:],e)",
+    "/tmp/ren-child-env-4k9v_dat/environment.json",
+    "strace",
+    "-f",
+    "-qq",
+    "-s",
+    "256",
+    "-e",
+    "trace=network,openat",
+    "-o",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34586780041-privacy/evidence/REN-R03-privacy-df89b014b389/system.trace",
+    "node",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/adapters/sdk.mjs",
+    "/home/runner/work/deckrender-acceptance/deckrender-acceptance/benchmark/artifacts/acceptance/runs/34586780041-privacy/evidence/REN-R03-privacy-df89b014b389/request.json"
+  ],
+  "evidence": [
+    "evidence/REN-R03-privacy-df89b014b389"
+  ],
+  "executionSnippet": {
+    "cli": "unshare -Urn strace -f -e trace=network,openat deckrender \"markers.pdf\" --engine local --format pdf -o ./out --json",
+    "interface": "sdk",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'markers.pdf',\n  engine: 'local',\n  format: 'pdf',\n  out: './out',\n});"
+  },
+  "format": "pdf",
+  "inputSha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+  "options": {
+    "engine": "local",
+    "interface": "sdk",
+    "target": "pdf"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/a6e04caa5a87286b2298dfe5052c25f06526779eb7a02660fd35b42086622167.pdf"
+  },
+  "status": "failed"
+}

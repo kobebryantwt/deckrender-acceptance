@@ -1,0 +1,108 @@
+{
+  "assertions": [
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R09-quality-bbcf175909b2"
+      ],
+      "expected": "逐页人工核对文字、裁切、重叠、图表、层级及可读性；重点：字体与多语言",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "visual",
+      "questionId": "REN-R09-quality-bbcf175909b2-visual",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.visual.v3",
+      "severity": "minor",
+      "status": "blocked",
+      "type": "quality"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "contract": {
+        "caveat": null,
+        "engine": "cloud",
+        "evidence": {
+          "formatsSha256": "053ce2e3bb493066ae3e0d4966ed83217d1a5e01fc53cc494c9f24362c755033",
+          "resultPolicySha256": "b6184d4ae6dddd9f967470035bc5cca2895da62ce1a30b578071605561a34eb7"
+        },
+        "format": "image",
+        "outputCount": 1,
+        "release": {
+          "commit": "928e73f8ad41b999821ad2c64ddca1a34993e7b2",
+          "tag": "v0.3.1",
+          "version": "0.3.1"
+        },
+        "reportedPages": 1,
+        "route": [
+          "convertor.ppt2image"
+        ],
+        "status": "declared",
+        "supported": true
+      },
+      "evidence": [
+        "evidence/REN-R09-quality-bbcf175909b2"
+      ],
+      "expected": "产物可解码、页序符合独立依据；物理源页数：未知，需独立核定；文件数与 JSON pages 按冻结契约分别验证",
+      "featureId": "REN-R09",
+      "finding": false,
+      "id": "integrity",
+      "questionId": "REN-R09-quality-bbcf175909b2-integrity",
+      "reviewStatus": "approved",
+      "role": "observation",
+      "ruleId": "quality.integrity.v3",
+      "severity": "minor",
+      "status": "blocked",
+      "type": "quality"
+    },
+    {
+      "actual": "Cloud disabled for this execution mode",
+      "evidence": [
+        "evidence/REN-R09-quality-bbcf175909b2"
+      ],
+      "expected": "每次 render 调用的成功或错误响应符合公共 Schema contract，不补造字段",
+      "featureId": "REN-R09",
+      "finding": true,
+      "id": "commonSchema",
+      "questionId": "REN-R09-quality-bbcf175909b2-commonSchema",
+      "reviewStatus": "approved",
+      "role": "gate",
+      "ruleId": "response.commonSchema.v3",
+      "severity": "critical",
+      "status": "blocked",
+      "type": "quality"
+    }
+  ],
+  "caseId": "REN-R09-quality-bbcf175909b2",
+  "command": [
+    "python3",
+    "benchmark/scripts/release_acceptance.py",
+    "run",
+    "--group",
+    "quality"
+  ],
+  "evidence": [
+    "evidence/REN-R09-quality-bbcf175909b2"
+  ],
+  "executionSnippet": {
+    "cli": "deckrender \"ppt_legacy_elements.ppt\" --engine cloud --format image -o ./out --json",
+    "interface": "cli",
+    "sdk": "import { render } from '@deckflow/deckrender';\nconst result = await render({\n  input: 'ppt_legacy_elements.ppt',\n  engine: 'cloud',\n  format: 'image',\n  out: './out',\n});"
+  },
+  "format": "ppt",
+  "inputSha256": "54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687",
+  "options": {
+    "engine": "cloud",
+    "expectedSupport": true,
+    "interface": "cli",
+    "sourceFormat": "ppt",
+    "target": "image"
+  },
+  "qualityCaseId": null,
+  "source": {
+    "sha256": "54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687",
+    "type": "local",
+    "uri": "/home/runner/work/deckrender-acceptance/deckrender-acceptance/ci-input/current/objects/54790b849e108dca237b44ebffc53dcc3920e159e84f6d590bff2db906412687.ppt"
+  },
+  "status": "blocked"
+}
