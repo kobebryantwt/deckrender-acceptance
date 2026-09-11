@@ -6,8 +6,8 @@ on:
         type: choice
         options: [collect, submit]
         default: collect
-  schedule:
-    - cron: '20 * * * *'
+  # schedule:
+  #   - cron: '20 * * * *' # 已暂停：原每小时定时归档，现改为手动触发
 permissions:
   contents: write
 concurrency:

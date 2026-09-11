@@ -25,8 +25,8 @@ on:
         description: Re-run an unchanged release
         type: boolean
         default: false
-  schedule:
-    - cron: '43 6 * * 2' # 每周二北京时间 14:43 (UTC 06:43)
+  # schedule:
+  #   - cron: '43 6 * * 2' # 已暂停：每周二北京时间 14:43 (UTC 06:43)，现改为手动触发
 env:
   REN_ALLOW_SUDO_NETNS: '1' # Create network namespace, then drop back to runner UID
   REN_RUN_MODE: ${{ github.event_name == 'schedule' && 'formal' || inputs.mode || 'debug' }}
